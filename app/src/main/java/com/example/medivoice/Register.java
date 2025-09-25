@@ -9,13 +9,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +26,7 @@ public class Register extends AppCompatActivity {
     EditText firstName, middleName, lastName, address, contactNumber, emailPass, password;
     Button btnRegister, btnBack;
     FirebaseAuth mAuth;
+    DatabaseReference usersRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,9 @@ public class Register extends AppCompatActivity {
         password = findViewById(R.id.password);
         btnRegister = findViewById(R.id.btnRegister);
         btnBack = findViewById(R.id.btnBack);
+
         mAuth = FirebaseAuth.getInstance();
+        usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
         btnRegister.setOnClickListener(v -> {
             String fName = firstName.getText().toString().trim();
@@ -62,27 +65,18 @@ public class Register extends AppCompatActivity {
                 firstName.setError("First Name is required");
                 return;
             }
-
             if (TextUtils.isEmpty(mName)) {
                 middleName.setError("Middle Name is required");
                 return;
             }
-
             if (TextUtils.isEmpty(lName)) {
                 lastName.setError("Last Name is required");
                 return;
             }
-
-            //if (TextUtils.isEmpty(add)) {
-            //    address.setError("Address is required");
-            //    return;
-            //}
-
             if (TextUtils.isEmpty(contact)) {
                 contactNumber.setError("Contact Number is required");
                 return;
             }
-
             if (TextUtils.isEmpty(email)) {
                 emailPass.setError("Email is required");
                 return;
@@ -95,43 +89,62 @@ public class Register extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            String uid = mAuth.getCurrentUser().getUid();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                saveUserData(user, fName, mName, lName, add, contact, email);
 
-                            HashMap<String, Object> userMap = new HashMap<>();
-                            userMap.put("First Name", fName);
-                            userMap.put("Middle Name", mName);
-                            userMap.put("Last Name", lName);
-                            userMap.put("Address", add);
-                            userMap.put("Contact Number", contact);
-                            userMap.put("Email", email);
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(verifyTask -> {
+                                            if (verifyTask.isSuccessful()) {
+                                                Toast.makeText(Register.this,
+                                                        "Verification email sent. Please check your inbox.",
+                                                        Toast.LENGTH_LONG).show();
 
-                            DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-
-                            // Save user details under Users/{uid}
-                            db.child("Users").child(uid).setValue(userMap)
-                                    .addOnCompleteListener(dbTask -> {
-                                        if (dbTask.isSuccessful()) {
-                                            // Also save to Usernames/{name} = uid
-                                            db.child("Usernames").child(fName).setValue(uid);
-
-                                            Toast.makeText(Register.this, "Account created successfully", Toast.LENGTH_SHORT).show();
-                                            Log.d("Register", "User data + secondary index saved successfully");
-                                        } else {
-                                            Toast.makeText(Register.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
-                                            Log.e("Register", "Error saving user data", dbTask.getException());
-                                        }
-                                    });
+                                                mAuth.signOut(); // sign out until email is verified
+                                                startActivity(new Intent(Register.this, Login.class));
+                                                finish();
+                                            } else {
+                                                Toast.makeText(Register.this,
+                                                        "Failed to send verification: " +
+                                                                verifyTask.getException().getMessage(),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
                         } else {
-                            Toast.makeText(Register.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this,
+                                    "Error: " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
-
         });
 
-        //btnBack.setOnClickListener(v -> {
-        //    Intent intent = new Intent(Register.this, Login.class);
-        //    startActivity(intent);
-        //    finish(); // Optional: closes the current activity
-        //});
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(Register.this, Login.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    private void saveUserData(FirebaseUser user, String fName, String mName,
+                              String lName, String add, String contact, String email) {
+        String userId = user.getUid();
+
+        HashMap<String, Object> userMap = new HashMap<>();
+        userMap.put("firstName", fName);
+        userMap.put("middleName", mName);
+        userMap.put("lastName", lName);
+        userMap.put("address", add);
+        userMap.put("contactNumber", contact);
+        userMap.put("email", email);
+
+        usersRef.child(userId).setValue(userMap)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(Register.this, "User data saved successfully", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(Register.this, "Failed to save user data: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                });
     }
 }
