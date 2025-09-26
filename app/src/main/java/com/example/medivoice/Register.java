@@ -1,18 +1,17 @@
 package com.example.medivoice;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.content.Intent;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -93,23 +92,12 @@ public class Register extends AppCompatActivity {
                             if (user != null) {
                                 saveUserData(user, fName, mName, lName, add, contact, email);
 
-                                user.sendEmailVerification()
-                                        .addOnCompleteListener(verifyTask -> {
-                                            if (verifyTask.isSuccessful()) {
-                                                Toast.makeText(Register.this,
-                                                        "Verification email sent. Please check your inbox.",
-                                                        Toast.LENGTH_LONG).show();
+                                Toast.makeText(Register.this,
+                                        "Registration successful",
+                                        Toast.LENGTH_SHORT).show();
 
-                                                mAuth.signOut(); // sign out until email is verified
-                                                startActivity(new Intent(Register.this, Login.class));
-                                                finish();
-                                            } else {
-                                                Toast.makeText(Register.this,
-                                                        "Failed to send verification: " +
-                                                                verifyTask.getException().getMessage(),
-                                                        Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                startActivity(new Intent(Register.this, Login.class));
+                                finish();
                             }
                         } else {
                             Toast.makeText(Register.this,

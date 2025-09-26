@@ -14,7 +14,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
@@ -54,23 +53,13 @@ public class Login extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                if (user.isEmailVerified()) {
-                                    // Allow access
-                                    Intent intent = new Intent(Login.this, VoiceRecord.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    mAuth.signOut();
-                                    Toast.makeText(Login.this,
-                                            "Please verify your email before logging in.",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }
+                            Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Login.this, VoiceRecord.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(Login.this,
-                                    "Error: " + task.getException().getMessage(),
+                                    "Wrong credentials",
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
