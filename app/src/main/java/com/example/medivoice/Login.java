@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
-    Button btnLogin;
+    Button btnLogin, btnRegister;
     EditText emailPass2, password2;
     FirebaseAuth mAuth;
 
@@ -33,6 +33,7 @@ public class Login extends AppCompatActivity {
         });
 
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegister = findViewById(R.id.btnRegister);
         emailPass2 = findViewById(R.id.emailPass2);
         password2 = findViewById(R.id.password2);
         mAuth = FirebaseAuth.getInstance();
@@ -63,6 +64,12 @@ public class Login extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
+        });
+
+        btnRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, Register.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
