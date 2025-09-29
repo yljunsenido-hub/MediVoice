@@ -14,6 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GuardianLogin extends AppCompatActivity {
 
@@ -54,6 +57,10 @@ public class GuardianLogin extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                checkIfConnected(user.getUid());
+                            }
                             Toast.makeText(GuardianLogin.this, "Login successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(GuardianLogin.this, VoiceRecord.class);
                             startActivity(intent);
@@ -72,4 +79,29 @@ public class GuardianLogin extends AppCompatActivity {
             finish();
         });
     }
+
+    private void checkIfConnected(String guardianId) {
+        DatabaseReference guardianRef = FirebaseDatabase.getInstance()
+                .getReference("Guardians")
+                .child(guardianId)
+                .child("Users");  // <-- where linked users are stored
+
+        guardianRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult().exists()) {
+                    Intent intent = new Intent(this, GuardianHomePage.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(this, EnterCodePage.class);
+                    startActivity(intent);
+                    finish();
+                }
+            } else {
+                Toast.makeText(this, "Failed to check connection",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
