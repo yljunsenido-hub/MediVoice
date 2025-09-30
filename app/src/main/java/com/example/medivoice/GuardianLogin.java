@@ -84,7 +84,7 @@ public class GuardianLogin extends AppCompatActivity {
         DatabaseReference guardianRef = FirebaseDatabase.getInstance()
                 .getReference("Guardians")
                 .child(guardianId)
-                .child("Users");  // <-- where linked users are stored
+                .child("users");  // <-- where linked users are stored
 
         guardianRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
