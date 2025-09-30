@@ -1,5 +1,6 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton;
+    Button generateButton,prescriptionButton,voiceButton;
     TextView codeView;
     DatabaseReference usersRef;
     String userId;
@@ -37,13 +38,20 @@ public class HomePage extends AppCompatActivity {
         });
 
         generateButton = findViewById(R.id.generateButton);
+        prescriptionButton = findViewById(R.id.prescriptionButton);
+        voiceButton = findViewById(R.id.voiceButton);
         codeView = findViewById(R.id.codeView);
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
         generateButton.setOnClickListener(v -> generateConnectionCode());
 
-        }
+        prescriptionButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this, PrescriptionScanner.class);
+            startActivity(intent);
+        });
+
+    }
 
     private void generateConnectionCode() {
         String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
