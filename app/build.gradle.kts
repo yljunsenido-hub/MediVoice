@@ -46,4 +46,5 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-database")
+    implementation("com.google.mlkit:text-recognition:16.0.0")
 }
