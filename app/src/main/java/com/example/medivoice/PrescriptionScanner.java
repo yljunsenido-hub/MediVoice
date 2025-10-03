@@ -8,6 +8,11 @@ import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -48,7 +53,15 @@ public class PrescriptionScanner extends AppCompatActivity {
         btnGallery = findViewById(R.id.btnGallery);
         textResult = findViewById(R.id.textResult);
 
-        btnCamera.setOnClickListener(v -> openCamera());
+        btnCamera.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA}, 200);
+            } else {
+                openCamera();
+            }
+        });
         btnGallery.setOnClickListener(v -> openGallery());
     }
 
@@ -95,6 +108,20 @@ public class PrescriptionScanner extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 200) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     private void processTextRecognition(InputImage image) {
         TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
