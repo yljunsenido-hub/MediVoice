@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- ✅ CAMERA & STORAGE PERMISSIONS -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
-        android:requestLegacyExternalStorage="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MediVoice"
         tools:targetApi="31">
-
+        <activity
+            android:name=".CreateVoiceRecord"
+            android:exported="false" />
         <!-- ✅ FileProvider (correctly kept) -->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -31,25 +33,42 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".PrescriptionScanner" android:exported="false" />
-        <activity android:name=".GuardianHomePage" android:exported="false" />
-        <activity android:name=".EnterCodePage" android:exported="false" />
-        <activity android:name=".HomePage" android:exported="false" />
-        <activity android:name=".GuardianRegister" android:exported="false" />
-        <activity android:name=".GuardianLogin" android:exported="false" />
-        <activity android:name=".Register" android:exported="false" />
-        <activity android:name=".Login" android:exported="false" />
-        <activity android:name=".VoiceRecord" android:exported="false" />
-
+        <activity
+            android:name=".PrescriptionScanner"
+            android:exported="false" />
+        <activity
+            android:name=".GuardianHomePage"
+            android:exported="false" />
+        <activity
+            android:name=".EnterCodePage"
+            android:exported="false" />
+        <activity
+            android:name=".HomePage"
+            android:exported="false" />
+        <activity
+            android:name=".GuardianRegister"
+            android:exported="false" />
+        <activity
+            android:name=".GuardianLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".VoiceRecord"
+            android:exported="false" />
         <activity
             android:name=".WelcomePage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
