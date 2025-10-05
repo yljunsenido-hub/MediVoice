@@ -51,6 +51,11 @@ public class HomePage extends AppCompatActivity {
             startActivity(intent);
         });
 
+        voiceButton.setOnClickListener(v -> {
+            Intent voiceIntent = new Intent(HomePage.this, TextToSpeech.class);
+            startActivity(voiceIntent);
+        });
+
     }
 
     private void generateConnectionCode() {

@@ -62,7 +62,7 @@ public class GuardianLogin extends AppCompatActivity {
                                 checkIfConnected(user.getUid());
                             }
                             Toast.makeText(GuardianLogin.this, "Login successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(GuardianLogin.this, VoiceRecord.class);
+                            Intent intent = new Intent(GuardianLogin.this, GuardianHomePage.class);
                             startActivity(intent);
                             finish();
                         } else {
