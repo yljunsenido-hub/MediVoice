@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class TextToSpeech extends AppCompatActivity {
 
     Button micButton, saveButton;
     TextView outputView;
+    EditText recordName;
+
     private static final int SPEECH_REQUEST_CODE = 100;
 
     FirebaseAuth mAuth;
@@ -55,6 +58,7 @@ public class TextToSpeech extends AppCompatActivity {
         micButton = findViewById(R.id.micButton);
         outputView = findViewById(R.id.outputView);
         saveButton = findViewById(R.id.saveButton);
+        recordName = findViewById(R.id.recordName);
 
         // Firebase Saving Record
         mAuth = FirebaseAuth.getInstance();
@@ -70,19 +74,32 @@ public class TextToSpeech extends AppCompatActivity {
         micButton.setOnClickListener(v -> startSpeechToText());
 
         saveButton.setOnClickListener(v -> {
+            String name = recordName.getText().toString().trim();
             String text = outputView.getText().toString().trim();
+            String date = java.text.DateFormat.getDateTimeInstance().format(new java.util.Date());
+
+            if (name.isEmpty()) {
+                Toast.makeText(this, "Please enter a record name!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (text.isEmpty()) {
                 Toast.makeText(this, "No text to save!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             String noteId = userSpeechRef.push().getKey();
-            userSpeechRef.child(noteId).setValue(text)
+
+            // Create an object with Name, Text, and Date
+            SpeechRecord record = new SpeechRecord(name, text, date);
+
+            userSpeechRef.child(noteId).setValue(record)
                     .addOnSuccessListener(aVoid ->
-                            Toast.makeText(this, "Saved Success", Toast.LENGTH_SHORT).show())
+                            Toast.makeText(this, "Saved Successfully!", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e ->
                             Toast.makeText(this, "Failed to save: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         });
+
     }
 
     private void startSpeechToText() {
