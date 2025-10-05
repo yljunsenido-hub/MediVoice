@@ -52,7 +52,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         voiceButton.setOnClickListener(v -> {
-            Intent voiceIntent = new Intent(HomePage.this, TextToSpeech.class);
+            Intent voiceIntent = new Intent(HomePage.this, RecordSpeechToText.class);
             startActivity(voiceIntent);
         });
 

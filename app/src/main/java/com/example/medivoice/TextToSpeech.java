@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -17,14 +18,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class TextToSpeech extends AppCompatActivity {
 
-    Button micButton;
+    Button micButton, saveButton;
     TextView outputView;
     private static final int SPEECH_REQUEST_CODE = 100;
 
+    FirebaseAuth mAuth;
+    DatabaseReference userSpeechRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class TextToSpeech extends AppCompatActivity {
             return insets;
         });
 
+        // Ask for mic permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -45,8 +54,35 @@ public class TextToSpeech extends AppCompatActivity {
 
         micButton = findViewById(R.id.micButton);
         outputView = findViewById(R.id.outputView);
+        saveButton = findViewById(R.id.saveButton);
+
+        // Firebase Saving Record
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            userSpeechRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(currentUser.getUid())
+                    .child("SpeechToText");
+        }
 
         micButton.setOnClickListener(v -> startSpeechToText());
+
+        saveButton.setOnClickListener(v -> {
+            String text = outputView.getText().toString().trim();
+            if (text.isEmpty()) {
+                Toast.makeText(this, "No text to save!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String noteId = userSpeechRef.push().getKey();
+            userSpeechRef.child(noteId).setValue(text)
+                    .addOnSuccessListener(aVoid ->
+                            Toast.makeText(this, "Saved Success", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Failed to save: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        });
     }
 
     private void startSpeechToText() {
@@ -67,5 +103,4 @@ public class TextToSpeech extends AppCompatActivity {
             outputView.setText(result.get(0));
         }
     }
-
 }
