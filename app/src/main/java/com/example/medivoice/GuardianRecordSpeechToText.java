@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class GuardianRecordSpeechToText extends AppCompatActivity {
 
-    Button createButton;
     LinearLayout recordsContainer;
     FirebaseAuth mAuth;
     DatabaseReference guardianRef, usersRef;
@@ -39,7 +38,6 @@ public class GuardianRecordSpeechToText extends AppCompatActivity {
             return insets;
         });
 
-        createButton = findViewById(R.id.createButton);
         recordsContainer = findViewById(R.id.recordsContainer);
 
         mAuth = FirebaseAuth.getInstance();
