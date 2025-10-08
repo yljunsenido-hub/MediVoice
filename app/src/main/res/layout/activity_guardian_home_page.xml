@@ -17,4 +17,20 @@
         android:textSize="30sp"
         android:layout_marginTop="100dp"
         android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/prescriptionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prescription Scanner"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"/>
+
+    <Button
+        android:id="@+id/voiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speech to Text"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
