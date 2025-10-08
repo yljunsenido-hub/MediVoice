@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
@@ -21,6 +22,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -32,11 +37,15 @@ import java.io.IOException;
 
 public class PrescriptionScanner extends AppCompatActivity {
 
-    Button btnCamera, btnGallery;
+    Button btnCamera, btnGallery,saveButton;
     TextView textResult;
     Uri imageUri;
+    EditText recordName;
     private static final int CAMERA_REQUEST = 101;
     private static final int GALLERY_REQUEST = 102;
+    private static final int SPEECH_REQUEST_CODE = 100;
+    FirebaseAuth mAuth;
+    DatabaseReference userSpeechRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +60,47 @@ public class PrescriptionScanner extends AppCompatActivity {
 
         btnCamera = findViewById(R.id.btnCamera);
         btnGallery = findViewById(R.id.btnGallery);
+        saveButton = findViewById(R.id.saveButton);
+        recordName = findViewById(R.id.recordName);
         textResult = findViewById(R.id.textResult);
+
+        // Firebase Saving Record
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            userSpeechRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(currentUser.getUid())
+                    .child("ImageToText");
+        }
+
+        saveButton.setOnClickListener(v -> {
+            String name = recordName.getText().toString().trim();
+            String text = textResult.getText().toString().trim();
+            String date = java.text.DateFormat.getDateTimeInstance().format(new java.util.Date());
+
+            if (name.isEmpty()) {
+                Toast.makeText(this, "Please enter a record name!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (text.isEmpty()) {
+                Toast.makeText(this, "No text to save!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String noteId = userSpeechRef.push().getKey();
+
+            // Create an object with Name, Text, and Date
+            ImageToTextRecord record = new ImageToTextRecord(name, text, date);
+
+            userSpeechRef.child(noteId).setValue(record)
+                    .addOnSuccessListener(aVoid ->
+                            Toast.makeText(this, "Saved Successfully!", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Failed to save: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        });
 
         btnCamera.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)

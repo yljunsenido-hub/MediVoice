@@ -1,6 +1,13 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class RecordPrescriptionScanner extends AppCompatActivity {
+    LinearLayout recordsContainer;
+    DatabaseReference userSpeechRef;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +35,63 @@ public class RecordPrescriptionScanner extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Button createButton = findViewById(R.id.createButton);
+        recordsContainer = findViewById(R.id.recordsContainer);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+//        if (currentUser != null) {
+//            userSpeechRef = FirebaseDatabase.getInstance()
+//                    .getReference("Users")
+//                    .child(currentUser.getUid())
+//                    .child("ImageToText");
+//
+//            loadSpeechRecords();
+//        }
+
+        createButton.setOnClickListener(v -> {
+            Intent intent = new Intent(RecordPrescriptionScanner.this, PrescriptionScanner.class);
+            startActivity(intent);
+        });
+
     }
+
+
+
+//    private void addRecordCard(SpeechRecord record, String recordKey) {
+//        View cardView = LayoutInflater.from(this).inflate(R.layout.item_speech_record, recordsContainer, false);
+//
+//        Button deleteButton = cardView.findViewById(R.id.deleteButton);
+//        TextView nameView = cardView.findViewById(R.id.nameView);
+//        TextView dateView = cardView.findViewById(R.id.dateView);
+//        TextView textView = cardView.findViewById(R.id.textView);
+//
+//        nameView.setText(record.name);
+//        dateView.setText("Date: " + record.date);
+//        textView.setText("Text: " + record.text);
+//        textView.setVisibility(View.GONE);
+//
+//        cardView.setOnClickListener(v -> {
+//            if (textView.getVisibility() == View.GONE) {
+//                textView.setVisibility(View.VISIBLE);
+//            } else {
+//                textView.setVisibility(View.GONE);
+//            }
+//        });
+//
+//        deleteButton.setOnClickListener(v -> {
+//            if (recordKey != null) {
+//                userSpeechRef.child(recordKey).removeValue()
+//                        .addOnSuccessListener(aVoid ->
+//                                Toast.makeText(this, "Record deleted", Toast.LENGTH_SHORT).show()
+//                        )
+//                        .addOnFailureListener(e ->
+//                                Toast.makeText(this, "Failed to delete: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+//                        );
+//            }
+//        });
+//
+//        recordsContainer.addView(cardView);
+//    }
 }
