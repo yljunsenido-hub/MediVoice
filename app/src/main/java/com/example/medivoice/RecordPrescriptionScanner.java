@@ -17,8 +17,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RecordPrescriptionScanner extends AppCompatActivity {
     LinearLayout recordsContainer;
@@ -41,14 +44,14 @@ public class RecordPrescriptionScanner extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-//        if (currentUser != null) {
-//            userSpeechRef = FirebaseDatabase.getInstance()
-//                    .getReference("Users")
-//                    .child(currentUser.getUid())
-//                    .child("ImageToText");
-//
-//            loadSpeechRecords();
-//        }
+        if (currentUser != null) {
+            userSpeechRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(currentUser.getUid())
+                    .child("ImageToText");
+
+            loadImageRecords();
+        }
 
         createButton.setOnClickListener(v -> {
             Intent intent = new Intent(RecordPrescriptionScanner.this, PrescriptionScanner.class);
@@ -57,41 +60,61 @@ public class RecordPrescriptionScanner extends AppCompatActivity {
 
     }
 
+    private void loadImageRecords() {
+        userSpeechRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                recordsContainer.removeAllViews();
+
+                for (DataSnapshot recordSnapshot : snapshot.getChildren()) {
+                    SpeechRecord record = recordSnapshot.getValue(SpeechRecord.class);
+                    if (record != null) {
+                        String recordKey = recordSnapshot.getKey();
+                        addRecordCard(record, recordKey);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) { }
+        });
+    }
 
 
-//    private void addRecordCard(SpeechRecord record, String recordKey) {
-//        View cardView = LayoutInflater.from(this).inflate(R.layout.item_speech_record, recordsContainer, false);
-//
-//        Button deleteButton = cardView.findViewById(R.id.deleteButton);
-//        TextView nameView = cardView.findViewById(R.id.nameView);
-//        TextView dateView = cardView.findViewById(R.id.dateView);
-//        TextView textView = cardView.findViewById(R.id.textView);
-//
-//        nameView.setText(record.name);
-//        dateView.setText("Date: " + record.date);
-//        textView.setText("Text: " + record.text);
-//        textView.setVisibility(View.GONE);
-//
-//        cardView.setOnClickListener(v -> {
-//            if (textView.getVisibility() == View.GONE) {
-//                textView.setVisibility(View.VISIBLE);
-//            } else {
-//                textView.setVisibility(View.GONE);
-//            }
-//        });
-//
-//        deleteButton.setOnClickListener(v -> {
-//            if (recordKey != null) {
-//                userSpeechRef.child(recordKey).removeValue()
-//                        .addOnSuccessListener(aVoid ->
-//                                Toast.makeText(this, "Record deleted", Toast.LENGTH_SHORT).show()
-//                        )
-//                        .addOnFailureListener(e ->
-//                                Toast.makeText(this, "Failed to delete: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-//                        );
-//            }
-//        });
-//
-//        recordsContainer.addView(cardView);
-//    }
+
+    private void addRecordCard(SpeechRecord record, String recordKey) {
+        View cardView = LayoutInflater.from(this).inflate(R.layout.item_speech_record, recordsContainer, false);
+
+        Button deleteButton = cardView.findViewById(R.id.deleteButton);
+        TextView nameView = cardView.findViewById(R.id.nameView);
+        TextView dateView = cardView.findViewById(R.id.dateView);
+        TextView textView = cardView.findViewById(R.id.textView);
+
+        nameView.setText(record.name);
+        dateView.setText("Date: " + record.date);
+        textView.setText("Text: " + record.text);
+        textView.setVisibility(View.GONE);
+
+        cardView.setOnClickListener(v -> {
+            if (textView.getVisibility() == View.GONE) {
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setVisibility(View.GONE);
+            }
+        });
+
+        deleteButton.setOnClickListener(v -> {
+            if (recordKey != null) {
+                userSpeechRef.child(recordKey).removeValue()
+                        .addOnSuccessListener(aVoid ->
+                                Toast.makeText(this, "Record deleted", Toast.LENGTH_SHORT).show()
+                        )
+                        .addOnFailureListener(e ->
+                                Toast.makeText(this, "Failed to delete: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
+            }
+        });
+
+        recordsContainer.addView(cardView);
+    }
 }

@@ -47,7 +47,7 @@ public class HomePage extends AppCompatActivity {
         generateButton.setOnClickListener(v -> generateConnectionCode());
 
         prescriptionButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this, PrescriptionScanner.class);
+            Intent intent = new Intent(HomePage.this, RecordPrescriptionScanner.class);
             startActivity(intent);
         });
 
