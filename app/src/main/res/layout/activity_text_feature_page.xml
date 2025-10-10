@@ -11,6 +11,7 @@
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_height="wrap_content"
         android:text="Medication Name"
         android:textSize="18sp"
@@ -35,9 +36,57 @@
         android:id="@+id/dosage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Dosage"
+        android:hint="e.g. 500ml, 10ml"
         android:textSize="16sp"
         android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Schedule"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+
+    <EditText
+        android:id="@+id/schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 3 times a day, before breakfast"
+        android:textSize="16sp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 7 days, 2 weeks"
+        android:textSize="16sp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Date"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Select a date"
+        android:focusable="false"
+        android:clickable="true"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,6 +94,7 @@
         android:text="Notes"
         android:textSize="18sp"
         android:layout_gravity="center" />
+
 
     <EditText
         android:id="@+id/notes"
