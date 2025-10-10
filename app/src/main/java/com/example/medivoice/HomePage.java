@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton,prescriptionButton,voiceButton, textButton;
+    Button generateButton,prescriptionButton,voiceButton, textButton, logsButton;
     TextView codeView;
     DatabaseReference usersRef;
     String userId;
@@ -41,6 +41,7 @@ public class HomePage extends AppCompatActivity {
         prescriptionButton = findViewById(R.id.prescriptionButton);
         voiceButton = findViewById(R.id.voiceButton);
         textButton = findViewById(R.id.textButton);
+        logsButton = findViewById(R.id.logsButton);
         codeView = findViewById(R.id.codeView);
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -60,6 +61,11 @@ public class HomePage extends AppCompatActivity {
         textButton.setOnClickListener(v -> {
             Intent voiceIntent = new Intent(HomePage.this, TextFeaturePage.class);
             startActivity(voiceIntent);
+        });
+
+        logsButton.setOnClickListener(v -> {
+            Intent logIntent = new Intent(HomePage.this, Logs.class);
+            startActivity(logIntent);
         });
 
     }

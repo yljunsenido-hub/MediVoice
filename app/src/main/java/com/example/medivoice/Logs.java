@@ -1,6 +1,12 @@
 package com.example.medivoice;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +14,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.*;
+
 public class Logs extends AppCompatActivity {
+
+    LinearLayout recordsContainer;
+    DatabaseReference userLogsRef;
+    FirebaseAuth mAuth;
+
+    Button btnVoice, btnScanner; // Text ignored for now
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +36,79 @@ public class Logs extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnVoice = findViewById(R.id.btnVoice);
+        btnScanner = findViewById(R.id.btnScanner);
+        recordsContainer = findViewById(R.id.recordsContainer);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) return;
+
+        // Load SpeechToText (Voice) by default
+        loadData("SpeechToText");
+
+        btnVoice.setOnClickListener(v -> loadData("SpeechToText"));
+        btnScanner.setOnClickListener(v -> loadData("ImageToText"));
+    }
+
+    private void loadData(String type) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) return;
+
+        userLogsRef = FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .child(currentUser.getUid())
+                .child(type);
+
+        userLogsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                recordsContainer.removeAllViews();
+
+                for (DataSnapshot recordSnapshot : snapshot.getChildren()) {
+                    SpeechRecord record = recordSnapshot.getValue(SpeechRecord.class);
+                    if (record != null) {
+                        addRecordCard(record, recordSnapshot.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) { }
+        });
+    }
+
+    private void addRecordCard(SpeechRecord record, String recordKey) {
+        View cardView = LayoutInflater.from(this).inflate(R.layout.item_speech_record, recordsContainer, false);
+
+        Button deleteButton = cardView.findViewById(R.id.deleteButton);
+        TextView nameView = cardView.findViewById(R.id.nameView);
+        TextView dateView = cardView.findViewById(R.id.dateView);
+        TextView textView = cardView.findViewById(R.id.textView);
+
+        nameView.setText(record.name);
+        dateView.setText("Date: " + record.date);
+        textView.setText("Text: " + record.text);
+        textView.setVisibility(View.GONE);
+
+        cardView.setOnClickListener(v -> {
+            textView.setVisibility(textView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+        });
+
+        deleteButton.setOnClickListener(v -> {
+            if (recordKey != null) {
+                userLogsRef.child(recordKey).removeValue()
+                        .addOnSuccessListener(aVoid ->
+                                Toast.makeText(this, "Record deleted", Toast.LENGTH_SHORT).show()
+                        )
+                        .addOnFailureListener(e ->
+                                Toast.makeText(this, "Failed to delete: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
+            }
+        });
+
+        recordsContainer.addView(cardView);
     }
 }
