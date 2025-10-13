@@ -30,9 +30,6 @@
             android:name=".RecordPrescriptionScanner"
             android:exported="false" />
         <activity
-            android:name=".GuardianTextToSpeech"
-            android:exported="false" />
-        <activity
             android:name=".GuardianRecordSpeechToText"
             android:exported="false" />
         <activity
@@ -41,9 +38,6 @@
         <activity
             android:name=".TextToSpeech"
             android:exported="false" />
-        <activity
-            android:name=".CreateVoiceRecord"
-            android:exported="false" /> <!-- ✅ FileProvider (correctly kept) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -77,9 +71,6 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
-        <activity
-            android:name=".VoiceRecord"
             android:exported="false" />
         <activity
             android:name=".WelcomePage"

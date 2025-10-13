@@ -24,7 +24,7 @@ public class Logs extends AppCompatActivity {
     DatabaseReference userLogsRef;
     FirebaseAuth mAuth;
 
-    Button btnVoice, btnScanner; // Text ignored for now
+    Button btnVoice, btnScanner, btnText; // Text ignored for now
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class Logs extends AppCompatActivity {
 
         btnVoice = findViewById(R.id.btnVoice);
         btnScanner = findViewById(R.id.btnScanner);
+        btnText = findViewById(R.id.btnText);
         recordsContainer = findViewById(R.id.recordsContainer);
 
         mAuth = FirebaseAuth.getInstance();
@@ -51,6 +52,7 @@ public class Logs extends AppCompatActivity {
 
         btnVoice.setOnClickListener(v -> loadData("SpeechToText"));
         btnScanner.setOnClickListener(v -> loadData("ImageToText"));
+        btnText.setOnClickListener(v -> loadData("PrescriptionText"));
     }
 
     private void loadData(String type) {
@@ -68,9 +70,13 @@ public class Logs extends AppCompatActivity {
                 recordsContainer.removeAllViews();
 
                 for (DataSnapshot recordSnapshot : snapshot.getChildren()) {
-                    SpeechRecord record = recordSnapshot.getValue(SpeechRecord.class);
-                    if (record != null) {
-                        addRecordCard(record, recordSnapshot.getKey());
+
+                    if (type.equals("PrescriptionText")) {
+                        PrescriptionRecord record = recordSnapshot.getValue(PrescriptionRecord.class);
+                        if (record != null) addPrescriptionCard(record, recordSnapshot.getKey());
+                    } else {
+                        SpeechRecord record = recordSnapshot.getValue(SpeechRecord.class);
+                        if (record != null) addRecordCard(record, recordSnapshot.getKey());
                     }
                 }
             }
@@ -79,6 +85,7 @@ public class Logs extends AppCompatActivity {
             public void onCancelled(DatabaseError error) { }
         });
     }
+
 
     private void addRecordCard(SpeechRecord record, String recordKey) {
         View cardView = LayoutInflater.from(this).inflate(R.layout.item_speech_record, recordsContainer, false);
@@ -111,4 +118,45 @@ public class Logs extends AppCompatActivity {
 
         recordsContainer.addView(cardView);
     }
+
+    private void addPrescriptionCard(PrescriptionRecord record, String recordKey) {
+        View cardView = LayoutInflater.from(this).inflate(R.layout.text_feature, recordsContainer, false);
+
+        TextView nameView = cardView.findViewById(R.id.nameView);
+        TextView startdateView = cardView.findViewById(R.id.startdateView);
+        TextView scheduleView = cardView.findViewById(R.id.scheduleView);
+        TextView durationView = cardView.findViewById(R.id.durationView);
+        TextView dosageView = cardView.findViewById(R.id.dosageView);
+        TextView notesView = cardView.findViewById(R.id.notesView);
+        Button deleteButton = cardView.findViewById(R.id.deleteButton);
+
+        nameView.setText("Medicine: " + record.medicationName);
+        startdateView.setText("Start Date: " + record.startDate);
+        scheduleView.setText("Schedule: " + record.schedule);
+        durationView.setText("Duration: " + record.duration);
+        dosageView.setText("Dosage: " + record.dosage);
+        notesView.setText("Notes: " + record.notes);
+
+        // HIDE EXTRA DETAILS BY DEFAULT
+        durationView.setVisibility(View.GONE);
+        dosageView.setVisibility(View.GONE);
+        notesView.setVisibility(View.GONE);
+
+        // TOGGLE VISIBILITY ON CARD CLICK
+        cardView.setOnClickListener(v -> {
+            boolean isHidden = durationView.getVisibility() == View.GONE;
+            durationView.setVisibility(isHidden ? View.VISIBLE : View.GONE);
+            dosageView.setVisibility(isHidden ? View.VISIBLE : View.GONE);
+            notesView.setVisibility(isHidden ? View.VISIBLE : View.GONE);
+        });
+
+        deleteButton.setOnClickListener(v -> {
+            if (recordKey != null) {
+                userLogsRef.child(recordKey).removeValue();
+            }
+        });
+
+        recordsContainer.addView(cardView);
+    }
+
 }
