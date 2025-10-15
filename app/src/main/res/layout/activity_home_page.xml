@@ -1,61 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePage">
 
-    <Button
-        android:id="@+id/generateButton"
+    <!-- Your existing layout inside a LinearLayout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/generateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate Code"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:id="@+id/codeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is your code"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/prescriptionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prescription Scanner"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"/>
+
+        <Button
+            android:id="@+id/voiceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speech to Text"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/logsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logs"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate Code"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
-        android:id="@+id/codeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is your code"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/prescriptionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prescription Scanner"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
-
-    <Button
-        android:id="@+id/voiceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Speech to Text"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
-
-    <Button
-        android:id="@+id/textButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
-
-    <Button
-        android:id="@+id/logsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logs"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
-
-</LinearLayout>
+</RelativeLayout>
