@@ -32,12 +32,34 @@
             android:layout_gravity="center"/>
 
         <Button
+            android:id="@+id/addContactButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Contact"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="name"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/contactInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="contact"
+            android:layout_gravity="center"/>
+
+        <Button
             android:id="@+id/prescriptionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Prescription Scanner"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="70dp"/>
 
         <Button
             android:id="@+id/voiceButton"
@@ -62,7 +84,6 @@
             android:text="Logs"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"/>
-
     </LinearLayout>
 
     <FrameLayout
@@ -71,10 +92,10 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -84,8 +105,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="24dp"
-        android:layout_marginEnd="331dp"
-        android:layout_marginBottom="651dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

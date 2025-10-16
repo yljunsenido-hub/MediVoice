@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,8 +44,9 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton,prescriptionButton,voiceButton, textButton, logsButton;
+    Button generateButton,prescriptionButton,voiceButton, textButton, logsButton, addContactButton;
     TextView codeView;
+    EditText nameInput, contactInput;
     DatabaseReference usersRef;
     String userId;
     private FloatingActionButton fabMain;
@@ -53,6 +56,7 @@ public class HomePage extends AppCompatActivity {
     private static final int ANIM_DURATION = 360;
     private static final int COLLAPSE_DURATION = 250;
     private DatabaseReference databaseRef;
+
     private FirebaseAuth auth;
     private ActivityResultLauncher<String> requestCallPermissionLauncher;
 
@@ -75,6 +79,7 @@ public class HomePage extends AppCompatActivity {
         codeView = findViewById(R.id.codeView);
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
+        addContactButton = findViewById(R.id.addContactButton);
 
         auth = FirebaseAuth.getInstance();
         databaseRef = FirebaseDatabase.getInstance().getReference();
@@ -124,6 +129,48 @@ public class HomePage extends AppCompatActivity {
             startActivity(logIntent);
         });
 
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if(currentUser != null){
+            databaseRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(currentUser.getUid())
+                    .child("EmergencyContacts");
+        }
+
+        addContactButton.setOnClickListener(v -> {
+            String name = nameInput.getText().toString().trim();
+            String contact = contactInput.getText().toString().trim();
+
+            if (name.isEmpty()) {
+                Toast.makeText(this, "Please enter a name!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (contact.isEmpty()) {
+                Toast.makeText(this, "Please enter a contact number!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String noteId = databaseRef.push().getKey();
+
+            if (noteId != null) {
+                java.util.Map<String, Object> data = new java.util.HashMap<>();
+                data.put("name", name);
+                data.put("contact", contact);
+
+                databaseRef.child(noteId).setValue(data)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(this, "Prescription record saved successfully!", Toast.LENGTH_SHORT).show();
+
+                            nameInput.setText("");
+                            contactInput.setText("");
+                        })
+                        .addOnFailureListener(e ->
+                                Toast.makeText(this, "Failed to save record: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            }
+        });
     }
 
     private void generateConnectionCode() {
