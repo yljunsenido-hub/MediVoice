@@ -46,7 +46,6 @@ public class HomePage extends AppCompatActivity {
 
     Button generateButton,prescriptionButton,voiceButton, textButton, logsButton, addContactButton;
     TextView codeView;
-    EditText nameInput, contactInput;
     DatabaseReference usersRef;
     String userId;
     private FloatingActionButton fabMain;
@@ -81,6 +80,9 @@ public class HomePage extends AppCompatActivity {
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
         addContactButton = findViewById(R.id.addContactButton);
 
+        fabMain = findViewById(R.id.fabMain);
+        fabContainer = findViewById(R.id.fabContainer);
+
         auth = FirebaseAuth.getInstance();
         databaseRef = FirebaseDatabase.getInstance().getReference();
 
@@ -103,9 +105,6 @@ public class HomePage extends AppCompatActivity {
         fabContainer.setOnClickListener(v -> {
             if (isExpanded) collapseMenu();
         });
-
-        fabMain = findViewById(R.id.fabMain);
-        fabContainer = findViewById(R.id.fabContainer);
 
         generateButton.setOnClickListener(v -> generateConnectionCode());
 
@@ -140,6 +139,9 @@ public class HomePage extends AppCompatActivity {
         }
 
         addContactButton.setOnClickListener(v -> {
+            EditText nameInput = findViewById(R.id.nameInput);
+            EditText contactInput = findViewById(R.id.contactInput);
+
             String name = nameInput.getText().toString().trim();
             String contact = contactInput.getText().toString().trim();
 
@@ -162,7 +164,7 @@ public class HomePage extends AppCompatActivity {
 
                 databaseRef.child(noteId).setValue(data)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(this, "Prescription record saved successfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Emergency contact record saved successfully!", Toast.LENGTH_SHORT).show();
 
                             nameInput.setText("");
                             contactInput.setText("");
@@ -190,13 +192,6 @@ public class HomePage extends AppCompatActivity {
                     Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
-
-
-
-
     public static class Contact {
         public String name;
         public String number;
@@ -217,7 +212,7 @@ public class HomePage extends AppCompatActivity {
         }
         String uid = auth.getCurrentUser().getUid();
 
-        DatabaseReference contactsRef = databaseRef.child("Users").child(uid).child("EmergencyContacts");
+        DatabaseReference contactsRef = databaseRef;
 
         contactsRef.get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
@@ -229,7 +224,7 @@ public class HomePage extends AppCompatActivity {
             List<Contact> contacts = new ArrayList<>();
             for (DataSnapshot child : snap.getChildren()) {
                 String name = child.child("name").getValue(String.class);
-                String number = child.child("number").getValue(String.class);
+                String number = child.child("contact").getValue(String.class);
                 if (name != null && number != null) {
                     contacts.add(new Contact(name, number));
                 }
