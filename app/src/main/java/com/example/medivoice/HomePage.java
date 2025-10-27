@@ -44,7 +44,7 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton,prescriptionButton,voiceButton, textButton, logsButton, addContactButton;
+    Button generateButton, prescriptionButton, voiceButton, textButton, logsButton, addContactButton;
     TextView codeView;
     DatabaseReference usersRef;
     String userId;
@@ -76,22 +76,19 @@ public class HomePage extends AppCompatActivity {
         textButton = findViewById(R.id.textButton);
         logsButton = findViewById(R.id.logsButton);
         codeView = findViewById(R.id.codeView);
-        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        usersRef = FirebaseDatabase.getInstance().getReference("Users");
         addContactButton = findViewById(R.id.addContactButton);
 
         fabMain = findViewById(R.id.fabMain);
         fabContainer = findViewById(R.id.fabContainer);
 
         auth = FirebaseAuth.getInstance();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        usersRef = FirebaseDatabase.getInstance().getReference("Users");
         databaseRef = FirebaseDatabase.getInstance().getReference();
 
         requestCallPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
-                isGranted -> {
-                    // no-op here; we'll request permission and attempt call when user taps contact
-                    // actual call attempt is handled per-item click where we check permission again
-                });
+                isGranted -> {});
 
         fabMain.setOnClickListener(v -> {
             if (!isExpanded) {
@@ -101,37 +98,18 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        // collapse if tapping outside
         fabContainer.setOnClickListener(v -> {
             if (isExpanded) collapseMenu();
         });
 
         generateButton.setOnClickListener(v -> generateConnectionCode());
+        prescriptionButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordPrescriptionScanner.class)));
+        voiceButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordSpeechToText.class)));
+        textButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, TextFeaturePage.class)));
+        logsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, Logs.class)));
 
-        prescriptionButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this, RecordPrescriptionScanner.class);
-            startActivity(intent);
-        });
-
-        voiceButton.setOnClickListener(v -> {
-            Intent voiceIntent = new Intent(HomePage.this, RecordSpeechToText.class);
-            startActivity(voiceIntent);
-        });
-
-        textButton.setOnClickListener(v -> {
-            Intent voiceIntent = new Intent(HomePage.this, TextFeaturePage.class);
-            startActivity(voiceIntent);
-        });
-
-        logsButton.setOnClickListener(v -> {
-            Intent logIntent = new Intent(HomePage.this, Logs.class);
-            startActivity(logIntent);
-        });
-
-        auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-
-        if(currentUser != null){
+        if (currentUser != null) {
             databaseRef = FirebaseDatabase.getInstance()
                     .getReference("Users")
                     .child(currentUser.getUid())
@@ -149,35 +127,31 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(this, "Please enter a name!", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             if (contact.isEmpty()) {
                 Toast.makeText(this, "Please enter a contact number!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             String noteId = databaseRef.push().getKey();
-
             if (noteId != null) {
-                java.util.Map<String, Object> data = new java.util.HashMap<>();
+                HashMap<String, Object> data = new HashMap<>();
                 data.put("name", name);
                 data.put("contact", contact);
 
                 databaseRef.child(noteId).setValue(data)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(this, "Emergency contact record saved successfully!", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(this, "Emergency contact added!", Toast.LENGTH_SHORT).show();
                             nameInput.setText("");
                             contactInput.setText("");
                         })
                         .addOnFailureListener(e ->
-                                Toast.makeText(this, "Failed to save record: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                                Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
         });
     }
 
     private void generateConnectionCode() {
         String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-
         HashMap<String, Object> codeData = new HashMap<>();
         codeData.put("code", code);
         codeData.put("used", false);
@@ -188,10 +162,10 @@ public class HomePage extends AppCompatActivity {
                     codeView.setText("Your Code: " + code);
                     Toast.makeText(this, "Code generated!", Toast.LENGTH_SHORT).show();
                 })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
     public static class Contact {
         public String name;
         public String number;
@@ -204,17 +178,12 @@ public class HomePage extends AppCompatActivity {
 
     private void loadContactsAndExpand() {
         if (isExpanded) return;
-
-        // get uid
         if (auth.getCurrentUser() == null) {
             Toast.makeText(this, "User not signed in", Toast.LENGTH_SHORT).show();
             return;
         }
-        String uid = auth.getCurrentUser().getUid();
 
-        DatabaseReference contactsRef = databaseRef;
-
-        contactsRef.get().addOnCompleteListener(task -> {
+        databaseRef.get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Toast.makeText(HomePage.this, "Failed to load contacts", Toast.LENGTH_SHORT).show();
                 return;
@@ -243,41 +212,42 @@ public class HomePage extends AppCompatActivity {
         if (isExpanded) return;
         isExpanded = true;
 
-        // compute fab center position relative to container
         int[] fabLoc = new int[2];
         fabMain.getLocationOnScreen(fabLoc);
-
         int[] containerLoc = new int[2];
         fabContainer.getLocationOnScreen(containerLoc);
 
         float fabCenterX = fabLoc[0] - containerLoc[0] + fabMain.getWidth() / 2f;
         float fabCenterY = fabLoc[1] - containerLoc[1] + fabMain.getHeight() / 2f;
 
-        final float radiusPx = dpToPx(140f); // adjust radius
-
-        final int n = contacts.size();
+        final float radiusPx = dpToPx(70f); // reduced for closer placement
+        final int totalContacts = contacts.size();
+        final int visibleContacts = Math.min(4, totalContacts); // max 4 contacts
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        for (int i = 0; i < n; i++) {
-            Contact contact = contacts.get(i);
+        int itemCount = visibleContacts < totalContacts ? visibleContacts + 1 : visibleContacts; // add "More" if needed
 
-            float fraction = (i + 1) / (float) (n + 1); // avoid 0 and 1 edges
-            double angleDeg = 180.0 * fraction;
-            double angleRad = Math.toRadians(angleDeg);
-
-            float targetX = (float) (radiusPx * cos(angleRad)); // to the right positive
-            float targetY = (float) (-radiusPx * sin(angleRad)); // negative y => upward
-
+        for (int i = 0; i < itemCount; i++) {
             View item = inflater.inflate(R.layout.item_contact_radial, fabContainer, false);
             LinearLayout circleButton = item.findViewById(R.id.circleButton);
             TextView nameTv = item.findViewById(R.id.contactName);
-            TextView numberTv = item.findViewById(R.id.contactNumber);
 
-            nameTv.setText(contact.name);
-            numberTv.setText(contact.number);
+            String label;
+            String phoneNumber = null;
+            boolean isMoreButton = false;
 
-            // initial position at fab center
+            if (i < visibleContacts) {
+                Contact contact = contacts.get(i);
+                label = contact.name.substring(0, 1).toUpperCase();
+                phoneNumber = contact.number;
+            } else {
+                label = "+";
+                isMoreButton = true;
+            }
+
+            nameTv.setText(label);
+
             item.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             int w = item.getMeasuredWidth();
             int h = item.getMeasuredHeight();
@@ -288,19 +258,29 @@ public class HomePage extends AppCompatActivity {
             item.setScaleX(0.1f);
             item.setScaleY(0.1f);
 
-            // make clickable
-            item.setClickable(true);
-            final String phoneNumber = contact.number;
+            final boolean finalIsMoreButton = isMoreButton;
+            final String finalPhoneNumber = phoneNumber;
             item.setOnClickListener(v -> {
-                // Attempt to call; check permission first
-                attemptCall(phoneNumber);
+                if (finalIsMoreButton) {
+                    Toast.makeText(this, "Show more contacts...", Toast.LENGTH_SHORT).show();
+                    // You can open another activity or dialog here later
+                } else {
+                    attemptCall(finalPhoneNumber);
+                }
                 collapseMenu();
             });
 
             fabContainer.addView(item);
             spawnedViews.add(item);
 
-            // animate to final position with slight stagger
+            double startAngle = 100; // upper-right arc
+            double sweepAngle = 90;
+            double angleDeg = startAngle - (sweepAngle / (itemCount - 1)) * i;
+            double angleRad = Math.toRadians(angleDeg + 90);
+
+            float targetX = (float) (radiusPx * Math.cos(angleRad));
+            float targetY = (float) (-radiusPx * Math.sin(angleRad));
+
             float finalX = fabCenterX - w / 2f + targetX;
             float finalY = fabCenterY - h / 2f + targetY;
 
@@ -319,13 +299,13 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
+
     private void collapseMenu() {
         if (!isExpanded) return;
         isExpanded = false;
 
         int[] fabLoc = new int[2];
         fabMain.getLocationOnScreen(fabLoc);
-
         int[] containerLoc = new int[2];
         fabContainer.getLocationOnScreen(containerLoc);
 
@@ -347,7 +327,6 @@ public class HomePage extends AppCompatActivity {
             set.setStartDelay(i * 20L);
             set.start();
 
-            // remove after animation
             final int delay = COLLAPSE_DURATION + i * 20;
             v.postDelayed(() -> fabContainer.removeView(v), delay + 20L);
         }
@@ -355,28 +334,20 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void attemptCall(String number) {
-        // sanitize number
         if (number == null || number.trim().isEmpty()) {
             Toast.makeText(this, "Invalid number", Toast.LENGTH_SHORT).show();
             return;
         }
-        final String telUri = "tel:" + number.trim();
-
-        // check permission
+        String telUri = "tel:" + number.trim();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            // permission granted -> place call
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(telUri));
             try {
                 startActivity(intent);
             } catch (SecurityException se) {
-                // should not happen but fallback
                 startDial(number);
             }
         } else {
-            // request permission, but open dialer if user denies
             requestCallPermissionLauncher.launch(Manifest.permission.CALL_PHONE);
-            // After requesting, attempt dial (not direct CALL). This avoids waiting for permission result cycle here.
-            // We'll open dialer so user can still call manually.
             startDial(number);
         }
     }

@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/circleButton"
-        android:layout_width="128dp"
-        android:layout_height="72dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:orientation="vertical"
         android:gravity="center"
         android:background="@drawable/circle_bg"
@@ -20,22 +20,21 @@
             android:id="@+id/contactName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text=""
             android:textSize="14sp"
             android:textColor="@android:color/black"
             android:ellipsize="end"
             android:maxLines="1"
             android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/contactNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="09123456789"
-            android:textSize="12sp"
-            android:textColor="@android:color/black"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:gravity="center"/>
+<!--        <TextView-->
+<!--            android:id="@+id/contactNumber"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="09123456789"-->
+<!--            android:textSize="12sp"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:ellipsize="end"-->
+<!--            android:maxLines="1"-->
+<!--            android:gravity="center"/>-->
     </LinearLayout>
 </LinearLayout>
