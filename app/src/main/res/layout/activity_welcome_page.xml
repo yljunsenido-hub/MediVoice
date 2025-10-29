@@ -24,10 +24,9 @@
         android:textColor="@color/white"
         android:fontFamily="sans-serif-medium"
         android:text="Welcome to MediVoice"
-        android:textSize="30dp" />
+        android:textSize="33dp" />
 
     <TextView
-        android:layout_marginTop="3dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -35,7 +34,7 @@
         android:textAlignment="center"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-medium"
-        android:text="your smart companion for effortless medical communication and care."
+        android:text="Your smart companion for effortless medical communication and care."
         android:textSize="19dp" />
 
     <TextView
@@ -52,15 +51,20 @@
         android:layout_marginTop="10dp"
         android:id="@+id/btnGuardian"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="47dp"
+        android:textColor="@color/white"
         android:text="Guardian"
+        android:background="@drawable/button"
         android:layout_gravity="center" />
 
     <Button
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:id="@+id/btnPatient"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="47dp"
         android:layout_gravity="center"
+        android:background="@drawable/button"
         android:text="Patient"/>
 
 </LinearLayout>
