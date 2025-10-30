@@ -51,6 +51,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/btnGuardian"
         android:layout_width="300dp"
+        android:fontFamily="sans-serif-black"
         android:layout_height="47dp"
         android:textColor="@color/white"
         android:text="Guardian"
@@ -60,6 +61,7 @@
     <Button
         android:layout_marginTop="5dp"
         android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
         android:id="@+id/btnPatient"
         android:layout_width="300dp"
         android:layout_height="47dp"
