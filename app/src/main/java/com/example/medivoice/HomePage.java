@@ -17,6 +17,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +45,10 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton, prescriptionButton, voiceButton, textButton, logsButton, addContactButton;
-    TextView codeView;
+    Button generateButton, logsButton, addContactButton;
+//    TextView codeView;
     DatabaseReference usersRef;
+    ImageButton prescriptionButton, voiceButton, textButton, codeGeneratorButton;
     String userId;
     private FloatingActionButton fabMain;
     private FrameLayout fabContainer;
@@ -70,12 +72,13 @@ public class HomePage extends AppCompatActivity {
             return insets;
         });
 
-        generateButton = findViewById(R.id.generateButton);
+        codeGeneratorButton = findViewById(R.id.codeGeneratorButton);
+//        generateButton = findViewById(R.id.generateButton);
         prescriptionButton = findViewById(R.id.prescriptionButton);
         voiceButton = findViewById(R.id.voiceButton);
         textButton = findViewById(R.id.textButton);
-        logsButton = findViewById(R.id.logsButton);
-        codeView = findViewById(R.id.codeView);
+//        logsButton = findViewById(R.id.logsButton);
+//        codeView = findViewById(R.id.codeView);
         addContactButton = findViewById(R.id.addContactButton);
 
         fabMain = findViewById(R.id.fabMain);
@@ -102,11 +105,13 @@ public class HomePage extends AppCompatActivity {
             if (isExpanded) collapseMenu();
         });
 
-        generateButton.setOnClickListener(v -> generateConnectionCode());
+        codeGeneratorButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, CodeGenerator.class)));
+
+//        generateButton.setOnClickListener(v -> generateConnectionCode());
         prescriptionButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordPrescriptionScanner.class)));
         voiceButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordSpeechToText.class)));
         textButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, TextFeaturePage.class)));
-        logsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, Logs.class)));
+//        logsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, Logs.class)));
 
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
@@ -150,21 +155,21 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    private void generateConnectionCode() {
-        String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-        HashMap<String, Object> codeData = new HashMap<>();
-        codeData.put("code", code);
-        codeData.put("used", false);
-        codeData.put("createdAt", System.currentTimeMillis());
-
-        usersRef.child(userId).child("connectCode").setValue(codeData)
-                .addOnSuccessListener(aVoid -> {
-                    codeView.setText("Your Code: " + code);
-                    Toast.makeText(this, "Code generated!", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-    }
+//    private void generateConnectionCode() {
+//        String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+//        HashMap<String, Object> codeData = new HashMap<>();
+//        codeData.put("code", code);
+//        codeData.put("used", false);
+//        codeData.put("createdAt", System.currentTimeMillis());
+//
+//        usersRef.child(userId).child("connectCode").setValue(codeData)
+//                .addOnSuccessListener(aVoid -> {
+//                    codeView.setText("Your Code: " + code);
+//                    Toast.makeText(this, "Code generated!", Toast.LENGTH_SHORT).show();
+//                })
+//                .addOnFailureListener(e ->
+//                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//    }
 
     public static class Contact {
         public String name;

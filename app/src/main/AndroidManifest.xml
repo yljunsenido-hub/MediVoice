@@ -22,6 +22,9 @@
         android:theme="@style/Theme.MediVoice"
         tools:targetApi="31">
         <activity
+            android:name=".CodeGenerator"
+            android:exported="false" />
+        <activity
             android:name=".Logs"
             android:exported="false" />
         <activity
@@ -39,6 +42,7 @@
         <activity
             android:name=".TextToSpeech"
             android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
