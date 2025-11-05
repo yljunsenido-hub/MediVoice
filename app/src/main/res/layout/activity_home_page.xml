@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".HomePage">
 
-    <!-- Your existing layout inside a LinearLayout -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation">
 
         <Button
             android:id="@+id/generateButton"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Generate Code"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:id="@+id/codeView"
@@ -29,7 +29,7 @@
             android:textColor="@color/black"
             android:textSize="30sp"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <Button
             android:id="@+id/addContactButton"
@@ -37,45 +37,63 @@
             android:layout_height="wrap_content"
             android:text="Add Contact"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
         <EditText
             android:id="@+id/nameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="name"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/contactInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="contact"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
-        <Button
-            android:id="@+id/prescriptionButton"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prescription Scanner"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"/>
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/voiceButton"
+
+            <ImageButton
+                android:id="@+id/prescriptionButton"
+                android:layout_width="175dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:layout_marginLeft="25dp"/>
+
+            <ImageButton
+                android:id="@+id/voiceButton"
+                android:layout_width="175dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:layout_marginLeft="12.5dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Speech to Text"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/textButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            <ImageButton
+                android:id="@+id/textButton"
+                android:layout_width="175dp"
+                android:clickable="true"
+                android:layout_height="100dp"
+                android:layout_marginLeft="25dp" />
+
+            <ImageButton
+                android:layout_width="175dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:layout_marginLeft="12.5dp" />
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/logsButton"
@@ -83,21 +101,28 @@
             android:layout_height="wrap_content"
             android:text="Logs"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"/>
 
         <FrameLayout
             android:id="@+id/fabContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:focusable="true" />
     </LinearLayout>
 
-
+    <!-- Bottom Navigation with 4 items -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled" />
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -105,14 +130,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/bottomNavigation"
         android:layout_margin="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
         android:tint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
-
 
 </RelativeLayout>
