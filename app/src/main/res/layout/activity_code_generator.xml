@@ -4,26 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CodeGenerator">
 
     <Button
-        android:id="@+id/generateButton"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate Code"
+        android:text="Back"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Code Generator"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
+        android:textSize="35dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="110dp"/>
 
     <TextView
         android:id="@+id/codeView"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="This is your code"
+        android:text=""
         android:textColor="@color/black"
+        android:background="@drawable/circle_bg"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="5dp"
         android:textSize="30sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/generateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate Code"
+            android:background="@drawable/button"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:paddingHorizontal="25dp"
+            android:textSize="15sp"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/copyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:paddingHorizontal="15dp"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:text="Copy"
+            android:drawableStart="@android:drawable/ic_menu_copy" />
+    </LinearLayout>
+
+    
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="230dp"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📋 How it works"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Tap the “Generate Code” button.\n - A unique connection code will appear on the screen. This code is temporary and should only be shared with your intended connection (Guardian or Patient).\n"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Copy the code.\n - Tap the “Copy” button to copy the generated code to your clipboard. You’ll see a message confirming that the code has been copied.\n"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Share the code.\n - Send the copied code to the person you want to connect with (Guardian or Patient).\n"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Connect.\n - The other person should paste or enter the code in their app’s “Connect” section to complete the link."
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="4dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

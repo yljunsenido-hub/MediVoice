@@ -55,7 +55,7 @@ public class CodeGenerator extends AppCompatActivity {
 
         usersRef.child(userId).child("connectCode").setValue(codeData)
                 .addOnSuccessListener(aVoid -> {
-                    codeView.setText("Your Code: " + code);
+                    codeView.setText(code);
                     Toast.makeText(this, "Code generated!", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e ->
