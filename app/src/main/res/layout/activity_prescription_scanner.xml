@@ -5,48 +5,50 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".PrescriptionScanner">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Record Name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
+        android:text="Image to Text"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
+        android:textSize="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:id="@+id/recordName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Record Name"
+        android:background="@drawable/circle_bg"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="5dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/btnCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Scan with Camera"
         android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/btnGallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan from Gallery"
-        android:layout_gravity="center"/>
-
-    <!-- ✅ ScrollView for long OCR text -->
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:background="#EFEFEF"
         android:padding="10dp">
@@ -57,14 +59,56 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:textAlignment="center"
             android:scrollbars="vertical" />
     </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#D5D5D5"
+            app:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="10dp">
+
+                <Button
+                    android:id="@+id/btnCamera"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/camera"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"/>
+
+                <Button
+                    android:id="@+id/btnGallery"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/gallery"
+                    android:layout_gravity="center"/>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Record"
+        android:paddingHorizontal="35dp"
+        android:paddingVertical="16dp"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
         android:layout_marginTop="15dp"
         android:layout_gravity="center"/>
 </LinearLayout>
