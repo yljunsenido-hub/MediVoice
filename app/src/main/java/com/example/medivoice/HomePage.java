@@ -77,7 +77,7 @@ public class HomePage extends AppCompatActivity {
         prescriptionButton = findViewById(R.id.prescriptionButton);
         voiceButton = findViewById(R.id.voiceButton);
         textButton = findViewById(R.id.textButton);
-//        logsButton = findViewById(R.id.logsButton);
+        logsButton = findViewById(R.id.logsButton);
 //        codeView = findViewById(R.id.codeView);
         addContactButton = findViewById(R.id.addContactButton);
 
@@ -111,7 +111,7 @@ public class HomePage extends AppCompatActivity {
         prescriptionButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordPrescriptionScanner.class)));
         voiceButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordSpeechToText.class)));
         textButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, TextFeaturePage.class)));
-//        logsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, Logs.class)));
+        logsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, Logs.class)));
 
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
