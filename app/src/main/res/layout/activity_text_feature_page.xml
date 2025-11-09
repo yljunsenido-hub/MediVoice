@@ -4,11 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".TextFeaturePage">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-black"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp" />
 
     <!-- Fixed Title -->
     <TextView
@@ -19,7 +32,7 @@
         android:fontFamily="sans-serif-black"
         android:textSize="35dp"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="10dp" />
 
     <!-- Scrollable Content -->
     <ScrollView
@@ -35,7 +48,7 @@
             android:gravity="center_horizontal">
 
             <LinearLayout
-                android:layout_width="350dp"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
@@ -43,7 +56,7 @@
 
                 <EditText
                     android:id="@+id/medicationName"
-                    android:layout_width="220dp"
+                    android:layout_width="215dp"
                     android:layout_height="wrap_content"
                     android:hint="Medication Name"
                     android:textColor="@color/black"
@@ -52,7 +65,7 @@
                     android:textAlignment="center"
                     android:paddingHorizontal="25dp"
                     android:textSize="20sp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="5dp" />
 
                 <EditText
                     android:id="@+id/dosage"
@@ -69,15 +82,15 @@
 
             <EditText
                 android:id="@+id/schedule"
-                android:hint="Schedule (ex.3 times a day)"
-                android:layout_width="340dp"
+                android:layout_width="342dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
                 android:background="@drawable/circle_bg"
+                android:hint="Schedule (ex.3 times a day)"
+                android:paddingHorizontal="25dp"
                 android:paddingVertical="10dp"
                 android:textAlignment="center"
-                android:paddingHorizontal="25dp"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <EditText
