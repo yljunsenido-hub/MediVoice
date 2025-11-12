@@ -58,10 +58,9 @@
             android:id="@+id/textResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#262626"
             android:textSize="18sp"
-            android:fontFamily="sans-serif-medium"
-            android:textAlignment="center"
+            android:fontFamily="sans-serif"
             android:scrollbars="vertical" />
     </ScrollView>
 

@@ -14,40 +14,40 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigation">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <Button
-                android:id="@+id/addContactButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Contact"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp" />
+<!--            <Button-->
+<!--                android:id="@+id/addContactButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Add Contact"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="10dp" />-->
 
-            <EditText
-                android:id="@+id/nameInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="name"
-                android:layout_gravity="center" />
+<!--            <EditText-->
+<!--                android:id="@+id/nameInput"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="name"-->
+<!--                android:layout_gravity="center" />-->
 
-            <EditText
-                android:id="@+id/contactInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="contact"
-                android:layout_gravity="center" />
-
-        </LinearLayout>
+<!--            <EditText-->
+<!--                android:id="@+id/contactInput"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="contact"-->
+<!--                android:layout_gravity="center" />-->
+<!--        </LinearLayout>-->
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:cardCornerRadius="15dp"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="10dp">
 
             <CalendarView
@@ -55,93 +55,172 @@
                 android:layout_marginTop="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
         </androidx.cardview.widget.CardView>
 
+        <!-- First Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
+            <!-- Image to Text -->
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="47dp">
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp">
 
-                <ImageButton
-                    android:id="@+id/prescriptionButton"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/imagetotext"
-                    android:clickable="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/prescriptionButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/imagetotext"
+                        android:clickable="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/prescriptionButton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="Image to Text"
+                        android:textColor="@color/black"
+                        android:fontFamily="sans-serif-medium" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-
+            <!-- Voice to Text -->
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="12.5dp">
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp">
 
-                <ImageButton
-                    android:id="@+id/voiceButton"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/voicetotext"
-                    android:clickable="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/voiceButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/voicetotext"
+                        android:clickable="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/voiceButton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="Voice to Text"
+                        android:textColor="@color/black"
+                        android:fontFamily="sans-serif-medium" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
+        <!-- Second Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
+            <!-- Text to Speech -->
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="47dp">
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp">
 
-                <ImageButton
-                    android:id="@+id/textButton"
-                    android:layout_width="78dp"
-                    android:layout_height="78dp"
-                    android:layout_gravity="center"
-                    android:clickable="true"
-                    android:background="@drawable/text"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/textButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/text"
+                        android:clickable="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textButton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="Prescription"
+                        android:textColor="@color/black"
+                        android:fontFamily="sans-serif-medium" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-
+            <!-- Code Generator -->
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="12.5dp">
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp">
 
-                <ImageButton
-                    android:id="@+id/codeGeneratorButton"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:clickable="true"
-                    android:background="@drawable/voicetotext"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/codeGeneratorButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/referral"
+                        android:clickable="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/codeGeneratorButton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="Code Generator"
+                        android:textColor="@color/black"
+                        android:fontFamily="sans-serif-medium" />
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/fabContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true" />
+
     </LinearLayout>
 
-    <!-- Bottom Navigation with 4 items -->
+    <FrameLayout
+        android:id="@+id/fabContainer"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:focusable="true" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="@color/black"
@@ -149,7 +228,6 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMain"
         android:layout_width="wrap_content"
@@ -159,5 +237,6 @@
         android:layout_margin="24dp"
         android:tint="@android:color/white"
         app:srcCompat="@android:drawable/ic_input_add" />
+
 
 </RelativeLayout>

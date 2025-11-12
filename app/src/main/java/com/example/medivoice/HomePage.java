@@ -48,8 +48,7 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton, addContactButton;
-//    TextView codeView;
+    Button addContactButton;
     DatabaseReference usersRef;
     ImageButton prescriptionButton, voiceButton, textButton, codeGeneratorButton;
     String userId;
@@ -80,12 +79,10 @@ public class HomePage extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
         codeGeneratorButton = findViewById(R.id.codeGeneratorButton);
-//        generateButton = findViewById(R.id.generateButton);
         prescriptionButton = findViewById(R.id.prescriptionButton);
         voiceButton = findViewById(R.id.voiceButton);
         textButton = findViewById(R.id.textButton);
-//        codeView = findViewById(R.id.codeView);
-        addContactButton = findViewById(R.id.addContactButton);
+//        addContactButton = findViewById(R.id.addContactButton);
 
         fabMain = findViewById(R.id.fabMain);
         fabContainer = findViewById(R.id.fabContainer);
@@ -114,8 +111,8 @@ public class HomePage extends AppCompatActivity {
         codeGeneratorButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, CodeGenerator.class)));
 
 //        generateButton.setOnClickListener(v -> generateConnectionCode());
-        prescriptionButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordPrescriptionScanner.class)));
-        voiceButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordSpeechToText.class)));
+        prescriptionButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, PrescriptionScanner.class)));
+        voiceButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, TextToSpeech.class)));
         textButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, TextFeaturePage.class)));
 
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -126,38 +123,38 @@ public class HomePage extends AppCompatActivity {
                     .child("EmergencyContacts");
         }
 
-        addContactButton.setOnClickListener(v -> {
-            EditText nameInput = findViewById(R.id.nameInput);
-            EditText contactInput = findViewById(R.id.contactInput);
-
-            String name = nameInput.getText().toString().trim();
-            String contact = contactInput.getText().toString().trim();
-
-            if (name.isEmpty()) {
-                Toast.makeText(this, "Please enter a name!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (contact.isEmpty()) {
-                Toast.makeText(this, "Please enter a contact number!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            String noteId = databaseRef.push().getKey();
-            if (noteId != null) {
-                HashMap<String, Object> data = new HashMap<>();
-                data.put("name", name);
-                data.put("contact", contact);
-
-                databaseRef.child(noteId).setValue(data)
-                        .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(this, "Emergency contact added!", Toast.LENGTH_SHORT).show();
-                            nameInput.setText("");
-                            contactInput.setText("");
-                        })
-                        .addOnFailureListener(e ->
-                                Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-        });
+//        addContactButton.setOnClickListener(v -> {
+//            EditText nameInput = findViewById(R.id.nameInput);
+//            EditText contactInput = findViewById(R.id.contactInput);
+//
+//            String name = nameInput.getText().toString().trim();
+//            String contact = contactInput.getText().toString().trim();
+//
+//            if (name.isEmpty()) {
+//                Toast.makeText(this, "Please enter a name!", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if (contact.isEmpty()) {
+//                Toast.makeText(this, "Please enter a contact number!", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//
+//            String noteId = databaseRef.push().getKey();
+//            if (noteId != null) {
+//                HashMap<String, Object> data = new HashMap<>();
+//                data.put("name", name);
+//                data.put("contact", contact);
+//
+//                databaseRef.child(noteId).setValue(data)
+//                        .addOnSuccessListener(aVoid -> {
+//                            Toast.makeText(this, "Emergency contact added!", Toast.LENGTH_SHORT).show();
+//                            nameInput.setText("");
+//                            contactInput.setText("");
+//                        })
+//                        .addOnFailureListener(e ->
+//                                Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//            }
+//        });
 
         // for bottom navigation
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -185,22 +182,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
-
-//    private void generateConnectionCode() {
-//        String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-//        HashMap<String, Object> codeData = new HashMap<>();
-//        codeData.put("code", code);
-//        codeData.put("used", false);
-//        codeData.put("createdAt", System.currentTimeMillis());
-//
-//        usersRef.child(userId).child("connectCode").setValue(codeData)
-//                .addOnSuccessListener(aVoid -> {
-//                    codeView.setText("Your Code: " + code);
-//                    Toast.makeText(this, "Code generated!", Toast.LENGTH_SHORT).show();
-//                })
-//                .addOnFailureListener(e ->
-//                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-//    }
 
     public static class Contact {
         public String name;
