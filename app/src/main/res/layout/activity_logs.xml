@@ -1,66 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
-    android:padding="10dp"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Logs">
 
-    <!-- Horizontal Buttons Row -->
+    <!-- Main Content Area Above Bottom Nav -->
     <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="390dp"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <Button
-            android:id="@+id/btnVoice"
-            android:layout_width="0dp"
-            android:background="@drawable/button"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-black"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Voice" />
-
-        <Button
-            android:id="@+id/btnScanner"
-            android:layout_width="0dp"
-            android:background="@drawable/button"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-black"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Scanner" />
-
-        <Button
-            android:id="@+id/btnText"
-            android:layout_width="0dp"
-            android:background="@drawable/button"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-black"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Text" />
-    </LinearLayout>
-
-    <ScrollView
+        android:id="@+id/contentLayout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:fillViewport="true">
+        android:padding="10dp"
+        android:layout_above="@id/bottomNavigation">
 
+        <!-- Horizontal Buttons Row -->
         <LinearLayout
-            android:id="@+id/recordsContainer"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="10dp" />
-    </ScrollView>
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btnVoice"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/button"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-black"
+                android:text="Voice" />
+
+            <Button
+                android:id="@+id/btnScanner"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/button"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-black"
+                android:text="Scanner" />
+
+            <Button
+                android:id="@+id/btnText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/button"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-black"
+                android:text="Text" />
+        </LinearLayout>
+
+        <!-- Scrollable Logs -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/recordsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp" />
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Fixed Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

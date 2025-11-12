@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
@@ -25,12 +26,14 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,7 +48,7 @@ import java.util.UUID;
 
 public class HomePage extends AppCompatActivity {
 
-    Button generateButton, logsButton, addContactButton;
+    Button generateButton, addContactButton;
 //    TextView codeView;
     DatabaseReference usersRef;
     ImageButton prescriptionButton, voiceButton, textButton, codeGeneratorButton;
@@ -59,6 +62,7 @@ public class HomePage extends AppCompatActivity {
     private DatabaseReference databaseRef;
 
     private FirebaseAuth auth;
+    BottomNavigationView bottomNavigationView;
     private ActivityResultLauncher<String> requestCallPermissionLauncher;
 
     @Override
@@ -72,12 +76,14 @@ public class HomePage extends AppCompatActivity {
             return insets;
         });
 
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
         codeGeneratorButton = findViewById(R.id.codeGeneratorButton);
 //        generateButton = findViewById(R.id.generateButton);
         prescriptionButton = findViewById(R.id.prescriptionButton);
         voiceButton = findViewById(R.id.voiceButton);
         textButton = findViewById(R.id.textButton);
-        logsButton = findViewById(R.id.logsButton);
 //        codeView = findViewById(R.id.codeView);
         addContactButton = findViewById(R.id.addContactButton);
 
@@ -111,7 +117,6 @@ public class HomePage extends AppCompatActivity {
         prescriptionButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordPrescriptionScanner.class)));
         voiceButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, RecordSpeechToText.class)));
         textButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, TextFeaturePage.class)));
-        logsButton.setOnClickListener(v -> startActivity(new Intent(HomePage.this, Logs.class)));
 
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
@@ -151,6 +156,32 @@ public class HomePage extends AppCompatActivity {
                         })
                         .addOnFailureListener(e ->
                                 Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            }
+        });
+
+        // for bottom navigation
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.nav_home) {
+                    return true; // Stay on Home
+                } else if (itemId == R.id.nav_chat) {
+                    startActivity(new Intent(getApplicationContext(), Logs.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+//                } else if (itemId == R.id.nav_mic) {
+//                    startActivity(new Intent(getApplicationContext(), GuardianRecordActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
+//                } else if (itemId == R.id.nav_profile) {
+//                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
+                }
+
+                return false;
             }
         });
     }
