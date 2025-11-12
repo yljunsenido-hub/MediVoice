@@ -2,15 +2,21 @@ package com.example.medivoice;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class GuardianHomePage extends AppCompatActivity {
+
+    BottomNavigationView GuardianBottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +29,32 @@ public class GuardianHomePage extends AppCompatActivity {
             return insets;
         });
 
-        Button prescriptionButton = findViewById(R.id.prescriptionButton);
-        Button voiceButton = findViewById(R.id.voiceButton);
+        GuardianBottomNavigationView = findViewById(R.id.guardianBottomNavigation);
+        GuardianBottomNavigationView.setSelectedItemId(R.id.nav_home);
 
-//        prescriptionButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(GuardianHomePage.this, PrescriptionScanner.class);
-//            startActivity(intent);
-//        });
+        GuardianBottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-        voiceButton.setOnClickListener(v -> {
-            Intent voiceIntent = new Intent(GuardianHomePage.this, GuardianRecordSpeechToText.class);
-            startActivity(voiceIntent);
+                if (itemId == R.id.nav_home) {
+                    return true; // Stay on Home
+                } else if (itemId == R.id.nav_chat) {
+                    startActivity(new Intent(getApplicationContext(), GuardianLogs.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+//                } else if (itemId == R.id.nav_mic) {
+//                    startActivity(new Intent(getApplicationContext(), GuardianRecordActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
+//                } else if (itemId == R.id.nav_profile) {
+//                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
+                }
+
+                return false;
+            }
         });
     }
 }
