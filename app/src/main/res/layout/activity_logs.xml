@@ -12,7 +12,8 @@
 
     <!-- Horizontal Buttons Row -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="390dp"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:weightSum="3">

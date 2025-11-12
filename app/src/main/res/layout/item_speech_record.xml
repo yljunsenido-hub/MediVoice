@@ -23,16 +23,19 @@
             <TextView
                 android:id="@+id/nameView"
                 android:text="Name:"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="#373737"
+                android:fontFamily="sans-serif-black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/dateView"
                 android:text="Date:"
-                android:textSize="14sp"
-                android:textColor="#555"
+                android:textSize="16sp"
+                android:textColor="#5D5D5D"
+                android:fontFamily="sans-serif-medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"/>
@@ -41,6 +44,8 @@
                 android:id="@+id/textView"
                 android:text="Text:"
                 android:textSize="16sp"
+                android:textColor="#5D5D5D"
+                android:fontFamily="sans-serif-medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"/>
@@ -53,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:background="@drawable/delete_button"
             android:backgroundTint="#E53935"
             android:textColor="#FFFFFF"
             android:paddingHorizontal="16dp"/>
