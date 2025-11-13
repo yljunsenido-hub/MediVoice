@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
-    Button btnLogin, btnRegister;
+    Button btnLogin, btnRegister,backButton;
     EditText emailPass2, password2;
     FirebaseAuth mAuth;
 
@@ -37,6 +37,12 @@ public class Login extends AppCompatActivity {
         emailPass2 = findViewById(R.id.emailPass2);
         password2 = findViewById(R.id.password2);
         mAuth = FirebaseAuth.getInstance();
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, WelcomePage.class);
+            startActivity(intent);
+        });
 
         btnLogin.setOnClickListener(v -> {
             String email = emailPass2.getText().toString().trim();

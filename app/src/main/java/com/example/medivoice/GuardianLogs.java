@@ -1,7 +1,9 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -9,11 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
@@ -25,6 +29,7 @@ public class GuardianLogs extends AppCompatActivity {
     DatabaseReference guardianRef;
     Button btnVoice, btnScanner, btnPrescription;
     String currentType = "SpeechToText"; // default
+    BottomNavigationView GuardianBottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,33 @@ public class GuardianLogs extends AppCompatActivity {
         btnVoice = findViewById(R.id.btnVoice);
         btnScanner = findViewById(R.id.btnScanner);
         btnPrescription = findViewById(R.id.btnText);
+        GuardianBottomNavigationView = findViewById(R.id.guardianBottomNavigation);
+        GuardianBottomNavigationView.setSelectedItemId(R.id.nav_chat);
+
+        GuardianBottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.nav_chat) {
+                    return true; // Stay on Home
+                } else if (itemId == R.id.nav_home) {
+                    startActivity(new Intent(getApplicationContext(), GuardianHomePage.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+//                } else if (itemId == R.id.nav_mic) {
+//                    startActivity(new Intent(getApplicationContext(), GuardianRecordActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
+//                } else if (itemId == R.id.nav_profile) {
+//                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                    overridePendingTransition(0, 0);
+//                    return true;
+                }
+
+                return false;
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentGuardian = mAuth.getCurrentUser();

@@ -1,5 +1,6 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -25,6 +26,7 @@ public class TextFeaturePage extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference userSpeechRef;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,12 @@ public class TextFeaturePage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TextFeaturePage.this, HomePage.class);
+            startActivity(intent);
+        });
 
         if (currentUser != null) {
             userSpeechRef = FirebaseDatabase.getInstance()

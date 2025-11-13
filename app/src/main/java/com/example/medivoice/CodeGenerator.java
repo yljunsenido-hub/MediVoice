@@ -1,5 +1,6 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ import java.util.UUID;
 
 public class CodeGenerator extends AppCompatActivity {
 
-    Button generateButton;
+    Button generateButton, backButton;
 
 
     DatabaseReference usersRef;
@@ -50,6 +51,13 @@ public class CodeGenerator extends AppCompatActivity {
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CodeGenerator.this, HomePage.class);
+            startActivity(intent);
+        });
 
         //copy Button
         Button copyButton = findViewById(R.id.copyButton);

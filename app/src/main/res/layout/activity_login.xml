@@ -9,10 +9,24 @@
     android:gravity="center_horizontal"
     tools:context=".Login">
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-black"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="Back"
+        android:layout_gravity="left"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="80dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/welcomepagepic" />
 

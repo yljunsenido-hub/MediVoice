@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class GuardianLogin extends AppCompatActivity {
 
-    Button btnLogin, btnRegister;
+    Button btnLogin, btnRegister, backButton;
     EditText emailPass2, password2;
     FirebaseAuth mAuth;
 
@@ -35,11 +35,19 @@ public class GuardianLogin extends AppCompatActivity {
             return insets;
         });
 
+
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
         emailPass2 = findViewById(R.id.emailPass2);
         password2 = findViewById(R.id.password2);
         mAuth = FirebaseAuth.getInstance();
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(GuardianLogin.this, WelcomePage.class);
+            startActivity(intent);
+        });
+
 
         btnLogin.setOnClickListener(v -> {
             String email = emailPass2.getText().toString().trim();

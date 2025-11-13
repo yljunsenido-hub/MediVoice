@@ -42,7 +42,7 @@ public class Logs extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        bottomNavigationView.setSelectedItemId(R.id.nav_chat);
 
         btnVoice = findViewById(R.id.btnVoice);
         btnScanner = findViewById(R.id.btnScanner);

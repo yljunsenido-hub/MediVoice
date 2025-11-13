@@ -37,7 +37,7 @@ import java.io.IOException;
 
 public class PrescriptionScanner extends AppCompatActivity {
 
-    Button btnCamera, btnGallery,saveButton;
+    Button btnCamera, btnGallery,saveButton,backButton;
     TextView textResult;
     Uri imageUri;
     EditText recordName;
@@ -67,6 +67,13 @@ public class PrescriptionScanner extends AppCompatActivity {
         // Firebase Saving Record
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PrescriptionScanner.this, HomePage.class);
+            startActivity(intent);
+        });
 
         if (currentUser != null) {
             userSpeechRef = FirebaseDatabase.getInstance()

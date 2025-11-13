@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class TextToSpeech extends AppCompatActivity {
 
-    Button micButton, saveButton;
+    Button micButton, saveButton,backButton;
     TextView outputView;
     EditText recordName;
 
@@ -63,6 +63,13 @@ public class TextToSpeech extends AppCompatActivity {
         // Firebase Saving Record
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TextToSpeech.this, HomePage.class);
+            startActivity(intent);
+        });
 
         if (currentUser != null) {
             userSpeechRef = FirebaseDatabase.getInstance()
