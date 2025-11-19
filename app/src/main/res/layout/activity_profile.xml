@@ -55,9 +55,9 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/circle"
-                    android:text="IMG"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:text=""
+                    android:layout_gravity="center" />
+
 
                 <!-- Info Column -->
                 <LinearLayout
