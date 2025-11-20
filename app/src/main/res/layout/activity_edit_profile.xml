@@ -15,16 +15,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button"
+            android:fontFamily="sans-serif-black"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp" />
+
         <TextView
             android:id="@+id/profileTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:text="Edit Profile"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="27dp" />
+            android:textSize="35sp" />
 
         <!-- First Name -->
         <LinearLayout
@@ -155,63 +170,9 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- SOS Contact Info -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-black"
-            android:text="SOS Contact Information"
-            android:textColor="@color/white"
-            android:textSize="27dp" />
-
-        <!-- SOS Person -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
-
-            <EditText
-                android:id="@+id/sosPerson"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Full Name"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- SOS Contact -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
-
-            <EditText
-                android:id="@+id/sosContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Contact Number"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
         <!-- Register Button -->
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/updateProfile"
             android:layout_width="320dp"
             android:layout_height="47dp"
             android:layout_gravity="center"
@@ -219,7 +180,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/button"
             android:fontFamily="sans-serif-black"
-            android:text="Create Account"
+            android:text="Update Profile"
             android:textColor="@color/white" />
 
     </LinearLayout>

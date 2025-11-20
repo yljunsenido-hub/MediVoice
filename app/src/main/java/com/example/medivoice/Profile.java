@@ -34,7 +34,8 @@ public class Profile extends AppCompatActivity {
 
     private TextView fullnameText, addressText, contactText, emailText;
     private Button circleButton;
-    BottomNavigationView bottomNavigationView;
+    private Button btnEditProfile, btnAddContacts;
+    private BottomNavigationView bottomNavigationView;
 
     private ActivityResultLauncher<String> pickImageLauncher;
     private FirebaseUser currentUser;
@@ -59,9 +60,11 @@ public class Profile extends AppCompatActivity {
         emailText = findViewById(R.id.emailText);
         circleButton = findViewById(R.id.circleButton);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+        btnEditProfile = findViewById(R.id.btnEditProfile);
+        btnAddContacts = findViewById(R.id.btnAddContacts);
+
         bottomNavigationView.setSelectedItemId(R.id.nav_profile);
 
-        // Firebase
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
             Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
@@ -74,10 +77,9 @@ public class Profile extends AppCompatActivity {
 
         initImagePicker();
 
-        circleButton.setOnClickListener(v -> {
-            pickImageLauncher.launch("image/*");
-        });
+        circleButton.setOnClickListener(v -> pickImageLauncher.launch("image/*"));
 
+        // Initial load (on create)
         loadUserData();
         loadProfileImage();
 
@@ -101,6 +103,26 @@ public class Profile extends AppCompatActivity {
                 return false;
             }
         });
+
+        btnEditProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(Profile.this, EditProfile.class);
+            startActivity(intent);
+        });
+
+        btnAddContacts.setOnClickListener(v -> {
+            Intent contactIntent = new Intent(Profile.this, EmergencyContact.class);
+            startActivity(contactIntent);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reload updated data whenever we come back to Profile
+        if (currentUser != null) {
+            loadUserData();
+            loadProfileImage();
+        }
     }
 
     private void initImagePicker() {
@@ -146,7 +168,6 @@ public class Profile extends AppCompatActivity {
     }
 
     private void setCircleButtonImage(String imageUrl) {
-        // Glide will load the image into the button background
         Glide.with(this)
                 .load(imageUrl)
                 .centerCrop()
