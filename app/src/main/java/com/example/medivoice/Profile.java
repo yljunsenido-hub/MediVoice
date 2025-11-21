@@ -1,6 +1,7 @@
 package com.example.medivoice;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +36,7 @@ import com.google.firebase.storage.UploadTask;
 public class Profile extends AppCompatActivity {
 
     private TextView fullnameText, addressText, contactText, emailText;
+    private TextView guardianNameText, guardianContactText, guardianEmailText, guardianAddressText;
     private Button circleButton;
     private Button btnEditProfile, btnAddContacts;
     private BottomNavigationView bottomNavigationView;
@@ -40,6 +44,7 @@ public class Profile extends AppCompatActivity {
     private ActivityResultLauncher<String> pickImageLauncher;
     private FirebaseUser currentUser;
     private DatabaseReference userRef;
+    private DatabaseReference guardiansRef;
     private StorageReference storageRef;
 
     @Override
@@ -63,6 +68,11 @@ public class Profile extends AppCompatActivity {
         btnEditProfile = findViewById(R.id.btnEditProfile);
         btnAddContacts = findViewById(R.id.btnAddContacts);
 
+        guardianNameText = findViewById(R.id.guardianNameText);
+        guardianContactText = findViewById(R.id.guardianContactText);
+        guardianEmailText = findViewById(R.id.guardianEmailText);
+        guardianAddressText = findViewById(R.id.guardianAddressText);
+
         bottomNavigationView.setSelectedItemId(R.id.nav_profile);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -72,16 +82,18 @@ public class Profile extends AppCompatActivity {
         }
 
         String uid = currentUser.getUid();
-        userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        userRef = db.getReference("Users").child(uid);
+        guardiansRef = db.getReference("Guardians");
         storageRef = FirebaseStorage.getInstance().getReference("profileImages").child(uid + ".jpg");
 
         initImagePicker();
 
         circleButton.setOnClickListener(v -> pickImageLauncher.launch("image/*"));
 
-        // Initial load (on create)
         loadUserData();
         loadProfileImage();
+        loadGuardianData();
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -118,10 +130,10 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Reload updated data whenever we come back to Profile
         if (currentUser != null) {
             loadUserData();
             loadProfileImage();
+            loadGuardianData();
         }
     }
 
@@ -171,16 +183,14 @@ public class Profile extends AppCompatActivity {
         Glide.with(this)
                 .load(imageUrl)
                 .centerCrop()
-                .into(new com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
+                .into(new CustomTarget<Drawable>() {
                     @Override
-                    public void onResourceReady(@NonNull android.graphics.drawable.Drawable resource,
-                                                com.bumptech.glide.request.transition.Transition<? super android.graphics.drawable.Drawable> transition) {
+                    public void onResourceReady(@NonNull Drawable resource, Transition<? super Drawable> transition) {
                         circleButton.setBackground(resource);
                     }
 
                     @Override
-                    public void onLoadCleared(android.graphics.drawable.Drawable placeholder) {
-                        // Not needed
+                    public void onLoadCleared(Drawable placeholder) {
                     }
                 });
     }
@@ -228,7 +238,7 @@ public class Profile extends AppCompatActivity {
                 if (contactNumber == null) contactNumber = "";
                 if (email == null) email = "";
 
-                String fullName = firstName + " " + lastName;
+                String fullName = (firstName + " " + lastName).trim();
 
                 fullnameText.setText("Full Name: " + fullName);
                 addressText.setText("Address: " + address);
@@ -239,6 +249,79 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError error) {
                 Toast.makeText(Profile.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadGuardianData() {
+        if (currentUser == null) return;
+
+        userRef.child("guardians").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    guardianNameText.setText("Name: None connected");
+                    guardianContactText.setText("Contact: -");
+                    guardianEmailText.setText("Email: -");
+                    guardianAddressText.setText("Address: -");
+                    return;
+                }
+
+                String guardianId = null;
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    guardianId = child.getKey();
+                    break;
+                }
+
+                if (guardianId == null) {
+                    guardianNameText.setText("Name: None connected");
+                    guardianContactText.setText("Contact: -");
+                    guardianEmailText.setText("Email: -");
+                    guardianAddressText.setText("Address: -");
+                    return;
+                }
+
+                guardiansRef.child(guardianId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot guardianSnap) {
+                        if (!guardianSnap.exists()) {
+                            guardianNameText.setText("Name: Guardian not found");
+                            guardianContactText.setText("Contact: -");
+                            guardianEmailText.setText("Email: -");
+                            guardianAddressText.setText("Address: -");
+                            return;
+                        }
+
+                        String gFirst = guardianSnap.child("firstName").getValue(String.class);
+                        String gLast = guardianSnap.child("lastName").getValue(String.class);
+                        String gContact = guardianSnap.child("contactNumber").getValue(String.class);
+                        String gEmail = guardianSnap.child("email").getValue(String.class);
+                        String gAddress = guardianSnap.child("address").getValue(String.class);
+
+                        if (gFirst == null) gFirst = "";
+                        if (gLast == null) gLast = "";
+                        if (gContact == null) gContact = "";
+                        if (gEmail == null) gEmail = "";
+                        if (gAddress == null) gAddress = "";
+
+                        String gFullName = (gFirst + " " + gLast).trim();
+
+                        guardianNameText.setText("Name: " + gFullName);
+                        guardianContactText.setText("Contact: " + gContact);
+                        guardianEmailText.setText("Email: " + gEmail);
+                        guardianAddressText.setText("Address: " + gAddress);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(Profile.this, "Failed to load guardian: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Profile.this, "Failed to load guardian link: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

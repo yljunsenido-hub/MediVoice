@@ -9,171 +9,234 @@
     android:orientation="vertical"
     tools:context=".Profile">
 
-    <!-- Top content container -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingTop="30dp">
+        android:fillViewport="true">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/profileTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="Profile"
-            android:textColor="@color/white"
-            android:textSize="35dp" />
+            android:orientation="vertical"
+            android:paddingTop="30dp">
 
-        <!-- CardView containing Row: Circle button + info -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profileCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <!-- Row: Circle button + info -->
-            <LinearLayout
+            <TextView
+                android:id="@+id/profileTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp">
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="Profile"
+                android:textColor="@color/white"
+                android:textSize="35dp" />
 
-                <!-- Circle Button -->
-                <Button
-                    android:id="@+id/circleButton"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/circle"
-                    android:text=""
-                    android:layout_gravity="center" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
-
-                <!-- Info Column -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+
+                    <Button
+                        android:id="@+id/circleButton"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/circle"
+                        android:text=""
+                        android:layout_gravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="20dp">
+
+                        <TextView
+                            android:id="@+id/fullnameText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fullname: Your Name"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/addressText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Address: Your Address"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/contactText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Contact: 09xx-xxx-xxxx"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/emailText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Email: example@email.com"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/guardianCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="20dp">
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
-                        android:id="@+id/fullnameText"
+                        android:id="@+id/guardianTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fullname: Your Name"
+                        android:text="Guardian"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/guardianNameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Name: -"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/addressText"
+                        android:id="@+id/guardianContactText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Address: Your Address"
+                        android:text="Contact: -"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/contactText"
+                        android:id="@+id/guardianEmailText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Contact: 09xx-xxx-xxxx"
+                        android:text="Email: -"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/emailText"
+                        android:id="@+id/guardianAddressText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Email: example@email.com"
+                        android:text="Address: -"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/btnEditProfile"
+                android:layout_width="365dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-black"
+                android:text="Edit Profile"
+                android:textColor="@color/white" />
 
-        <!-- Buttons under CardView -->
+            <Button
+                android:id="@+id/btnAddContacts"
+                android:layout_width="365dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-black"
+                android:text="Add emergency contact"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/btnEditProfile"
-            android:layout_width="365dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="Edit Profile"
-            android:textColor="@color/white" />
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="365dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-black"
+                android:text="Settings"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/btnAddContacts"
-            android:layout_width="365dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="Add emergency contact"
-            android:textColor="@color/white" />
+            <Button
+                android:id="@+id/btnHelpFaq"
+                android:layout_width="365dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-black"
+                android:text="Help / FAQ"
+                android:textColor="@color/white" />
 
+            <Button
+                android:id="@+id/btnAbout"
+                android:layout_width="365dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-black"
+                android:text="About"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="365dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="Settings"
-            android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/btnHelpFaq"
-            android:layout_width="365dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="Help / FAQ"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btnAbout"
-            android:layout_width="365dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="About"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
-
-    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
