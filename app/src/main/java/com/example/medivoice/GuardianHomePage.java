@@ -47,10 +47,10 @@ public class GuardianHomePage extends AppCompatActivity {
 //                    startActivity(new Intent(getApplicationContext(), GuardianRecordActivity.class));
 //                    overridePendingTransition(0, 0);
 //                    return true;
-//                } else if (itemId == R.id.nav_profile) {
-//                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
+                } else if (itemId == R.id.nav_profile) {
+                    startActivity(new Intent(getApplicationContext(), GuardianProfile.class));
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
 
                 return false;
