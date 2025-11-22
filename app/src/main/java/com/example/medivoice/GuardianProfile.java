@@ -98,7 +98,7 @@ public class GuardianProfile extends AppCompatActivity {
 
         btnEditProfile.setOnClickListener(v -> {
             // If you have a separate edit screen for guardians, change this
-            Intent intent = new Intent(GuardianProfile.this, EditProfile.class);
+            Intent intent = new Intent(GuardianProfile.this, GuardianEditProfile.class);
             startActivity(intent);
         });
     }
