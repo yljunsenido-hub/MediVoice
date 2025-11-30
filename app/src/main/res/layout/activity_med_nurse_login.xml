@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background"
+    tools:context=".MedNurseLogin">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-black"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="Back"
+        android:layout_gravity="left"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/welcomepagepic" />
+
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Log in, Your health journey continues. Sign in to view your records and updates."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="23sp" />
+
+    <!-- Email Field -->
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:orientation="horizontal"
+        android:padding="13dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_email" />
+
+        <EditText
+            android:id="@+id/emailPass2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your e-mail address"
+            android:background="@android:color/transparent"
+            android:paddingStart="10dp"
+            android:textColor="#000000"
+            android:inputType="textEmailAddress"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Password Field -->
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:orientation="horizontal"
+        android:padding="13dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/outline_lock_24" />
+
+
+        <EditText
+            android:id="@+id/password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:background="@android:color/transparent"
+            android:paddingStart="10dp"
+            android:textColor="#000000"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="320dp"
+        android:layout_height="47dp"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="sans-serif-black"
+        android:background="@drawable/button"
+        android:layout_marginTop="10dp"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="320dp"
+        android:layout_height="47dp"
+        android:textColor="@color/white"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Register" />
+
+</LinearLayout>

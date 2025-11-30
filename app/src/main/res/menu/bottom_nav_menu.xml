@@ -5,13 +5,13 @@
         android:icon="@drawable/baseline_home_24"
         android:title="Home" />
     <item
-        android:id="@+id/nav_chat"
+        android:id="@+id/nav_medLog"
         android:icon="@drawable/outline_book_5_24"
-        android:title="Logs" />
+        android:title="MedicationLog" />
     <item
-        android:id="@+id/nav_mic"
+        android:id="@+id/nav_elderlyStatLog"
         android:icon="@drawable/outline_guardian_24"
-        android:title="Guardian Record" />
+        android:title="Elderly Status Log" />
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/outline_person_24"
