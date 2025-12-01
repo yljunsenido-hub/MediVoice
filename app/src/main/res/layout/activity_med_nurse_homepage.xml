@@ -7,16 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".MedNurseHomepage">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Nurse Homepage"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@+id/bottomNavigation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Nurse Homepage"
+            android:textSize="24sp" />
+
+
+        <Button
+            android:id="@+id/elderRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elderly Registration"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/prescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prescription"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

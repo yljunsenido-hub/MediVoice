@@ -3,6 +3,7 @@ package com.example.medivoice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MedNurseHomepage extends AppCompatActivity {
 
+    Button elderRegister, prescription;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -32,6 +34,10 @@ public class MedNurseHomepage extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+        elderRegister = findViewById(R.id.elderRegister);
+        prescription = findViewById(R.id.prescription);
+
 
 //        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
 //            @Override
@@ -58,5 +64,8 @@ public class MedNurseHomepage extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+
+        elderRegister.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, ElderRegistration.class)));
+        prescription.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class)));
     }
 }
