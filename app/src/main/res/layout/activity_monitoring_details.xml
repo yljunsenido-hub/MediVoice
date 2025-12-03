@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5E5E5">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ELDER NAME -->
+        <TextView
+            android:id="@+id/txtElderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:background="#FFFFFF"
+            android:text="Elder Name" />
+
+        <!-- ======================== -->
+        <!-- VITAL SIGNS SECTION -->
+        <!-- ======================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VITAL SIGNS"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/edtBloodPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Pressure"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Body Temperature"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtPulseRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pulse Rate"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtRespiratoryRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Respiratory Rate"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtOxygen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Oxygen Saturation"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtBloodSugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Sugar"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btnSaveVitals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:layout_marginTop="14dp"
+            android:background="#1E73BE"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+        <!-- ======================== -->
+        <!-- OUTPUT MONITORING SECTION -->
+        <!-- ======================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OUTPUT MONITORING (OPTIONAL)"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/edtUrineOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Urine Output"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtStool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stool"
+            android:background="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btnSaveOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:layout_marginTop="14dp"
+            android:background="#1E73BE"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>

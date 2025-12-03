@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- ✅ PERMISSIONS -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -23,7 +22,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MediVoice"
         tools:targetApi="31">
-
+        <activity
+            android:name=".MonitoringDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Monitoring"
+            android:exported="false" />
+        <activity
+            android:name=".PrescriptionDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicationTracker"
+            android:exported="false" />
+        <activity
+            android:name=".MedNurseRunningNote"
+            android:exported="false" />
         <activity
             android:name=".MedNursePrescription"
             android:exported="false" />
@@ -115,9 +128,7 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
-
-        <!-- ✅ ALARM RECEIVER FOR MEDICATION REMINDERS -->
+            android:exported="false" /> <!-- ✅ ALARM RECEIVER FOR MEDICATION REMINDERS -->
         <receiver
             android:name=".MedicationAlarmReceiver"
             android:exported="false" />
@@ -131,7 +142,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

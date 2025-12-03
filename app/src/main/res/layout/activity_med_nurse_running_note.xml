@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/background"
+    tools:context=".MedNurseRunningNote">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
+<!--        &lt;!&ndash; Page Title &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Running Notes"-->
+<!--            android:textSize="26sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="#000000"-->
+<!--            android:paddingBottom="20dp"/>-->
+
+<!--        &lt;!&ndash; Notes Input &ndash;&gt;-->
+
+<!--        &lt;!&ndash; Save Button &ndash;&gt;-->
+<!--        <EditText-->
+<!--            android:id="@+id/edtRunningNotes"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:background="@drawable/edittext_bg"-->
+<!--            android:gravity="top|start"-->
+<!--            android:hint="Enter notes here..."-->
+<!--            android:inputType="textMultiLine"-->
+<!--            android:overScrollMode="always"-->
+<!--            android:padding="15dp"-->
+<!--            android:scrollbars="vertical"-->
+<!--            android:textSize="18sp" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSaveNote"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Save Note"-->
+<!--            android:textSize="18sp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:backgroundTint="#1976D2"-->
+<!--            android:textColor="#FFFFFF"/>-->
+
+<!--    </LinearLayout>-->
+
+</ScrollView>
