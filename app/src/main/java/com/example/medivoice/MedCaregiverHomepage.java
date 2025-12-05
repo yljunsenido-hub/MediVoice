@@ -10,9 +10,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton; // Import the FAB class
+
 public class MedCaregiverHomepage extends AppCompatActivity {
 
-    Button medTracker, monitoring;
+    Button medTracker, monitoring, textToSpeech;
+    FloatingActionButton fabEmergency; // Declaration for the FAB
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +30,18 @@ public class MedCaregiverHomepage extends AppCompatActivity {
 
         medTracker = findViewById(R.id.medTracker);
         monitoring = findViewById(R.id.monitoring);
+        textToSpeech = findViewById(R.id.textToSpeech);
+        fabEmergency = findViewById(R.id.fabEmergency); // Initialization for the FAB
 
 
         medTracker.setOnClickListener(v -> startActivity(new Intent(MedCaregiverHomepage.this, MedicationTracker.class)));
         monitoring.setOnClickListener(v -> startActivity(new Intent(MedCaregiverHomepage.this, Monitoring.class)));
+        textToSpeech.setOnClickListener(v -> startActivity(new Intent(MedCaregiverHomepage.this, MedCareTextToSpeech.class)));
 
+        // 🚨 New FAB Click Listener 🚨
+        fabEmergency.setOnClickListener(v ->
+                startActivity(new Intent(MedCaregiverHomepage.this, NurseProfile.class))
+        );
 
     }
 }

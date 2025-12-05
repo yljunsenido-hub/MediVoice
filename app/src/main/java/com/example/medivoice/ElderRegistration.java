@@ -1,5 +1,6 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class ElderRegistration extends AppCompatActivity {
     EditText etSecondaryContactPerson, etSecondaryRelationship, etSecondaryContactNumber;
     EditText etAllergies, etCognitiveStatus, etDisabilities;
 
-    Button btnRegisterTop, btnListOfElderly, btnSubmitRegister;
+    Button btnListOfElderly, btnSubmitRegister;
 
     FirebaseAuth mAuth;
     DatabaseReference eldersRef;
@@ -52,7 +53,6 @@ public class ElderRegistration extends AppCompatActivity {
         nursesRef = FirebaseDatabase.getInstance().getReference("Nurse"); // make sure this matches your nurse node
 
         // Top buttons
-        btnRegisterTop = findViewById(R.id.btnRegisterTop);
         btnListOfElderly = findViewById(R.id.btnListOfElderly);
 
         // Inputs - Basic Personal Info
@@ -79,17 +79,13 @@ public class ElderRegistration extends AppCompatActivity {
         // Bottom submit button
         btnSubmitRegister = findViewById(R.id.btnSubmitRegister);
 
-        // Top REGISTER button does same as bottom register
-        btnRegisterTop.setOnClickListener(v -> saveElder());
-
         // Bottom REGISTER button
         btnSubmitRegister.setOnClickListener(v -> saveElder());
 
         // LIST OF ELDERLY button (open list activity – you can create it)
         btnListOfElderly.setOnClickListener(v -> {
-            // TODO: replace ElderListActivity with your activity name
-            // startActivity(new Intent(ElderRegistration.this, ElderListActivity.class));
-            Toast.makeText(this, "List screen not yet implemented", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ElderRegistration.this, ElderList.class);
+            startActivity(intent);
         });
     }
 

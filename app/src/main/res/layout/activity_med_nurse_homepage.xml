@@ -38,6 +38,20 @@
             android:text="Prescription"
             android:layout_gravity="center"/>
 
+        <Button
+            android:id="@+id/elderStatusLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Elder Status Log" />
+
+        <Button
+            android:id="@+id/nurseProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Profile" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

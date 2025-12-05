@@ -1,37 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MedCaregiverHomepage">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Caregiver Homepage"
+            android:textSize="24sp"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/medTracker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medication Tracker"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/monitoring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monitoring"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/textToSpeech"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextToSpeech"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabEmergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Caregiver Homepage"
-        android:textSize="24sp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:tint="@android:color/white"
+        app:srcCompat="@android:drawable/ic_menu_call"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="ContentDescription" />
 
-    <Button
-        android:id="@+id/medTracker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medication Tracker"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/monitoring"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Monitoring"
-        android:layout_gravity="center"/>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

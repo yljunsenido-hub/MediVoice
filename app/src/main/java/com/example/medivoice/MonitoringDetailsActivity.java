@@ -20,7 +20,7 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
             edtOxygen, edtBloodSugar, edtUrineOutput, edtStool;
     Button btnSaveVitals, btnSaveOutput;
 
-    String elderId, nurseId;
+    String elderId, caregiverId, elderName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,8 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_monitoring_details);
 
         elderId = getIntent().getStringExtra("elderId");
-        String elderName = getIntent().getStringExtra("elderName");
-        nurseId = getIntent().getStringExtra("nurseId"); // nurse assigned to this elder
+        caregiverId = getIntent().getStringExtra("caregiverId");   // NEW: caregiver who is filling the data
+        elderName = getIntent().getStringExtra("elderName");
 
         txtElderName = findViewById(R.id.txtElderName);
         edtBloodPressure = findViewById(R.id.edtBloodPressure);
@@ -46,17 +46,15 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
 
         txtElderName.setText(elderName);
 
-        btnSaveVitals.setOnClickListener(v -> saveVitalsToExistingNurse());
-        btnSaveOutput.setOnClickListener(v -> saveOutputToExistingNurse());
+        btnSaveVitals.setOnClickListener(v -> saveVitals());
+        btnSaveOutput.setOnClickListener(v -> saveOutput());
     }
 
-    private void saveVitalsToExistingNurse() {
-        if (nurseId == null) return;
-
+    private void saveVitals() {
         DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference("Nurse")          // use existing Nurse node
-                .child(nurseId)
+                .getReference("Elder")
                 .child(elderId)
+                .child("MonitoringRecords")
                 .child("VitalSigns");
 
         String recordId = ref.push().getKey();
@@ -68,20 +66,19 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         data.put("respiratoryRate", edtRespiratoryRate.getText().toString());
         data.put("oxygenSaturation", edtOxygen.getText().toString());
         data.put("bloodSugar", edtBloodSugar.getText().toString());
+        data.put("caregiverId", caregiverId);      // NEW: who performed monitoring
         data.put("timestamp", System.currentTimeMillis());
 
         ref.child(recordId).setValue(data)
                 .addOnSuccessListener(aVoid ->
-                        Toast.makeText(this, "Vital signs saved under Nurse node!", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(this, "Vital signs saved!", Toast.LENGTH_SHORT).show());
     }
 
-    private void saveOutputToExistingNurse() {
-        if (nurseId == null) return;
-
+    private void saveOutput() {
         DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference("Nurse")          // use existing Nurse node
-                .child(nurseId)
+                .getReference("Elder")
                 .child(elderId)
+                .child("MonitoringRecords")
                 .child("OutputMonitoring");
 
         String recordId = ref.push().getKey();
@@ -89,10 +86,11 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         HashMap<String, Object> data = new HashMap<>();
         data.put("urineOutput", edtUrineOutput.getText().toString());
         data.put("stool", edtStool.getText().toString());
+        data.put("caregiverId", caregiverId);   // NEW: show which caregiver logged this
         data.put("timestamp", System.currentTimeMillis());
 
         ref.child(recordId).setValue(data)
                 .addOnSuccessListener(aVoid ->
-                        Toast.makeText(this, "Output monitoring saved under Nurse node!", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(this, "Output monitoring saved!", Toast.LENGTH_SHORT).show());
     }
 }

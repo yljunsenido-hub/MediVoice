@@ -24,17 +24,6 @@
             android:layout_marginBottom="16dp">
 
             <Button
-                android:id="@+id/btnRegisterTop"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="REGISTER"
-                android:background="@drawable/button"
-                android:textColor="@color/white"
-                android:fontFamily="sans-serif-black" />
-
-            <Button
                 android:id="@+id/btnListOfElderly"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
