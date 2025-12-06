@@ -46,6 +46,13 @@
             android:text="Elder Status Log" />
 
         <Button
+            android:id="@+id/runningNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Running Notes" />
+
+        <Button
             android:id="@+id/nurseProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

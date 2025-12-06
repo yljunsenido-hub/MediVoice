@@ -36,6 +36,10 @@
         <activity
             android:name=".NurseProfile"
             android:exported="false" />
+
+        <activity android:name=".EmergencyElderListActivity" />
+        <activity android:name=".EmergencyContactsActivity" />
+        <activity android:name=".CreateNoteActivity" />
         <activity
             android:name=".ElderlyStatusLog"
             android:exported="false" />

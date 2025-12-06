@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MedNurseHomepage extends AppCompatActivity {
 
-    Button elderRegister, prescription, elderStatusLog,nurseProfile;
+    Button elderRegister, prescription, elderStatusLog,nurseProfile,runningNotes;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -39,6 +39,9 @@ public class MedNurseHomepage extends AppCompatActivity {
         prescription = findViewById(R.id.prescription);
         elderStatusLog = findViewById(R.id.elderStatusLog);
         nurseProfile = findViewById(R.id.nurseProfile);
+        runningNotes = findViewById(R.id.runningNotes);
+
+
 
 
 
@@ -73,5 +76,6 @@ public class MedNurseHomepage extends AppCompatActivity {
         elderRegister.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, ElderRegistration.class)));
         prescription.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class)));
         nurseProfile.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, NurseProfile.class)));
+        runningNotes.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, MedNurseRunningNote.class)));
 //        elderStatusLog.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, ElderStatusLogActivity.class)));
     } }

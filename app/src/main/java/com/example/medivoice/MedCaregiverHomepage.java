@@ -40,7 +40,7 @@ public class MedCaregiverHomepage extends AppCompatActivity {
 
         // 🚨 New FAB Click Listener 🚨
         fabEmergency.setOnClickListener(v ->
-                startActivity(new Intent(MedCaregiverHomepage.this, NurseProfile.class))
+                startActivity(new Intent(MedCaregiverHomepage.this, EmergencyElderListActivity.class))
         );
 
     }
