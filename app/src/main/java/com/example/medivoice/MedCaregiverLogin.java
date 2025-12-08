@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
@@ -29,6 +30,7 @@ public class MedCaregiverLogin extends AppCompatActivity {
     EditText emailPass2, password2;
     FirebaseAuth mAuth;
 
+    TextView txtForgotPassword;
     ImageView imgBack;
     DatabaseReference caregiverRef;
 
@@ -51,6 +53,13 @@ public class MedCaregiverLogin extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         caregiverRef = FirebaseDatabase.getInstance().getReference("Caregiver");
+        txtForgotPassword = findViewById(R.id.txtForgotPassword);
+
+        txtForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(MedCaregiverLogin.this, MedForgotPassword.class);
+            startActivity(intent);
+        });
+
 
         // Back button (go back to role selection / WelcomePage)
         imgBack.setOnClickListener(v -> {
