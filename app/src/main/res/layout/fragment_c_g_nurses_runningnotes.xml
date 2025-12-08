@@ -62,8 +62,10 @@
             android:id="@+id/btnSendGuardian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SEND TO GUARDIAN"
+            android:text="SEND TO Caregiver"
             android:textSize="8sp"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"/>

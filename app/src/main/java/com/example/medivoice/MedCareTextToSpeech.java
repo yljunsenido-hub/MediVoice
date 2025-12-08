@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
@@ -35,9 +36,10 @@ import java.util.Locale;
 
 public class MedCareTextToSpeech extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    Button btnCamera, btnGallery, btnSpeak, backButton;
+    Button btnCamera, btnGallery, btnSpeak;
     TextView textResult;
-    EditText recordName; // Kept for layout compatibility, but not used for saving
+    EditText recordName;
+    ImageView imgBack;
     Uri imageUri;
     private TextToSpeech tts;
 
@@ -63,7 +65,10 @@ public class MedCareTextToSpeech extends AppCompatActivity implements TextToSpee
         btnSpeak = findViewById(R.id.btnSpeak); // New Speak button
         recordName = findViewById(R.id.recordName);
         textResult = findViewById(R.id.textResult);
+        imgBack = findViewById(R.id.imgBack);
 
+        // Back button logic (Assuming HomePage.class is the target)
+        imgBack.setOnClickListener(v -> finish());
 
         // Speak button functionality
         btnSpeak.setOnClickListener(v -> {

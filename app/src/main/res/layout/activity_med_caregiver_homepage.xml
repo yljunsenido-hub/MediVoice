@@ -12,28 +12,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <!-- Invisible balancing view -->
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:visibility="invisible" />
+
+        <!-- Center text -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="CareGiver"
-            android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/white"
             android:fontFamily="@font/cor"
-            android:textSize="28sp"/>
+            android:textSize="28sp" />
 
+        <!-- Real home icon -->
         <ImageView
+            android:layout_marginRight="10dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home"/>
+            android:src="@drawable/home" />
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

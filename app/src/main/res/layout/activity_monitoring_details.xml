@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E5E5">
+    android:orientation="vertical"
+    android:background="@drawable/bgtwo">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="MONITORING"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:fontFamily="@font/cor"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="5dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:padding="20dp"
@@ -16,19 +52,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:padding="10dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
             android:background="#FFFFFF"
             android:text="Elder Name" />
 
-        <!-- ======================== -->
-        <!-- VITAL SIGNS SECTION -->
-        <!-- ======================== -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VITAL SIGNS"
             android:textStyle="bold"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
             android:textSize="18sp"
             android:layout_marginTop="12dp"/>
 
@@ -37,7 +73,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Blood Pressure"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <EditText
@@ -45,7 +83,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Body Temperature"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <EditText
@@ -53,7 +93,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Pulse Rate"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <EditText
@@ -61,7 +103,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Respiratory Rate"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <EditText
@@ -69,7 +113,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Oxygen Saturation"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <EditText
@@ -77,7 +123,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Blood Sugar"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <Button
@@ -85,8 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DONE"
-            android:layout_marginTop="14dp"
-            android:background="#1E73BE"
+            android:background="@drawable/rounded_button"
             android:textColor="#FFFFFF"
             android:padding="12dp" />
 
@@ -98,6 +145,8 @@
             android:layout_height="wrap_content"
             android:text="OUTPUT MONITORING (OPTIONAL)"
             android:textStyle="bold"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
             android:textSize="18sp"
             android:layout_marginTop="20dp"/>
 
@@ -106,7 +155,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Urine Output"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <EditText
@@ -114,7 +165,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Stool"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
 
         <Button
@@ -122,11 +175,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DONE"
-            android:layout_marginTop="14dp"
-            android:background="#1E73BE"
+            android:background="@drawable/rounded_button"
             android:textColor="#FFFFFF"
             android:padding="12dp" />
 
     </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:orientation="vertical"
+    android:background="@drawable/bgtwo">
 
+    <!-- ⭐ FIXED TOP HEADER BAR (does NOT scroll) -->
     <LinearLayout
-        android:id="@+id/monitoringContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical">
 
-</ScrollView>
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="MONITORING"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:fontFamily="@font/cor"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="5dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    <LinearLayout
+        android:id="@+id/monitoringContainer"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_edittext"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="20dp"/>
+
+    </ScrollView>
+
+</LinearLayout>

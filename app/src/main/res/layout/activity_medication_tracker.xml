@@ -37,7 +37,8 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/cor"
                 android:textSize="28sp"
-                android:gravity="center_vertical"/>
+                android:layout_gravity="center"
+                android:gravity="center"/>
 
             <ImageView
                 android:layout_width="35dp"

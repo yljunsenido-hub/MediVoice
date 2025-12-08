@@ -40,13 +40,13 @@ public class MedNurseRunningNote extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_med_nurse_running_note);
 
-        rvNotes = findViewById(R.id.rvNotes);
+        //rvNotes = findViewById(R.id.rvNotes);
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new NoteAdapter();
         rvNotes.setAdapter(adapter);
 
-        btnCreateNote = findViewById(R.id.btnCreateNote);
+        //btnCreateNote = findViewById(R.id.btnCreateNote);
         btnCreateNote.setOnClickListener(v -> {
             startActivity(new Intent(this, CreateNoteActivity.class));
         });

@@ -1,401 +1,494 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:background="@drawable/bgtwo"
     tools:context=".ElderRegistration">
 
+    <!-- ⭐ FIXED TOP HEADER BAR (does NOT scroll) -->
     <LinearLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical"
+        android:padding="8dp">
 
-        <!-- Top buttons: Register / List of Elderly -->
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="EMERGENCY CONTACT"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:fontFamily="@font/cor"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
         <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:weightSum="2"
-            android:layout_marginBottom="16dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <!-- Top buttons: Register / List of Elderly -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnListOfElderly"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="LIST OF ELDERLY"
+                    android:background="@drawable/button"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif-black" />
+            </LinearLayout>
+
+            <!-- BASIC PERSONAL INFORMATION -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BASIC PERSONAL INFORMATION"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- NAME -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NAME:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="4dp" />
+
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter full name"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- AGE -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AGE:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter age"
+                        android:inputType="number"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- BIRTHDAY -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BIRTHDAY:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etBirthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="MM/DD/YYYY"
+                        android:inputType="date"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- GENDER -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GENDER:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Male / Female / Other"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- CIVIL STATUS -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CIVIL STATUS:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etCivilStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Single / Married / Widowed / etc."
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- HOME ADDRESS -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HOME ADDRESS (IF AVAILABLE):"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etHomeAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter full address"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- FAMILY & EMERGENCY CONTACT DETAILS -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FAMILY AND EMERGENCY CONTACT DETAILS"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- PRIMARY CONTACT PERSON -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:text="PRIMARY CONTACT PERSON:"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etPrimaryContactPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name of primary contact"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- RELATIONSHIP (PRIMARY) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RELATIONSHIP TO THE ELDERLY:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etPrimaryRelationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="e.g., Son, Daughter, Nephew"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- CONTACT NUMBER (PRIMARY) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONTACT NUMBER:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etPrimaryContactNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="09XXXXXXXXX"
+                        android:inputType="phone"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- SECONDARY CONTACT -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SECONDARY EMERGENCY CONTACT:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="12dp" />
+
+                    <EditText
+                        android:id="@+id/etSecondaryContactPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name of secondary contact"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- RELATIONSHIP (SECONDARY) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RELATIONSHIP TO THE ELDERLY:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etSecondaryRelationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="e.g., Friend, Neighbor"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- CONTACT NUMBER (SECONDARY) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONTACT NUMBER:"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etSecondaryContactNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="09XXXXXXXXX"
+                        android:inputType="phone"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- MEDICAL & HEALTH INFORMATION -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MEDICAL AND HEALTH INFORMATION"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- ALLERGIES -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALLERGIES (FOOD, MEDICATION):"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etAllergies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="List allergies if any"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- COGNITIVE STATUS -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COGNITIVE STATUS (DEMENTIA, ALZHEIMER'S):"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etCognitiveStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Describe cognitive status"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <!-- DISABILITIES -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DISABILITIES (HEARING, VISION, PHYSICAL LIMITATIONS):"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cor"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="8dp" />
+
+                    <EditText
+                        android:id="@+id/etDisabilities"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Describe any disabilities or limitations"
+                        android:background="@drawable/rounded_edittext"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Bottom REGISTER button (submit form) -->
             <Button
-                android:id="@+id/btnListOfElderly"
-                android:layout_width="0dp"
+                android:id="@+id/btnSubmitRegister"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="LIST OF ELDERLY"
+                android:text="REGISTER"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/button"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-black" />
+
         </LinearLayout>
-
-        <!-- BASIC PERSONAL INFORMATION -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BASIC PERSONAL INFORMATION"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- NAME -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NAME:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp" />
-
-                <EditText
-                    android:id="@+id/etName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter full name"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- AGE -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="AGE:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter age"
-                    android:inputType="number"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- BIRTHDAY -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BIRTHDAY:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etBirthday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="MM/DD/YYYY"
-                    android:inputType="date"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- GENDER -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GENDER:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Male / Female / Other"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- CIVIL STATUS -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CIVIL STATUS:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etCivilStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Single / Married / Widowed / etc."
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- HOME ADDRESS -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="HOME ADDRESS (IF AVAILABLE):"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etHomeAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter full address"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- FAMILY & EMERGENCY CONTACT DETAILS -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="FAMILY AND EMERGENCY CONTACT DETAILS"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- PRIMARY CONTACT PERSON -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PRIMARY CONTACT PERSON:"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etPrimaryContactPerson"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Name of primary contact"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- RELATIONSHIP TO THE ELDERLY (PRIMARY) -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RELATIONSHIP TO THE ELDERLY:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etPrimaryRelationship"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g., Son, Daughter, Nephew"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- CONTACT NUMBER (PRIMARY) -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CONTACT NUMBER:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etPrimaryContactNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="09XXXXXXXXX"
-                    android:inputType="phone"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- SECONDARY CONTACT -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SECONDARY EMERGENCY CONTACT:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="12dp" />
-
-                <EditText
-                    android:id="@+id/etSecondaryContactPerson"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Name of secondary contact"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- RELATIONSHIP TO THE ELDERLY (SECONDARY) -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RELATIONSHIP TO THE ELDERLY:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etSecondaryRelationship"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g., Friend, Neighbor"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- CONTACT NUMBER (SECONDARY) -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CONTACT NUMBER:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etSecondaryContactNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="09XXXXXXXXX"
-                    android:inputType="phone"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- MEDICAL & HEALTH INFORMATION -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MEDICAL AND HEALTH INFORMATION"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- ALLERGIES -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ALLERGIES (FOOD, MEDICATION):"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etAllergies"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="List allergies if any"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- COGNITIVE STATUS -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="COGNITIVE STATUS (DEMENTIA, ALZHEIMER'S):"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etCognitiveStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Describe cognitive status"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <!-- DISABILITIES -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DISABILITIES (HEARING, VISION, PHYSICAL LIMITATIONS):"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp" />
-
-                <EditText
-                    android:id="@+id/etDisabilities"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Describe any disabilities or limitations"
-                    android:background="@drawable/input_bg"
-                    android:padding="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Bottom REGISTER button (submit form) -->
-        <Button
-            android:id="@+id/btnSubmitRegister"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="REGISTER"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/button"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-black" />
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
