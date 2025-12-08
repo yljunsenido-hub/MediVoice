@@ -24,7 +24,6 @@ public class MedNurseHomepage extends AppCompatActivity {
         setContentView(R.layout.activity_med_nurse_homepage);
 
         // Enable EdgeToEdge (optional)
-        EdgeToEdge.enable(this);
 
         // Safely get root view
         LinearLayout rootLayout = findViewById(R.id.main);
@@ -41,6 +40,7 @@ public class MedNurseHomepage extends AppCompatActivity {
         elderRegister = findViewById(R.id.elderRegister);
         runningNotes = findViewById(R.id.runningNotes);
         bottomNav = findViewById(R.id.bottomNav);
+//        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
 
         // Set click listeners
         prescription.setOnClickListener(v ->
@@ -60,12 +60,12 @@ public class MedNurseHomepage extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 return true; // Already home
-            } else if (id == R.id.nav_medLog) {
-                startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class));
-                return true;
-            } else if (id == R.id.nav_elderlyStatLog) {
-                startActivity(new Intent(MedNurseHomepage.this, ElderList.class));
-                return true;
+//            } else if (id == R.id.nav_medLog) {
+//                startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class));
+//                return true;
+//            } else if (id == R.id.nav_elderlyStatLog) {
+//                startActivity(new Intent(MedNurseHomepage.this, ElderList.class));
+//                return true;
             } else if (id == R.id.nav_profile) {
                 startActivity(new Intent(MedNurseHomepage.this, NurseProfile.class));
                 return true;

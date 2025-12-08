@@ -35,7 +35,6 @@ public class MedNurseLogin extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            EdgeToEdge.enable(this);
             setContentView(R.layout.activity_med_nurse_login);
 
             // FIXED: ImageButton instead of Button

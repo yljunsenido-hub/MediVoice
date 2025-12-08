@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class EmergencyElderListActivity extends AppCompatActivity {
 
+    ImageView imgBack;
     RecyclerView recyclerView;
     List<ElderData> elderList = new ArrayList<>();
     DatabaseReference eldersRef;
@@ -54,6 +56,12 @@ public class EmergencyElderListActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+        imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(v -> {
+            Intent intent = new Intent(EmergencyElderListActivity.this, MedCaregiverHomepage.class);
+            startActivity(intent);
         });
     }
 

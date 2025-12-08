@@ -3,6 +3,7 @@ package com.example.medivoice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class MedicationTracker extends AppCompatActivity {
 
     private LinearLayout medicationsContainer;
 
+    ImageView imgBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,12 @@ public class MedicationTracker extends AppCompatActivity {
         medicationsContainer = findViewById(R.id.medicationsContainer);
 
         loadPrescriptions();
+
+        imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(v -> {
+            Intent i = new Intent(MedicationTracker.this, MedCaregiverHomepage.class);
+            startActivity(i);
+        });
     }
 
     private void loadPrescriptions() {

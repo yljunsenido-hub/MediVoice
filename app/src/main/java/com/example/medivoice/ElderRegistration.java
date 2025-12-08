@@ -42,7 +42,6 @@ public class ElderRegistration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_elder_registration);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -91,25 +90,7 @@ public class ElderRegistration extends AppCompatActivity {
             startActivity(intent);
         });
 
-        bottomNav = findViewById(R.id.bottomNav);
 
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-
-            if (id == R.id.nav_medLog) {
-                return true; // Already home
-            } else if (id == R.id.nav_home) {
-                startActivity(new Intent(ElderRegistration.this, MedNurseHomepage.class));
-                return true;
-            } else if (id == R.id.nav_elderlyStatLog) {
-                startActivity(new Intent(ElderRegistration.this, ElderList.class));
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(ElderRegistration.this, NurseProfile.class));
-                return true;
-            }
-            return false;
-        });
     }
 
     private void saveElder() {

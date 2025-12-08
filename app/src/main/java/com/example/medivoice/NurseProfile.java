@@ -56,7 +56,6 @@ public class NurseProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_nurse_profile); // Requires activity_nurse_profile.xml
 
         // System bar padding

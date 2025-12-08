@@ -48,7 +48,6 @@ public class MedCareTextToSpeech extends AppCompatActivity implements TextToSpee
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_med_care_text_to_speech);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -64,10 +63,7 @@ public class MedCareTextToSpeech extends AppCompatActivity implements TextToSpee
         btnSpeak = findViewById(R.id.btnSpeak); // New Speak button
         recordName = findViewById(R.id.recordName);
         textResult = findViewById(R.id.textResult);
-        backButton = findViewById(R.id.backButton);
 
-        // Back button logic (Assuming HomePage.class is the target)
-        backButton.setOnClickListener(v -> finish()); // Just finish the activity to go back
 
         // Speak button functionality
         btnSpeak.setOnClickListener(v -> {

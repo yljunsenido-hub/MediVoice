@@ -1,8 +1,10 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ public class ElderList extends AppCompatActivity {
 
     LinearLayout elderContainer;
 
+    ImageView btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,13 @@ public class ElderList extends AppCompatActivity {
         elderContainer = findViewById(R.id.elderContainer);
 
         loadElders();
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(ElderList.this, ElderRegistration.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void loadElders() {
@@ -118,5 +129,6 @@ public class ElderList extends AppCompatActivity {
                         elderContainer.addView(card);
                     }
                 });
+
     }
 }
