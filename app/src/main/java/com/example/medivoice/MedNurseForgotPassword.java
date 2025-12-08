@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,7 +20,6 @@ public class MedNurseForgotPassword extends AppCompatActivity {
 
     EditText edtEmail;
     Button btnResetPassword, btnBack;
-
     FirebaseAuth mAuth;
 
 
