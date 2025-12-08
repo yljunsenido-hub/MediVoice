@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -55,13 +54,6 @@ public class MedNurseLogin extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
-            TextView txtForgotPassword = findViewById(R.id.txtForgotPassword);
-
-            txtForgotPassword.setOnClickListener(v -> {
-                Intent intent = new Intent(MedNurseLogin.this, MedNurseForgotPassword.class);
-                startActivity(intent);
-            });
 
         // Login button
         btnLogin.setOnClickListener(v -> {
