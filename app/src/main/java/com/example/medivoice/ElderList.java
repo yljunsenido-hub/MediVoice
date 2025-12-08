@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,6 +19,7 @@ public class ElderList extends AppCompatActivity {
     LinearLayout elderContainer;
 
     ImageView btnBack;
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,28 @@ public class ElderList extends AppCompatActivity {
             Intent intent = new Intent(ElderList.this, ElderRegistration.class);
             startActivity(intent);
             finish();
+        });
+
+        bottomNav = findViewById(R.id.bottomNav);
+        // Set the highlighted/selected item to profile
+        bottomNav.setSelectedItemId(R.id.nav_elderlyStatLog);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_elderlyStatLog) {
+                return true; // Already home
+            } else if (id == R.id.nav_medLog) {
+                startActivity(new Intent(ElderList.this, MedNursePrescription.class));
+                return true;
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(ElderList.this, NurseProfile.class));
+                return true;
+            } else if (id == R.id.nav_home) {
+                startActivity(new Intent(ElderList.this, MedNurseHomepage.class));
+                return true;
+            }
+            return false;
         });
     }
 

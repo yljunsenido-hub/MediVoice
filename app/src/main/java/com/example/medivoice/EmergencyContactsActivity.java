@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 public class EmergencyContactsActivity extends AppCompatActivity {
 
     TextView txtName;
+    ImageView imgBack;
+
     LinearLayout contactContainer;
     DatabaseReference eldersRef;
 
@@ -31,6 +34,14 @@ public class EmergencyContactsActivity extends AppCompatActivity {
 
         txtName = findViewById(R.id.txtElderName);
         contactContainer = findViewById(R.id.contactContainer);
+
+
+        imgBack = findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(v -> {
+            startActivity(new Intent(EmergencyContactsActivity.this, EmergencyElderListActivity.class));
+            finish();
+        });
 
         String elderId = getIntent().getStringExtra("elderId");
         String elderName = getIntent().getStringExtra("elderName");

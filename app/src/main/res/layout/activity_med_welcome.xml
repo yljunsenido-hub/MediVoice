@@ -37,8 +37,8 @@
         <Button
             android:id="@+id/btnCaregiver"
             android:layout_marginTop="50dp"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
             android:backgroundTint="@color/blue"
             android:textColor="@android:color/white"
             android:paddingLeft="16dp"
@@ -49,8 +49,8 @@
 
         <Button
             android:id="@+id/btnNurse"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
             android:backgroundTint="@color/blue"
             android:textColor="@android:color/white"
             android:paddingLeft="16dp"

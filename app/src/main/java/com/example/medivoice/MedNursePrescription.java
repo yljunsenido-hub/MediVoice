@@ -17,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -52,6 +53,8 @@ public class MedNursePrescription extends AppCompatActivity {
     String nurseId;
     String nurseName = "";
 
+    BottomNavigationView bottomNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,28 @@ public class MedNursePrescription extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        bottomNav = findViewById(R.id.bottomNav);
+        // Set the highlighted/selected item to profile
+        bottomNav.setSelectedItemId(R.id.nav_medLog);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_medLog) {
+                return true; // Already home
+            } else if (id == R.id.nav_elderlyStatLog) {
+                startActivity(new Intent(MedNursePrescription.this, ElderList.class));
+                return true;
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(MedNursePrescription.this, NurseProfile.class));
+                return true;
+            } else if (id == R.id.nav_home) {
+                startActivity(new Intent(MedNursePrescription.this, MedNurseHomepage.class));
+                return true;
+            }
+            return false;
         });
 
 
