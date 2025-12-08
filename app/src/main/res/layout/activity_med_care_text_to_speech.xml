@@ -50,55 +50,29 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Image to Speech"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif-black"
-        android:textSize="35sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header" />
-
-    <EditText
-        android:id="@+id/recordName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter Record Name"
-        android:background="@drawable/circle_bg"
-        android:paddingHorizontal="25dp"
-        android:paddingVertical="5dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="30dp"
         android:background="#EFEFEF"
         android:padding="10dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recordName">
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
 
         <TextView
             android:id="@+id/textResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#262626"
-            android:textSize="18sp"
+            android:layout_marginTop=""
             android:fontFamily="sans-serif"
+            android:scrollbars="vertical"
             android:text="Scan a prescription or image to read text aloud."
-            android:scrollbars="vertical" />
+            android:textColor="#262626"
+            android:textSize="18sp" />
     </ScrollView>
 
     <androidx.cardview.widget.CardView
@@ -138,7 +112,7 @@
         android:id="@+id/btnSpeak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Read Text Aloud"
+        android:text="Generate Text"
         android:paddingHorizontal="35dp"
         android:paddingVertical="16dp"
         android:background="@drawable/button"

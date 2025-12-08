@@ -35,7 +35,6 @@ public class MedNurseForgotPassword extends AppCompatActivity {
 
         edtEmail = findViewById(R.id.edtEmail);
         btnResetPassword = findViewById(R.id.btnResetPassword);
-        btnBack = findViewById(R.id.btnBack);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -60,10 +59,5 @@ public class MedNurseForgotPassword extends AppCompatActivity {
             });
         });
 
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(MedNurseForgotPassword.this, MedNurseLogin.class);
-            startActivity(intent);
-            finish();
-        });
     }
 }

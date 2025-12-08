@@ -25,7 +25,6 @@ public class MedForgotPassword extends AppCompatActivity {
 
         edtEmail = findViewById(R.id.edtEmail);
         btnResetPassword = findViewById(R.id.btnResetPassword);
-        btnBack = findViewById(R.id.btnBack);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -48,12 +47,6 @@ public class MedForgotPassword extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
             });
-        });
-
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(MedForgotPassword.this, MedCaregiverLogin.class);
-            startActivity(intent);
-            finish();
         });
     }
 }
