@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MedForgotPassword extends AppCompatActivity {
 
     EditText edtEmail;
+    ImageView imgBack;
     Button btnResetPassword, btnBack;
 
     FirebaseAuth mAuth;
@@ -27,6 +29,12 @@ public class MedForgotPassword extends AppCompatActivity {
         btnResetPassword = findViewById(R.id.btnResetPassword);
 
         mAuth = FirebaseAuth.getInstance();
+        imgBack = findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(v -> {
+            startActivity(new Intent(MedForgotPassword.this, MedCaregiverLogin.class));
+            finish();
+        });
 
         btnResetPassword.setOnClickListener(v -> {
             String email = edtEmail.getText().toString().trim();

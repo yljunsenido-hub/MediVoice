@@ -67,7 +67,6 @@
             android:id="@+id/textResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop=""
             android:fontFamily="sans-serif"
             android:scrollbars="vertical"
             android:text="Scan a prescription or image to read text aloud."

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +31,7 @@ public class ElderRegistration extends AppCompatActivity {
     EditText etPrimaryContactPerson, etPrimaryRelationship, etPrimaryContactNumber;
     EditText etSecondaryContactPerson, etSecondaryRelationship, etSecondaryContactNumber;
     EditText etAllergies, etCognitiveStatus, etDisabilities;
+    ImageView imgBack;
 
     Button btnListOfElderly, btnSubmitRegister;
 
@@ -48,6 +50,13 @@ public class ElderRegistration extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        imgBack = findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(v -> {
+            startActivity(new Intent(ElderRegistration.this, MedNurseHomepage.class));
+            finish();
         });
 
         mAuth = FirebaseAuth.getInstance();

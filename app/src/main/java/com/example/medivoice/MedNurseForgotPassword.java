@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class MedNurseForgotPassword extends AppCompatActivity {
     Button btnResetPassword, btnBack;
     FirebaseAuth mAuth;
 
+    ImageView imgBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,13 @@ public class MedNurseForgotPassword extends AppCompatActivity {
         btnResetPassword = findViewById(R.id.btnResetPassword);
 
         mAuth = FirebaseAuth.getInstance();
+        imgBack = findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(v -> {
+            startActivity(new Intent(MedNurseForgotPassword.this, MedNurseLogin.class));
+            finish();
+        });
+
 
         btnResetPassword.setOnClickListener(v -> {
             String email = edtEmail.getText().toString().trim();

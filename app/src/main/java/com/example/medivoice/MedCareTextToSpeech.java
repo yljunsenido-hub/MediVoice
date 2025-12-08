@@ -63,7 +63,6 @@ public class MedCareTextToSpeech extends AppCompatActivity implements TextToSpee
         btnCamera = findViewById(R.id.btnCamera);
         btnGallery = findViewById(R.id.btnGallery);
         btnSpeak = findViewById(R.id.btnSpeak); // New Speak button
-        recordName = findViewById(R.id.recordName);
         textResult = findViewById(R.id.textResult);
         imgBack = findViewById(R.id.imgBack);
 

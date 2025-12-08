@@ -3,6 +3,7 @@ package com.example.medivoice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Monitoring extends AppCompatActivity {
 
     private LinearLayout monitoringContainer;
+    ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,13 @@ public class Monitoring extends AppCompatActivity {
         monitoringContainer = findViewById(R.id.monitoringContainer);
 
         loadObservationList();
+
+        imgBack = findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(v -> {
+            startActivity(new Intent(Monitoring.this, MedCaregiverHomepage.class));
+            finish();
+        });
     }
 
     private void loadObservationList() {

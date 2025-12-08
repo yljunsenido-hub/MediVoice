@@ -1,8 +1,10 @@
 package com.example.medivoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
     EditText edtBloodPressure, edtTemperature, edtPulseRate, edtRespiratoryRate,
             edtOxygen, edtBloodSugar, edtUrineOutput, edtStool;
     Button btnSaveVitals, btnSaveOutput;
+    ImageView imgBack;
 
     String elderId, caregiverId, elderName;
 
@@ -48,6 +51,13 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
 
         btnSaveVitals.setOnClickListener(v -> saveVitals());
         btnSaveOutput.setOnClickListener(v -> saveOutput());
+
+        imgBack = findViewById(R.id.imgBack);
+
+        imgBack.setOnClickListener(v -> {
+            startActivity(new Intent(MonitoringDetailsActivity.this, Monitoring.class));
+            finish();
+        });
     }
 
     private void saveVitals() {

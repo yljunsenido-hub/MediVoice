@@ -21,6 +21,15 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
+            android:id="@+id/btnBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:visibility="invisible" />
