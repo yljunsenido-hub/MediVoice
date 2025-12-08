@@ -17,7 +17,7 @@
             android:id="@+id/imgBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/back"
             android:clickable="true"
             android:focusable="true" />
@@ -37,7 +37,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:visibility="invisible" />
 
     </LinearLayout>

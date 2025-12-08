@@ -26,6 +26,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
+            android:layout_marginLeft="10dp"
             android:clickable="true"
             android:focusable="true"/>
 
@@ -34,12 +35,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="5dp"
-            android:text="Elder Emergency Contact"
+            android:text="Text-to-Speech"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/white"
             android:fontFamily="@font/cor"
             android:textSize="28sp"/>
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
