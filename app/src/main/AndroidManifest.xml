@@ -36,6 +36,7 @@
         <activity
             android:name=".NurseProfile"
             android:exported="false" />
+        <activity android:name=".MedCaregiverRunningnotes"/>
 
         <activity android:name=".EmergencyElderListActivity" />
         <activity android:name=".EmergencyContactsActivity" />

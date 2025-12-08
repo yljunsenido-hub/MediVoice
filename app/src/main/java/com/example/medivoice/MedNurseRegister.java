@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,9 +24,10 @@ import java.util.HashMap;
 public class MedNurseRegister extends AppCompatActivity {
 
     EditText firstName, lastName, age, contactNumber, emailPass, password;
-    Button btnRegister, btnBack;
+    Button btnRegister;
+    ImageView btnBack;
     FirebaseAuth mAuth;
-    DatabaseReference usersRef; // will point to "Nurse"
+    DatabaseReference usersRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

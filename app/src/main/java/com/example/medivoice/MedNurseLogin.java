@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,30 +24,27 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MedNurseLogin extends AppCompatActivity {
 
-    Button btnLogin, btnRegister, backButton;
-    EditText emailPass2, password2;
-    FirebaseAuth mAuth;
-    DatabaseReference nurseRef;
+        Button btnLogin, btnRegister;
+        ImageButton backButton;
+        EditText emailPass2, password2;
+        FirebaseAuth mAuth;
+        DatabaseReference nurseRef;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_med_nurse_login);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            EdgeToEdge.enable(this);
+            setContentView(R.layout.activity_med_nurse_login);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+            // FIXED: ImageButton instead of Button
+            btnLogin = findViewById(R.id.btnLogin);
+            btnRegister = findViewById(R.id.btnRegister);
+            backButton = findViewById(R.id.btnBack);
+            emailPass2 = findViewById(R.id.emailPass2);
+            password2 = findViewById(R.id.password2);
 
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegister = findViewById(R.id.btnRegister);
-        backButton = findViewById(R.id.backButton);
-        emailPass2 = findViewById(R.id.emailPass2);
-        password2 = findViewById(R.id.password2);
 
-        mAuth = FirebaseAuth.getInstance();
+            mAuth = FirebaseAuth.getInstance();
         nurseRef = FirebaseDatabase.getInstance().getReference("Nurse");
 
         // Back button: go back to role selection / WelcomePage

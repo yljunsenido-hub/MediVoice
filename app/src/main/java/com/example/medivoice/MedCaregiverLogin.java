@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class MedCaregiverLogin extends AppCompatActivity {
     Button btnLogin, btnRegister, backButton;
     EditText emailPass2, password2;
     FirebaseAuth mAuth;
+
+    ImageButton imgBack;
     DatabaseReference caregiverRef;
 
     @Override
@@ -42,7 +45,7 @@ public class MedCaregiverLogin extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
-        backButton = findViewById(R.id.backButton);
+        imgBack = findViewById(R.id.imgBack);
         emailPass2 = findViewById(R.id.emailPass2);
         password2 = findViewById(R.id.password2);
 
@@ -50,7 +53,7 @@ public class MedCaregiverLogin extends AppCompatActivity {
         caregiverRef = FirebaseDatabase.getInstance().getReference("Caregiver");
 
         // Back button (go back to role selection / WelcomePage)
-        backButton.setOnClickListener(v -> {
+        imgBack.setOnClickListener(v -> {
             Intent intent = new Intent(MedCaregiverLogin.this, MedWelcome.class);
             startActivity(intent);
             finish();

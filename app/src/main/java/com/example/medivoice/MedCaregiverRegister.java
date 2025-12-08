@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,7 +24,8 @@ import java.util.HashMap;
 public class MedCaregiverRegister extends AppCompatActivity {
 
     EditText firstName, lastName, age, shift, contactNumber, emailPass, password;
-    Button btnRegister, btnBack;
+    Button btnRegister;
+    ImageView btnBack;
     FirebaseAuth mAuth;
     DatabaseReference usersRef; // this will now point to "Caregiver"
 
@@ -42,7 +44,6 @@ public class MedCaregiverRegister extends AppCompatActivity {
         firstName = findViewById(R.id.firstName);
         age = findViewById(R.id.age);
         lastName = findViewById(R.id.lastName);
-        shift = findViewById(R.id.shift);
         contactNumber = findViewById(R.id.contactNumber);
         emailPass = findViewById(R.id.emailPass);
         password = findViewById(R.id.password);

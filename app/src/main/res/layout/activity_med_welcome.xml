@@ -5,29 +5,58 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/bg"
     tools:context=".MedWelcome">
 
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/btnCaregiver"
-        android:layout_width="300dp"
-        android:fontFamily="sans-serif-black"
-        android:layout_height="47dp"
-        android:textColor="@color/white"
-        android:text="CAREGIVER"
-        android:background="@drawable/button"
-        android:layout_gravity="center" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
-    <Button
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif-black"
-        android:id="@+id/btnNurse"
-        android:layout_width="300dp"
-        android:layout_height="47dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button"
-        android:text="NURSE"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:text="MEDIVOICE\nONE CAINTA\nSUNSET RETREAT"
+            android:textSize="40sp" />
 
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:text="YOUR SMART COMPANION FOR\nEFFORTLESS MEDICAL\nCOMMUNICATION AND CARE"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/btnCaregiver"
+            android:layout_marginTop="50dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Care Giver" />
+
+        <Button
+            android:id="@+id/btnNurse"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Nurse" />
+    </LinearLayout>
 </LinearLayout>

@@ -2,80 +2,75 @@ package com.example.medivoice;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Button;
-
+import android.widget.LinearLayout;
+import com.example.medivoice.R;
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MedNurseHomepage extends AppCompatActivity {
 
-    Button elderRegister, prescription, elderStatusLog,nurseProfile,runningNotes;
-    BottomNavigationView bottomNavigationView;
+    LinearLayout elderRegister, prescription, runningNotes;
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_med_nurse_homepage);
 
-        // Handle system bars insets
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Enable EdgeToEdge (optional)
+        EdgeToEdge.enable(this);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        // Safely get root view
+        LinearLayout rootLayout = findViewById(R.id.main);
+        if (rootLayout != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(rootLayout, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
 
-        elderRegister = findViewById(R.id.elderRegister);
+        // Initialize clickable items
         prescription = findViewById(R.id.prescription);
-        elderStatusLog = findViewById(R.id.elderStatusLog);
-        nurseProfile = findViewById(R.id.nurseProfile);
+        elderRegister = findViewById(R.id.elderRegister);
         runningNotes = findViewById(R.id.runningNotes);
+        bottomNav = findViewById(R.id.bottomNav);
 
+        // Set click listeners
+        prescription.setOnClickListener(v ->
+                startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class))
+        );
 
+        elderRegister.setOnClickListener(v ->
+                startActivity(new Intent(MedNurseHomepage.this, ElderRegistration.class))
+        );
 
+        runningNotes.setOnClickListener(v ->
+                startActivity(new Intent(MedNurseHomepage.this, MedNurseRunningNote.class))
+        );
 
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
 
-
-
-//        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                int itemId = item.getItemId();
-//
-//                if (itemId == R.id.nav_home) {
-//                    // Stay on Home
-//                    return true;
-//                } else if (itemId == R.id.nav_medLog) {
-//                    startActivity(new Intent(getApplicationContext(), .class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//            } else if (itemId == R.id.nav_mic) {
-//                 startActivity(new Intent(getApplicationContext(), GuardianRecordActivity.class));
-//               overridePendingTransition(0, 0);
-//              return true;
-//                } else if (itemId == R.id.nav_profile) {
-//                    startActivity(new Intent(getApplicationContext(), .class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//                }
-//
-//                return false;
-//            }
-//        });
-
-        elderRegister.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, ElderRegistration.class)));
-        prescription.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class)));
-        nurseProfile.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, NurseProfile.class)));
-        runningNotes.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, MedNurseRunningNote.class)));
-//        elderStatusLog.setOnClickListener(v -> startActivity(new Intent(MedNurseHomepage.this, ElderStatusLogActivity.class)));
-    } }
+            if (id == R.id.nav_home) {
+                return true; // Already home
+            } else if (id == R.id.nav_medLog) {
+                startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class));
+                return true;
+            } else if (id == R.id.nav_elderlyStatLog) {
+                startActivity(new Intent(MedNurseHomepage.this, ElderList.class));
+                return true;
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(MedNurseHomepage.this, NurseProfile.class));
+                return true;
+            }
+            return false;
+        });
+    }
+}

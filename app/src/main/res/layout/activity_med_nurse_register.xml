@@ -3,181 +3,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:background="@drawable/bgtwo"
     tools:context=".MedNurseRegister">
 
     <LinearLayout
         android:id="@+id/main"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:background="@drawable/bgtwo"
+        tools:context=".MedCaregiverRegister">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Register Nurse"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp" />
-
-        <!-- First Name -->
+        <!-- Top Header -->
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
             android:orientation="horizontal"
-            android:padding="13dp">
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:background="@color/blue">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/back"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:text="NURSE REGISTRATION"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cor"
+                android:textSize="28sp"/>
+        </LinearLayout>
+
+        <!-- Scrollable Form -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingTop="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="16dp">
 
             <EditText
                 android:id="@+id/firstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="First Name"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Last Name -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="First Name:"
+                android:background="@drawable/rounded_edittext"
+                android:fontFamily="monospace"
+                android:textColorHint="@color/black"/>
 
             <EditText
                 android:id="@+id/lastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Last Name"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Age -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="Last Name:"
+                android:background="@drawable/rounded_edittext"
+                android:fontFamily="monospace"
+                android:textColorHint="@color/black"/>
 
             <EditText
                 android:id="@+id/age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Age"
-                android:inputType="number"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Contact Number -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="Age:"
+                android:background="@drawable/rounded_edittext"
+                android:fontFamily="monospace"
+                android:textColorHint="@color/black"/>
 
             <EditText
                 android:id="@+id/contactNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Contact Number"
-                android:inputType="phone"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Email -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="Contact Number:"
+                android:background="@drawable/rounded_edittext"
+                android:fontFamily="monospace"
+                android:textColorHint="@color/black"/>
 
             <EditText
                 android:id="@+id/emailPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Email Address"
-                android:inputType="textEmailAddress"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Password -->
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:orientation="horizontal"
-            android:padding="13dp">
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="E-mail Address:"
+                android:background="@drawable/rounded_edittext"
+                android:fontFamily="monospace"
+                android:textColorHint="@color/black"/>
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Password"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="Password:"
+                android:background="@drawable/rounded_edittext"
                 android:inputType="textPassword"
-                android:paddingStart="10dp"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                android:fontFamily="monospace"
+                android:textColorHint="@color/black"/>
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@android:color/white"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginTop="12dp"
+                android:text="CREATE ACCOUNT" />
         </LinearLayout>
-
-        <!-- Buttons -->
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="320dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="Create Account"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="320dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button"
-            android:fontFamily="sans-serif-black"
-            android:text="Back"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
 </LinearLayout>

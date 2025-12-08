@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/home"
         android:title="Home" />
     <item
         android:id="@+id/nav_medLog"
-        android:icon="@drawable/outline_book_5_24"
+        android:icon="@drawable/medlog"
         android:title="MedicationLog" />
     <item
         android:id="@+id/nav_elderlyStatLog"
-        android:icon="@drawable/outline_guardian_24"
+        android:icon="@drawable/elstatus"
         android:title="Elderly Status Log" />
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/outline_person_24"
+        android:icon="@drawable/profile"
         android:title="Profile" />
 </menu>
