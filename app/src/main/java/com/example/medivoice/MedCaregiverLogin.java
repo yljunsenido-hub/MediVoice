@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
@@ -28,7 +30,7 @@ public class MedCaregiverLogin extends AppCompatActivity {
     EditText emailPass2, password2;
     FirebaseAuth mAuth;
 
-    ImageButton imgBack;
+    ImageView imgBack;
     DatabaseReference caregiverRef;
 
     @Override
@@ -58,6 +60,14 @@ public class MedCaregiverLogin extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        TextView txtForgotPassword = findViewById(R.id.txtForgotPassword);
+
+        txtForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(MedCaregiverLogin.this, MedForgotPassword.class);
+            startActivity(intent);
+        });
+
 
         // Login button
         btnLogin.setOnClickListener(v -> {

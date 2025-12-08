@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +32,8 @@ public class ElderRegistration extends AppCompatActivity {
     EditText etAllergies, etCognitiveStatus, etDisabilities;
 
     Button btnListOfElderly, btnSubmitRegister;
+
+    BottomNavigationView bottomNav;
 
     FirebaseAuth mAuth;
     DatabaseReference eldersRef;
@@ -86,6 +89,26 @@ public class ElderRegistration extends AppCompatActivity {
         btnListOfElderly.setOnClickListener(v -> {
             Intent intent = new Intent(ElderRegistration.this, ElderList.class);
             startActivity(intent);
+        });
+
+        bottomNav = findViewById(R.id.bottomNav);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_medLog) {
+                return true; // Already home
+            } else if (id == R.id.nav_home) {
+                startActivity(new Intent(ElderRegistration.this, MedNurseHomepage.class));
+                return true;
+            } else if (id == R.id.nav_elderlyStatLog) {
+                startActivity(new Intent(ElderRegistration.this, ElderList.class));
+                return true;
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(ElderRegistration.this, NurseProfile.class));
+                return true;
+            }
+            return false;
         });
     }
 

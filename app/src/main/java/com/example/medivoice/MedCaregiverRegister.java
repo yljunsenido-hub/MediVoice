@@ -105,7 +105,7 @@ public class MedCaregiverRegister extends AppCompatActivity {
                                         "Registration successful",
                                         Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(MedCaregiverRegister.this, Login.class));
+                                startActivity(new Intent(MedCaregiverRegister.this, MedCaregiverLogin.class));
                                 finish();
                             }
                         } else {
