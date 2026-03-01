@@ -34,16 +34,12 @@
             android:layout_weight="1"
             android:text="ELDERLY REGISTRATION"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="24sp"
             android:fontFamily="@font/cor"
             android:layout_gravity="center"
             android:gravity="center" />
 
-        <ImageView
-            android:layout_marginRight="10dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:visibility="invisible" />
+
     </LinearLayout>
 
     <!-- Scrollable Content -->
@@ -58,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:paddingBottom="50dp">
 
             <!-- Top buttons: Register / List of Elderly -->
             <LinearLayout
@@ -493,4 +490,12 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <View
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </LinearLayout>

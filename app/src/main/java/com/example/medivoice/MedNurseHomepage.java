@@ -59,7 +59,7 @@ public class MedNurseHomepage extends AppCompatActivity {
             if (id == R.id.nav_home) {
                 return true; // Already home
            } else if (id == R.id.nav_medLog) {
-               startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class));
+               startActivity(new Intent(MedNurseHomepage.this, MedNurseMedLog.class));
                return true;
            } else if (id == R.id.nav_elderlyStatLog) {
               startActivity(new Intent(MedNurseHomepage.this, ElderList.class));

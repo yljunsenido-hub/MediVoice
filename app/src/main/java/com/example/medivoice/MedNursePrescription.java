@@ -296,11 +296,24 @@ public class MedNursePrescription extends AppCompatActivity {
         data.put("nurseId", nurseId);
         data.put("nurseName", nurseName);
         data.put("timestamp", getTimestamp());
+        data.put("status", "pending");
 
-        rootRef.child("Caregiver").child(caregiverId).child("Prescriptions").child(key)
+        rootRef.child("Caregiver")
+                .child(caregiverId)
+                .child("Prescriptions")
+                .child(key)
                 .setValue(data)
                 .addOnSuccessListener(unused -> {
-                    Toast.makeText(MedNursePrescription.this, "Prescription sent", Toast.LENGTH_SHORT).show();
+
+
+                    rootRef.child("MedicationLog")
+                            .child(key)
+                            .setValue(data);
+
+                    Toast.makeText(MedNursePrescription.this,
+                            "Prescription sent",
+                            Toast.LENGTH_SHORT).show();
+
                     etMedicationName.setText("");
                     etDosage.setText("");
                     etSchedule.setText("");
@@ -308,6 +321,10 @@ public class MedNursePrescription extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Toast.makeText(MedNursePrescription.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
+
+
+
 
     void sendObservation() {
         int elderPos = spinnerObsElderName.getSelectedItemPosition();

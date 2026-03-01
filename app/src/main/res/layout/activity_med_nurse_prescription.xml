@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+        app:layout_constraintBottom_toTopOf="@id/bottomBar">
 
         <LinearLayout
             android:id="@+id/main"
@@ -234,6 +234,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="IF THE ELDERLY IS UNDER OBSERVATION FILL UP THIS FORM."
+                android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/cor"
@@ -321,13 +322,11 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
+
+    <View
+        android:id="@+id/bottomBar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        app:menu="@menu/bottom_nav_menu"
+        android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

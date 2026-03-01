@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bgtwo"
-    tools:context=".ElderList">
+    tools:context=".MedNurseMedLog">
 
     <!-- Header Bar -->
     <LinearLayout
@@ -28,13 +28,12 @@
             android:clickable="true"
             android:focusable="true" />
 
-
         <TextView
             android:id="@+id/txtHeaderTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Elder List"
+            android:text="Medication Log"
             android:textColor="@color/white"
             android:fontFamily="@font/cor"
             android:textSize="28sp"
@@ -45,29 +44,28 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/elstatus" />
+            android:src="@drawable/medlog" />
     </LinearLayout>
 
-    <!-- Scrollable content -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        <!-- Scrollable content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <LinearLayout
-            android:id="@+id/elderContainer"
+            <LinearLayout
+                android:id="@+id/medicationStatusList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"/>
+        </ScrollView>
+
+        <!-- Bottom Navigation -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"/>
-    </ScrollView>
-
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
-        android:background="@color/blue"/>
-
-</LinearLayout>
+            app:menu="@menu/bottom_nav_menu"
+            android:background="@color/blue"/>
+    </LinearLayout>

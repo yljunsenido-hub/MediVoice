@@ -112,6 +112,24 @@ public class NurseProfile extends AppCompatActivity {
             }
             return false;
         });
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_profile) {
+                return true; // Already home
+            } else if (id == R.id.nav_medLog) {
+                startActivity(new Intent(NurseProfile.this, MedNurseMedLog.class));
+                return true;
+            } else if (id == R.id.nav_elderlyStatLog) {
+                startActivity(new Intent(NurseProfile.this, ElderList.class));
+                return true;
+            } else if (id == R.id.nav_home) {
+                startActivity(new Intent(NurseProfile.this, MedNurseHomepage.class));
+                return true;
+            }
+            return false;
+        });
     }
 
     private void loadUserProfile() {
@@ -165,4 +183,6 @@ public class NurseProfile extends AppCompatActivity {
         startActivity(intent);
         finish(); // Finish the current activity
     }
+
+
 }

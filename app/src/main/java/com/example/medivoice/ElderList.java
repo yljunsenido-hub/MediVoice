@@ -47,7 +47,7 @@ public class ElderList extends AppCompatActivity {
             if (id == R.id.nav_elderlyStatLog) {
                 return true; // Already home
             } else if (id == R.id.nav_medLog) {
-                startActivity(new Intent(ElderList.this, MedNursePrescription.class));
+                startActivity(new Intent(ElderList.this, MedNurseMedLog.class));
                 return true;
             } else if (id == R.id.nav_profile) {
                 startActivity(new Intent(ElderList.this, NurseProfile.class));

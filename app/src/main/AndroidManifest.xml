@@ -43,6 +43,7 @@
         <activity android:name=".EmergencyElderListActivity" />
         <activity android:name=".EmergencyContactsActivity" />
         <activity android:name=".CreateNoteActivity" />
+        <activity android:name=".MedNurseMedLog" />
         <activity android:name=".MedForgotPassword" />
         <activity
             android:name=".ElderlyStatusLog"
@@ -135,6 +136,7 @@
         <activity
             android:name=".TextToSpeech"
             android:exported="false" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

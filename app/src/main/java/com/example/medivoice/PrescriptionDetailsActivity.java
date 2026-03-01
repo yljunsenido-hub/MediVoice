@@ -50,13 +50,13 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
                     String time = snapshot.child("time").getValue(String.class);
                     String nurse = snapshot.child("nurseName").getValue(String.class);
 
-                    addSingleCard(elder, med, dosage, schedule, time, nurse);
+                    addSingleCard(presId, elder, med, dosage, schedule, time, nurse);
 
                     scheduleAlarm(time, med); // 🔔 schedule alarm
                 });
     }
 
-    private void addSingleCard(String elder, String med, String dosage,
+    private void addSingleCard(String presId, String elder, String med, String dosage,
                                String schedule, String time, String nurse) {
 
         CardView card = new CardView(this);
@@ -82,6 +82,36 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         layout.addView(makeRow("Schedule", schedule));
         layout.addView(makeRow("Time", time));
         layout.addView(makeRow("Assigned Nurse", nurse));
+        android.widget.Button btnYes = new android.widget.Button(this);
+        btnYes.setText("Yes - Confirm Medication");
+        btnYes.setBackgroundColor(Color.parseColor("#4CAF50"));
+        btnYes.setTextColor(Color.WHITE);
+
+        layout.addView(btnYes);
+
+        btnYes.setOnClickListener(v -> {
+
+            String caregiverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            // Update caregiver side
+            FirebaseDatabase.getInstance().getReference()
+                    .child("Caregiver")
+                    .child(caregiverId)
+                    .child("Prescriptions")
+                    .child(presId)
+                    .child("status")
+                    .setValue("confirmed");
+
+            // Update MedicationLog
+            FirebaseDatabase.getInstance().getReference()
+                    .child("MedicationLog")
+                    .child(presId)
+                    .child("status")
+                    .setValue("confirmed");
+
+            btnYes.setText("Confirmed");
+            btnYes.setEnabled(false);
+        });
 
         card.addView(layout);
         detailsContainer.addView(card);
