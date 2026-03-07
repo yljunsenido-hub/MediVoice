@@ -65,6 +65,9 @@ public class MedNurseMedLog extends AppCompatActivity {
 
                             String elder = child.child("elderName").getValue(String.class);
                             String med = child.child("medicationName").getValue(String.class);
+                            String dosage = child.child("dosage").getValue(String.class);
+                            String schedule = child.child("schedule").getValue(String.class);
+                            String time = child.child("time").getValue(String.class);
                             String status = child.child("status").getValue(String.class);
 
                             CardView card = new CardView(MedNurseMedLog.this);
@@ -92,7 +95,15 @@ public class MedNurseMedLog extends AppCompatActivity {
                             inside.setPadding(30, 30, 30, 30);
 
                             TextView tv = new TextView(MedNurseMedLog.this);
-                            tv.setText("Elder: " + elder + "\nMedicine: " + med);
+
+                            tv.setText(
+                                    "Elder: " + elder +
+                                            "\nMedicine: " + med +
+                                            "\nDosage: " + dosage +
+                                            "\nSchedule: " + schedule +
+                                            "\nTime: " + time
+                            );
+
                             tv.setTextColor(Color.WHITE);
                             tv.setTextSize(18);
 

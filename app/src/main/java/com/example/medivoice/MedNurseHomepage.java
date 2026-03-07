@@ -38,12 +38,13 @@ public class MedNurseHomepage extends AppCompatActivity {
         elderRegister = findViewById(R.id.elderRegister);
         runningNotes = findViewById(R.id.runningNotes);
         bottomNav = findViewById(R.id.bottomNav);
-//        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+ //       bottomNavigationView.setSelectedItemId(R.id.nav_profile);
 
         // Set click listeners
-        prescription.setOnClickListener(v ->
-                startActivity(new Intent(MedNurseHomepage.this, MedNursePrescription.class))
-        );
+        prescription.setOnClickListener(v -> {
+            Intent intent = new Intent(MedNurseHomepage.this, MedNursePrescription.class);
+            startActivity(intent);
+        });
 
         elderRegister.setOnClickListener(v ->
                 startActivity(new Intent(MedNurseHomepage.this, ElderRegistration.class))

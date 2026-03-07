@@ -27,9 +27,14 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
 
         detailsContainer = findViewById(R.id.detailsContainer);
 
+        android.widget.ImageView btnBack = findViewById(R.id.imgBack);
+        btnBack.setOnClickListener(v -> finish());
+
         String presId = getIntent().getStringExtra("prescriptionId");
         loadDetails(presId);
     }
+
+
 
     private void loadDetails(String presId) {
         String caregiverId = FirebaseAuth.getInstance().getCurrentUser().getUid();

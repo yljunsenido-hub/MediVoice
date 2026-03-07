@@ -65,29 +65,6 @@ public class MedNursePrescription extends AppCompatActivity {
             return insets;
         });
 
-        bottomNav = findViewById(R.id.bottomNav);
-        // Set the highlighted/selected item to profile
-        bottomNav.setSelectedItemId(R.id.nav_medLog);
-
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-
-            if (id == R.id.nav_medLog) {
-                return true; // Already home
-            } else if (id == R.id.nav_elderlyStatLog) {
-                startActivity(new Intent(MedNursePrescription.this, ElderList.class));
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(MedNursePrescription.this, NurseProfile.class));
-                return true;
-            } else if (id == R.id.nav_home) {
-                startActivity(new Intent(MedNursePrescription.this, MedNurseHomepage.class));
-                return true;
-            }
-            return false;
-        });
-
-
         imgBack = findViewById(R.id.imgBack);
 
         imgBack.setOnClickListener(v -> {
@@ -321,9 +298,6 @@ public class MedNursePrescription extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Toast.makeText(MedNursePrescription.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
-
-
-
 
 
     void sendObservation() {
