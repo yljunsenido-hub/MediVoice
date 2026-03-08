@@ -36,28 +36,6 @@ public class ElderList extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
-        bottomNav = findViewById(R.id.bottomNav);
-        // Set the highlighted/selected item to profile
-        bottomNav.setSelectedItemId(R.id.nav_elderlyStatLog);
-
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-
-            if (id == R.id.nav_elderlyStatLog) {
-                return true; // Already home
-            } else if (id == R.id.nav_medLog) {
-                startActivity(new Intent(ElderList.this, MedNurseMedLog.class));
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(ElderList.this, NurseProfile.class));
-                return true;
-            } else if (id == R.id.nav_home) {
-                startActivity(new Intent(ElderList.this, MedNurseHomepage.class));
-                return true;
-            }
-            return false;
-        });
     }
 
     private void loadElders() {

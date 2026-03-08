@@ -304,6 +304,7 @@ public class MedNursePrescription extends AppCompatActivity {
         int elderPos = spinnerObsElderName.getSelectedItemPosition();
         int caregiverPos = spinnerObsSendTo.getSelectedItemPosition();
 
+
         if (elderPos <= 0 || caregiverPos <= 0) {
             Toast.makeText(this, "Select elder and caregiver", Toast.LENGTH_SHORT).show();
             return;
@@ -335,11 +336,21 @@ public class MedNursePrescription extends AppCompatActivity {
         data.put("nurseId", nurseId);
         data.put("nurseName", nurseName);
         data.put("timestamp", getTimestamp());
+        data.put("status", "monitoring");
 
         rootRef.child("Caregiver").child(caregiverId).child("Observations").child(key)
                 .setValue(data)
                 .addOnSuccessListener(unused -> {
-                    Toast.makeText(MedNursePrescription.this, "Observation sent", Toast.LENGTH_SHORT).show();
+
+                    // ALSO SAVE TO ELDER STATUS LOG
+                    rootRef.child("ElderStatusLog")
+                            .child(key)
+                            .setValue(data);
+
+                    Toast.makeText(MedNursePrescription.this,
+                            "Observation sent",
+                            Toast.LENGTH_SHORT).show();
+
                     etToBeMonitored.setText("");
                 })
                 .addOnFailureListener(e -> Toast.makeText(MedNursePrescription.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());

@@ -59,16 +59,20 @@ public class MedNurseHomepage extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 return true; // Already home
-           } else if (id == R.id.nav_medLog) {
-               startActivity(new Intent(MedNurseHomepage.this, MedNurseMedLog.class));
-               return true;
-           } else if (id == R.id.nav_elderlyStatLog) {
-              startActivity(new Intent(MedNurseHomepage.this, ElderList.class));
-           return true;
+
+            } else if (id == R.id.nav_medLog) {
+                startActivity(new Intent(MedNurseHomepage.this, MedNurseMedLog.class));
+                return true;
+
+            } else if (id == R.id.nav_elderlyStatLog) {
+                startActivity(new Intent(MedNurseHomepage.this, ElderStatusLogs.class));
+                return true;
+
             } else if (id == R.id.nav_profile) {
                 startActivity(new Intent(MedNurseHomepage.this, NurseProfile.class));
                 return true;
             }
+
             return false;
         });
     }

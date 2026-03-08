@@ -95,23 +95,7 @@ public class NurseProfile extends AppCompatActivity {
         // Set the highlighted/selected item to profile
         bottomNav.setSelectedItemId(R.id.nav_profile);
 
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
 
-            if (id == R.id.nav_profile) {
-                return true; // Already home
-            } else if (id == R.id.nav_medLog) {
-                startActivity(new Intent(NurseProfile.this, MedNursePrescription.class));
-                return true;
-            } else if (id == R.id.nav_elderlyStatLog) {
-                startActivity(new Intent(NurseProfile.this, ElderList.class));
-                return true;
-            } else if (id == R.id.nav_home) {
-                startActivity(new Intent(NurseProfile.this, MedNurseHomepage.class));
-                return true;
-            }
-            return false;
-        });
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -122,7 +106,7 @@ public class NurseProfile extends AppCompatActivity {
                 startActivity(new Intent(NurseProfile.this, MedNurseMedLog.class));
                 return true;
             } else if (id == R.id.nav_elderlyStatLog) {
-                startActivity(new Intent(NurseProfile.this, ElderList.class));
+                startActivity(new Intent(NurseProfile.this, ElderStatusLogs.class));
                 return true;
             } else if (id == R.id.nav_home) {
                 startActivity(new Intent(NurseProfile.this, MedNurseHomepage.class));

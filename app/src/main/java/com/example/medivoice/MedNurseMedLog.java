@@ -37,7 +37,7 @@ public class MedNurseMedLog extends AppCompatActivity {
             if (id == R.id.nav_medLog) {
                 return true; // already here
             } else if (id == R.id.nav_elderlyStatLog) {
-                startActivity(new Intent(this, ElderList.class));
+                startActivity(new Intent(this, ElderStatusLogs.class));
                 return true;
             } else if (id == R.id.nav_profile) {
                 startActivity(new Intent(this, NurseProfile.class));

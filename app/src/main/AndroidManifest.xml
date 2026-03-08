@@ -20,18 +20,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MediVoice"
         tools:targetApi="31">
         <activity
             android:name=".MedNurseForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".activity_med_caregiver_homepage"
             android:exported="false" />
         <activity
             android:name=".MedCareTextToSpeech"
@@ -44,25 +41,11 @@
         <activity android:name=".EmergencyContactsActivity" />
         <activity android:name=".CreateNoteActivity" />
         <activity android:name=".MedNurseMedLog" />
+        <activity android:name=".ElderStatusLogs"/>
         <activity android:name=".MedForgotPassword" />
-        <activity
-            android:name=".ElderlyStatusLog"
-            android:exported="false" />
-        <activity
-            android:name=".ElderStatusLog"
-            android:exported="false" />
-        <activity
-            android:name=".ElderlyStatusDetails"
-            android:exported="false" />
-
         <receiver android:name=".AlarmReceiver" />
-
-        <activity android:name=".ElderStatusLogActivity" />
         <activity
             android:name=".ElderList"
-            android:exported="false" />
-        <activity
-            android:name=".ElderListActivity"
             android:exported="false" />
         <activity
             android:name=".MonitoringDetailsActivity"
@@ -103,41 +86,10 @@
         <activity
             android:name=".MedCaregiverLogin"
             android:exported="false" />
-        <activity
-            android:name=".WelcomePage"
-            android:exported="false" />
-        <activity
-            android:name=".GuardianEditProfile"
-            android:exported="false" />
-        <activity
-            android:name=".GuardianProfile"
-            android:exported="false" />
+
         <activity
             android:name=".EmergencyContact"
             android:exported="false" />
-        <activity
-            android:name=".EditProfile"
-            android:exported="false" />
-        <activity
-            android:name=".Profile"
-            android:exported="false" />
-        <activity
-            android:name=".GuardianLogs"
-            android:exported="false" />
-        <activity
-            android:name=".CodeGenerator"
-            android:exported="false" />
-        <activity
-            android:name=".Logs"
-            android:exported="false" />
-        <activity
-            android:name=".TextFeaturePage"
-            android:exported="false" />
-        <activity
-            android:name=".TextToSpeech"
-            android:exported="false" />
-
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -147,31 +99,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
-        <activity
-            android:name=".PrescriptionScanner"
-            android:exported="false" />
-        <activity
-            android:name=".GuardianHomePage"
-            android:exported="false" />
-        <activity
-            android:name=".EnterCodePage"
-            android:exported="false" />
-        <activity
-            android:name=".HomePage"
-            android:exported="false" />
-        <activity
-            android:name=".GuardianRegister"
-            android:exported="false" />
-        <activity
-            android:name=".GuardianLogin"
-            android:exported="false" />
-        <activity
-            android:name=".Register"
-            android:exported="false" />
-        <activity
-            android:name=".Login"
-            android:exported="false" /> <!-- ✅ ALARM RECEIVER FOR MEDICATION REMINDERS -->
         <receiver
             android:name=".MedicationAlarmReceiver"
             android:exported="false" />

@@ -31,7 +31,7 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_monitoring_details);
 
         elderId = getIntent().getStringExtra("elderId");
-        caregiverId = getIntent().getStringExtra("caregiverId");   // NEW: caregiver who is filling the data
+        caregiverId = getIntent().getStringExtra("caregiverId");
         elderName = getIntent().getStringExtra("elderName");
 
         txtElderName = findViewById(R.id.txtElderName);
@@ -53,7 +53,6 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         btnSaveOutput.setOnClickListener(v -> saveOutput());
 
         imgBack = findViewById(R.id.imgBack);
-
         imgBack.setOnClickListener(v -> {
             startActivity(new Intent(MonitoringDetailsActivity.this, Monitoring.class));
             finish();
@@ -70,13 +69,14 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         String recordId = ref.push().getKey();
 
         HashMap<String, Object> data = new HashMap<>();
+        data.put("elderName", elderName); // <-- added elderName here
         data.put("bloodPressure", edtBloodPressure.getText().toString());
         data.put("temperature", edtTemperature.getText().toString());
         data.put("pulseRate", edtPulseRate.getText().toString());
         data.put("respiratoryRate", edtRespiratoryRate.getText().toString());
         data.put("oxygenSaturation", edtOxygen.getText().toString());
         data.put("bloodSugar", edtBloodSugar.getText().toString());
-        data.put("caregiverId", caregiverId);      // NEW: who performed monitoring
+        data.put("caregiverId", caregiverId);
         data.put("timestamp", System.currentTimeMillis());
 
         ref.child(recordId).setValue(data)
@@ -94,9 +94,10 @@ public class MonitoringDetailsActivity extends AppCompatActivity {
         String recordId = ref.push().getKey();
 
         HashMap<String, Object> data = new HashMap<>();
+        data.put("elderName", elderName); // <-- added elderName here
         data.put("urineOutput", edtUrineOutput.getText().toString());
         data.put("stool", edtStool.getText().toString());
-        data.put("caregiverId", caregiverId);   // NEW: show which caregiver logged this
+        data.put("caregiverId", caregiverId);
         data.put("timestamp", System.currentTimeMillis());
 
         ref.child(recordId).setValue(data)
