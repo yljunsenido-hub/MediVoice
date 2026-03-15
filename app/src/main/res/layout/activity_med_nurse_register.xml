@@ -57,81 +57,69 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:paddingTop="16dp">
+                <EditText
+                    android:id="@+id/employeeNumber"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:hint="Employee No:"
+                    android:background="@drawable/rounded_edittext"
+                    android:fontFamily="monospace"
+                    android:textColorHint="@color/black"/>
 
-            <EditText
-                android:id="@+id/firstName"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:hint="First Name:"
-                android:background="@drawable/rounded_edittext"
-                android:fontFamily="monospace"
-                android:textColorHint="@color/black"/>
+                <EditText
+                    android:id="@+id/firstName"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:hint="First Name:"
+                    android:background="@drawable/rounded_edittext"
+                    android:fontFamily="monospace"
+                    android:textColorHint="@color/black"/>
 
-            <EditText
-                android:id="@+id/lastName"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:hint="Last Name:"
-                android:background="@drawable/rounded_edittext"
-                android:fontFamily="monospace"
-                android:textColorHint="@color/black"/>
+                <EditText
+                    android:id="@+id/lastName"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:hint="Last Name:"
+                    android:background="@drawable/rounded_edittext"
+                    android:fontFamily="monospace"
+                    android:textColorHint="@color/black"/>
+                <EditText
+                    android:id="@+id/emailPass"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:hint="E-mail Address:"
+                    android:background="@drawable/rounded_edittext"
+                    android:fontFamily="monospace"
+                    android:textColorHint="@color/black"/>
 
-            <EditText
-                android:id="@+id/age"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:hint="Age:"
-                android:background="@drawable/rounded_edittext"
-                android:fontFamily="monospace"
-                android:textColorHint="@color/black"/>
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:hint="Password:"
+                    android:background="@drawable/rounded_edittext"
+                    android:inputType="textPassword"
+                    android:fontFamily="monospace"
+                    android:textColorHint="@color/black"/>
 
-            <EditText
-                android:id="@+id/contactNumber"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:hint="Contact Number:"
-                android:background="@drawable/rounded_edittext"
-                android:fontFamily="monospace"
-                android:textColorHint="@color/black"/>
-
-            <EditText
-                android:id="@+id/emailPass"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:hint="E-mail Address:"
-                android:background="@drawable/rounded_edittext"
-                android:fontFamily="monospace"
-                android:textColorHint="@color/black"/>
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:hint="Password:"
-                android:background="@drawable/rounded_edittext"
-                android:inputType="textPassword"
-                android:fontFamily="monospace"
-                android:textColorHint="@color/black"/>
-
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/blue"
-                android:textColor="@android:color/white"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_marginTop="12dp"
-                android:text="CREATE ACCOUNT" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/blue"
+                    android:textColor="@android:color/white"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Submit Request" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>
