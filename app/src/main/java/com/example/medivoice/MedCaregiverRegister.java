@@ -23,11 +23,10 @@ import java.util.HashMap;
 
 public class MedCaregiverRegister extends AppCompatActivity {
 
-    EditText firstName, lastName, age, shift, contactNumber, emailPass, password;
+    EditText employeeNumber, firstName, lastName, emailPass, password;
     Button btnRegister;
     ImageView btnBack;
-    FirebaseAuth mAuth;
-    DatabaseReference usersRef; // this will now point to "Caregiver"
+    DatabaseReference requestRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,117 +39,91 @@ public class MedCaregiverRegister extends AppCompatActivity {
             return insets;
         });
 
+        employeeNumber = findViewById(R.id.employeeNumber);
         firstName = findViewById(R.id.firstName);
-        age = findViewById(R.id.age);
         lastName = findViewById(R.id.lastName);
-        contactNumber = findViewById(R.id.contactNumber);
         emailPass = findViewById(R.id.emailPass);
         password = findViewById(R.id.password);
         btnRegister = findViewById(R.id.btnRegister);
         btnBack = findViewById(R.id.btnBack);
 
-        mAuth = FirebaseAuth.getInstance();
+        requestRef = FirebaseDatabase.getInstance()
+                .getReference("Employee_Request")
+                .child("caregiver");
 
-        usersRef = FirebaseDatabase.getInstance().getReference("Caregiver");
-
-        btnRegister.setOnClickListener(v -> {
-            String fName = firstName.getText().toString().trim();
-            String agee = age.getText().toString().trim();
-            String lName = lastName.getText().toString().trim();
-            String shiftt = shift.getText().toString().trim();
-            String contact = contactNumber.getText().toString().trim();
-            String email = emailPass.getText().toString().trim();
-            String pass = password.getText().toString().trim();
-
-            // Validations
-            if (TextUtils.isEmpty(fName)) {
-                firstName.setError("First Name is required");
-                return;
-            }
-            if (TextUtils.isEmpty(agee)) {
-                age.setError("Age is required");
-                return;
-            }
-            if (TextUtils.isEmpty(lName)) {
-                lastName.setError("Last Name is required");
-                return;
-            }
-            if (TextUtils.isEmpty(shiftt)) {
-                shift.setError("Shift is required");
-                return;
-            }
-            if (TextUtils.isEmpty(contact)) {
-                contactNumber.setError("Contact Number is required");
-                return;
-            }
-            if (TextUtils.isEmpty(email)) {
-                emailPass.setError("Email is required");
-                return;
-            }
-            if (TextUtils.isEmpty(pass) || pass.length() < 6) {
-                password.setError("Password must be at least 6 characters");
-                return;
-            }
-
-            mAuth.createUserWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                // Save caregiver data
-                                saveUserData(user, fName, agee, lName, shiftt, contact, email);
-
-                                Toast.makeText(MedCaregiverRegister.this,
-                                        "Registration successful",
-                                        Toast.LENGTH_SHORT).show();
-
-                                startActivity(new Intent(MedCaregiverRegister.this, MedCaregiverLogin.class));
-                                finish();
-                            }
-                        } else {
-                            Toast.makeText(MedCaregiverRegister.this,
-                                    "Error: " + task.getException().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        });
+        btnRegister.setOnClickListener(v -> submitRequest());
 
         btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(MedCaregiverRegister.this, MedCaregiverLogin.class);
-            startActivity(intent);
+            startActivity(new Intent(
+                    MedCaregiverRegister.this,
+                    MedCaregiverLogin.class));
             finish();
         });
     }
 
-    private void saveUserData(FirebaseUser user,
-                              String fName,
-                              String age,
-                              String lName,
-                              String shift,
-                              String contact,
-                              String email) {
+    private void submitRequest() {
 
-        String userId = user.getUid();
+        String empNo = employeeNumber.getText().toString().trim();
+        String fName = firstName.getText().toString().trim();
+        String lName = lastName.getText().toString().trim();
+        String email = emailPass.getText().toString().trim();
+        String pass = password.getText().toString().trim();
 
-        HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("firstName", fName);
-        userMap.put("lastName", lName);
-        userMap.put("age", age);
-        userMap.put("shift", shift);
-        userMap.put("contactNumber", contact);
-        userMap.put("email", email);
-        userMap.put("role", "caregiver");
+        if (TextUtils.isEmpty(empNo)) {
+            employeeNumber.setError("Employee Number required");
+            return;
+        }
 
-        usersRef.child(userId).setValue(userMap)
-                .addOnSuccessListener(aVoid ->
-                        Toast.makeText(MedCaregiverRegister.this,
-                                "User data saved successfully",
-                                Toast.LENGTH_SHORT).show()
-                )
+        if (TextUtils.isEmpty(fName)) {
+            firstName.setError("First Name required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(lName)) {
+            lastName.setError("Last Name required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(email)) {
+            emailPass.setError("Email required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(pass) || pass.length() < 6) {
+            password.setError("Password must be at least 6 characters");
+            return;
+        }
+
+        String requestId = requestRef.push().getKey();
+
+        HashMap<String, Object> requestMap = new HashMap<>();
+        requestMap.put("employeeNumber", empNo);
+        requestMap.put("firstName", fName);
+        requestMap.put("lastName", lName);
+        requestMap.put("email", email);
+        requestMap.put("password", pass);
+        requestMap.put("status", "pending");
+        requestMap.put("role", "caregiver");
+
+        requestRef.child(requestId)
+                .setValue(requestMap)
+                .addOnSuccessListener(aVoid -> {
+
+                    Toast.makeText(
+                            MedCaregiverRegister.this,
+                            "Request submitted. Wait for admin approval.",
+                            Toast.LENGTH_LONG).show();
+
+                    startActivity(new Intent(
+                            MedCaregiverRegister.this,
+                            MedCaregiverLogin.class));
+
+                    finish();
+                })
                 .addOnFailureListener(e ->
-                        Toast.makeText(MedCaregiverRegister.this,
-                                "Failed to save user data: " + e.getMessage(),
-                                Toast.LENGTH_SHORT).show()
-                );
+                        Toast.makeText(
+                                MedCaregiverRegister.this,
+                                "Error: " + e.getMessage(),
+                                Toast.LENGTH_SHORT).show());
     }
 }
