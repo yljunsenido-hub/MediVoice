@@ -101,7 +101,6 @@ public class MedCaregiverRegister extends AppCompatActivity {
             this.shift.setError("Shift required");
             return;
         }
-
         if (TextUtils.isEmpty(email)) {
             emailPass.setError("Email required");
             return;
