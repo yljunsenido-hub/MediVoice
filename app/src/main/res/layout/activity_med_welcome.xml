@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".MedWelcome">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:text="MEDIVOICE\nONE CAINTA\nSUNSET RETREAT"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:text="YOUR SMART COMPANION FOR\nEFFORTLESS MEDICAL\nCOMMUNICATION AND CARE"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/btnCaregiver"
+            android:layout_marginTop="50dp"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Care Giver" />
+
+        <Button
+            android:id="@+id/btnNurse"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Nurse" />
+    </LinearLayout>
+</LinearLayout>

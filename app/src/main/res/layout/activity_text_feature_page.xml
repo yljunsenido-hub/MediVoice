@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".TextFeaturePage">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-black"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp" />
+
+    <!-- Fixed Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prescription Record"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
+        android:textSize="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/medicationName"
+                    android:layout_width="215dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Medication Name"
+                    android:textColor="@color/black"
+                    android:background="@drawable/circle_bg"
+                    android:paddingVertical="10dp"
+                    android:textAlignment="center"
+                    android:paddingHorizontal="25dp"
+                    android:textSize="20sp"
+                    android:layout_marginRight="5dp" />
+
+                <EditText
+                    android:id="@+id/dosage"
+                    android:hint="Dosage"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/circle_bg"
+                    android:paddingVertical="10dp"
+                    android:textAlignment="center"
+                    android:paddingHorizontal="25dp"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/schedule"
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle_bg"
+                android:hint="Schedule (ex.3 times a day)"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/duration"
+                android:hint="Duration (ex.7 days)"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:background="@drawable/circle_bg"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:paddingHorizontal="25dp"
+                android:textSize="20sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="335dp"
+                android:layout_height="430dp"
+                app:cardCornerRadius="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="10dp"
+                        android:text="Start Date"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-black"
+                        android:textAlignment="center"
+                        android:textColor="#5B5A5A"/>
+                </LinearLayout>
+
+                <CalendarView
+                    android:id="@+id/startDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:focusedMonthDateColor="@color/black"
+                    android:unfocusedMonthDateColor="#525151"
+                    android:weekSeparatorLineColor="@android:color/transparent"
+                    android:background="@drawable/calendar_bg" />
+            </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:id="@+id/notes"
+                android:layout_width="340dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:hint="Enter Notes"
+                android:textColor="@color/black"
+                android:background="@drawable/circle_bg"
+                android:paddingVertical="10dp"
+                android:textAlignment="textStart"
+                android:paddingHorizontal="25dp"
+                android:textSize="20sp"
+                android:gravity="top|start"
+                android:scrollbars="vertical"
+                android:overScrollMode="always"
+                android:inputType="textMultiLine"
+                android:maxLines="6" />
+
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Save record"
+                android:background="@drawable/button"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-black"
+                android:paddingVertical="15dp"
+                android:paddingHorizontal="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="50dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

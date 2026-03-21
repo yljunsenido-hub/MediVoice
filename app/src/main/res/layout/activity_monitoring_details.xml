@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bgtwo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="MONITORING"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:fontFamily="@font/cor"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="5dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ELDER NAME -->
+        <TextView
+            android:id="@+id/txtElderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
+            android:background="#FFFFFF"
+            android:text="Elder Name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VITAL SIGNS"
+            android:textStyle="bold"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/edtBloodPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Pressure"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Body Temperature"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtPulseRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pulse Rate"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtRespiratoryRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Respiratory Rate"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtOxygen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Oxygen Saturation"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtBloodSugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Sugar"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btnSaveVitals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+        <!-- ======================== -->
+        <!-- OUTPUT MONITORING SECTION -->
+        <!-- ======================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OUTPUT MONITORING (OPTIONAL)"
+            android:textStyle="bold"
+            android:fontFamily="@font/cor"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/edtUrineOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Urine Output"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/edtStool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stool"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btnSaveOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</LinearLayout>

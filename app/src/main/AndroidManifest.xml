@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- ✅ PERMISSIONS -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/icon_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MediVoice"
+        tools:targetApi="31">
+        <activity
+            android:name=".MedNurseForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".MedCareTextToSpeech"
+            android:exported="false" />
+        <activity
+            android:name=".NurseProfile"
+            android:exported="false" />
+        <activity android:name=".MedCaregiverRunningnotes" />
+        <activity android:name=".EmergencyElderListActivity" />
+        <activity android:name=".EmergencyContactsActivity" />
+        <activity android:name=".CreateNoteActivity" />
+        <activity android:name=".MedNurseMedLog" />
+        <activity android:name=".ElderStatusLogs"/>
+        <activity android:name=".MedForgotPassword" />
+        <receiver android:name=".AlarmReceiver" />
+        <activity
+            android:name=".ElderList"
+            android:exported="false" />
+        <activity
+            android:name=".MonitoringDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Monitoring"
+            android:exported="false" />
+        <activity
+            android:name=".PrescriptionDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicationTracker"
+            android:exported="false" />
+        <activity
+            android:name=".MedNurseRunningNote"
+            android:exported="false" />
+        <activity
+            android:name=".MedNursePrescription"
+            android:exported="false" />
+        <activity
+            android:name=".ElderRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".MedNurseHomepage"
+            android:exported="false" />
+        <activity
+            android:name=".MedNurseLogin"
+            android:exported="false" />
+        <activity
+            android:name=".MedNurseRegister"
+            android:exported="false" />
+        <activity
+            android:name=".MedCaregiverHomepage"
+            android:exported="false" />
+        <activity
+            android:name=".MedCaregiverRegister"
+            android:exported="false" />
+        <activity
+            android:name=".MedCaregiverLogin"
+            android:exported="false" />
+
+        <activity
+            android:name=".EmergencyContact"
+            android:exported="false" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <receiver
+            android:name=".MedicationAlarmReceiver"
+            android:exported="false" />
+
+        <activity
+            android:name=".MedWelcome"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
