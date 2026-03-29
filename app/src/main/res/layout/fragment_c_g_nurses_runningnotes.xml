@@ -32,6 +32,8 @@
             android:layout_marginStart="5dp"
             android:text="RUNNING NOTES"
             android:textColor="@color/white"
+            android:textAlignment="center
+"
             android:fontFamily="@font/cor"
             android:textSize="28sp"/>
 
