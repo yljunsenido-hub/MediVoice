@@ -1,233 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bgtwo"
     tools:context=".MedCaregiverHomepage">
 
+    <!-- MAIN CONTENT -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Invisible balancing view -->
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:visibility="invisible" />
-
-        <!-- Center text -->
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="CareGiver"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/cor"
-            android:textSize="28sp" />
-
-        <!-- Real home icon -->
-        <ImageView
-            android:layout_marginRight="10dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/home" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="@drawable/rounded_bg"
-        android:padding="16dp">
-
-        <CalendarView
-            android:id="@+id/calendarView"
+        <!-- HEADER -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weekDayTextAppearance="@style/CalendarWeekText"
-            android:dateTextAppearance="@style/CalendarDateText"
-            android:focusedMonthDateColor="@color/blue"
-            android:selectedWeekBackgroundColor="@color/blue"
-            android:weekSeparatorLineColor="@color/blue"
-            android:unfocusedMonthDateColor="@color/dark_grey"
-            android:background="@android:color/transparent"/>
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CareGiver"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cor"
+                android:textSize="28sp" />
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/home" />
+        </LinearLayout>
+
+        <!-- CALENDAR -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:padding="16dp">
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusedMonthDateColor="@color/blue"
+                android:selectedWeekBackgroundColor="@color/blue"/>
+        </LinearLayout>
+
+        <!-- SCROLLABLE CONTENT -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="50dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- ROW 1 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/medTracker"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/rounded_button"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/home"/>
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="MEDICATION TRACKER"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="40dp" android:layout_height="1dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/textToSpeech"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/rounded_button"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/ttsl"/>
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="TEXT-TO-SPEECH"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ROW 2 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/runningNotes"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/rounded_button"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/runningnotes"/>
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="Nurse Running Notes"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="40dp" android:layout_height="1dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/monitoring"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/rounded_button"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/monitoringl"/>
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="MONITORING"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ROW 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/profileCard"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/rounded_button"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/profile"/>
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="CareGiver\n Profile"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- FRAGMENT -->
+                <FrameLayout
+                    android:id="@+id/fragmentContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <LinearLayout
-            android:id="@+id/medTracker"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_button"
-            android:gravity="center"
-            android:padding="10dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                android:src="@drawable/home"/>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="MEDICATION TRACKER"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:fontFamily="@font/cor"
-                android:paddingTop="6dp"/>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="1dp"/>
-
-        <LinearLayout
-            android:id="@+id/textToSpeech"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_button"
-            android:gravity="center"
-            android:padding="10dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ttsl"/>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="TEXT-TO-SPEECH"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:fontFamily="@font/cor"
-                android:paddingTop="6dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingTop="20dp">
-
-        <!-- Running Notes -->
-        <LinearLayout
-            android:id="@+id/runningNotes"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_button"
-            android:gravity="center"
-            android:padding="10dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@drawable/runningnotes"/>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Nurse Running Notes"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:fontFamily="@font/cor"
-                android:paddingTop="6dp"/>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="1dp"/>
-
-        <!-- Monitoring -->
-        <LinearLayout
-            android:id="@+id/monitoring"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_button"
-            android:gravity="center"
-            android:padding="10dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                android:src="@drawable/monitoringl"/>
-
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="MONITORING"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:fontFamily="@font/cor"
-                android:paddingTop="6dp"/>
-        </LinearLayout>
-    </LinearLayout>
-    <!-- ✨ Add the Fragment container here ✨ -->
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"/>
-
-
-    <!-- Floating Action Button -->
+    <!-- FLOATING BUTTON -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabEmergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="60dp"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_margin="24dp"
         app:backgroundTint="@android:color/holo_red_dark"
         app:tint="@android:color/white"
-        app:srcCompat="@android:drawable/ic_menu_call"
-        tools:ignore="ContentDescription" />
+        app:srcCompat="@android:drawable/ic_menu_call"/>
 
-</LinearLayout>
+</FrameLayout>
