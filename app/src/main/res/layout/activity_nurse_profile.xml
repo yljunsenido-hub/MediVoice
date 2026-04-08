@@ -56,10 +56,11 @@
         <!-- Profile Card -->
         <androidx.cardview.widget.CardView
             android:id="@+id/profileCard"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
             <LinearLayout
@@ -74,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:text="Loading Name..." />
 
@@ -81,6 +83,7 @@
                     android:id="@+id/txtEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:drawableStart="@drawable/ic_email"
                     android:drawablePadding="10dp"
                     android:text="Email:" />
@@ -90,14 +93,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
                     android:drawablePadding="10dp"
                     android:text="Role:" />
+
+                <TextView
+                    android:id="@+id/txtEmployeeNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="10dp"
+                    android:text="Employee Number:" />
 
                 <TextView
                     android:id="@+id/txtContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
                     android:drawablePadding="10dp"
                     android:text="Contact:" />
 
@@ -106,17 +120,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
                     android:drawablePadding="10dp"
                     android:text="Age:" />
+
+                <TextView
+                    android:id="@+id/txtShift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    android:drawablePadding="10dp"
+                    android:text="Shift:" />
+
+
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Optional: Logout Button -->
         <Button
             android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:text="LOGOUT"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
             android:backgroundTint="@android:color/holo_red_dark"
             android:paddingVertical="14dp"
             android:layout_marginTop="16dp"/>

@@ -77,7 +77,7 @@ public class MedicationTracker extends AppCompatActivity {
 
         btn.setBackgroundResource(R.drawable.bg_med_button);
         btn.setPadding(30,20,30,20);
-        btn.setTextColor(getResources().getColor(android.R.color.black));
+        btn.setTextColor(getResources().getColor(android.R.color.white));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

@@ -28,7 +28,7 @@ public class NurseProfile extends AppCompatActivity {
     private static final String TAG = "NurseProfile";
 
     // UI elements
-    private TextView txtFullName, txtEmail, txtRole, txtContact, txtAge;
+    private TextView txtFullName, txtEmail, txtRole, txtContact, txtAge, txtShift, txtEmployeeNumber;
     private Button btnLogout;
 
     // Firebase
@@ -46,6 +46,8 @@ public class NurseProfile extends AppCompatActivity {
         public String email;
         public String firstName;
         public String lastName;
+        public String employeeNumber;
+        public String shift;
         public String role;
 
         // Required empty public constructor for Firebase DataSnapshot.getValue()
@@ -71,6 +73,8 @@ public class NurseProfile extends AppCompatActivity {
         txtRole = findViewById(R.id.txtRole);
         txtContact = findViewById(R.id.txtContact);
         txtAge = findViewById(R.id.txtAge);
+        txtShift = findViewById(R.id.txtShift);
+        txtEmployeeNumber = findViewById(R.id.txtEmployeeNumber);
         btnLogout = findViewById(R.id.btnLogout);
 
         // Initialize Firebase
@@ -149,6 +153,8 @@ public class NurseProfile extends AppCompatActivity {
         txtEmail.setText("Email: " + nurse.email);
         txtRole.setText("Role: " + nurse.role);
         txtContact.setText("Contact: " + nurse.contactNumber);
+        txtEmployeeNumber.setText("Employee Number: " + nurse.employeeNumber);
+        txtShift.setText("Shift: " + nurse.shift);
         txtAge.setText("Age: " + nurse.age);
     }
 

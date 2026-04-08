@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,8 +35,6 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         loadDetails(presId);
     }
 
-
-
     private void loadDetails(String presId) {
         String caregiverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -57,7 +56,7 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
 
                     addSingleCard(presId, elder, med, dosage, schedule, time, nurse);
 
-                    scheduleAlarm(time, med); // 🔔 schedule alarm
+                    scheduleAlarm(time, med);
                 });
     }
 
@@ -70,16 +69,16 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        cardParams.setMargins(0, 0, 0, 25);
+        cardParams.setMargins(0, 0, 0, 30);
 
         card.setLayoutParams(cardParams);
-        card.setCardElevation(12f);
-        card.setRadius(18f);
+        card.setCardElevation(10f);
+        card.setRadius(20f);
         card.setUseCompatPadding(true);
 
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(30, 30, 30, 30);
+        layout.setPadding(40, 40, 40, 40);
 
         layout.addView(makeRow("Elder Name", elder));
         layout.addView(makeRow("Medicine Name", med));
@@ -87,10 +86,20 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         layout.addView(makeRow("Schedule", schedule));
         layout.addView(makeRow("Time", time));
         layout.addView(makeRow("Assigned Nurse", nurse));
+
         android.widget.Button btnYes = new android.widget.Button(this);
-        btnYes.setText("Yes - Confirm Medication");
-        btnYes.setBackgroundColor(Color.parseColor("#4CAF50"));
+        btnYes.setText("Confirm Medication");
+        btnYes.setBackgroundResource(R.drawable.bg_med_button);
         btnYes.setTextColor(Color.WHITE);
+        btnYes.setTextSize(16);
+        btnYes.setPadding(0, 20, 0, 20);
+
+        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        btnParams.setMargins(0, 30, 0, 0);
+        btnYes.setLayoutParams(btnParams);
 
         layout.addView(btnYes);
 
@@ -98,7 +107,6 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
 
             String caregiverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            // Update caregiver side
             FirebaseDatabase.getInstance().getReference()
                     .child("Caregiver")
                     .child(caregiverId)
@@ -107,7 +115,6 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
                     .child("status")
                     .setValue("confirmed");
 
-            // Update MedicationLog
             FirebaseDatabase.getInstance().getReference()
                     .child("MedicationLog")
                     .child(presId)
@@ -116,6 +123,7 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
 
             btnYes.setText("Confirmed");
             btnYes.setEnabled(false);
+            btnYes.setAlpha(0.7f);
         });
 
         card.addView(layout);
@@ -125,18 +133,19 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
     private LinearLayout makeRow(String label, String value) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.VERTICAL);
-        row.setPadding(0, 10, 0, 10);
+        row.setPadding(0, 15, 0, 15);
 
         TextView tvLabel = new TextView(this);
         tvLabel.setText(label);
         tvLabel.setTextColor(Color.BLACK);
-        tvLabel.setTextSize(16);
+        tvLabel.setTextSize(18);
+        tvLabel.setTypeface(null, Typeface.BOLD);
 
         TextView tvValue = new TextView(this);
         tvValue.setText(value);
         tvValue.setTextColor(Color.DKGRAY);
-        tvValue.setTextSize(20);
-        tvValue.setPadding(0, 6, 0, 0);
+        tvValue.setTextSize(16);
+        tvValue.setPadding(0, 8, 0, 0);
 
         row.addView(tvLabel);
         row.addView(tvValue);
@@ -144,10 +153,8 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
         return row;
     }
 
-    // 🔔 SCHEDULE ALARM HERE
     private void scheduleAlarm(String time, String medName) {
         try {
-            // Example time format: "04:29 AM"
             String[] parts = time.split(" ");
             String hourMin = parts[0];
             String ampm = parts[1];
@@ -156,7 +163,6 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
             int hour = Integer.parseInt(hm[0]);
             int minute = Integer.parseInt(hm[1]);
 
-            // Convert to 24-hour format
             if (ampm.equalsIgnoreCase("PM") && hour != 12) hour += 12;
             if (ampm.equalsIgnoreCase("AM") && hour == 12) hour = 0;
 
@@ -166,7 +172,6 @@ public class PrescriptionDetailsActivity extends AppCompatActivity {
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
 
-            // If time already passed → schedule for tomorrow
             if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
                 calendar.add(Calendar.DAY_OF_YEAR, 1);
             }

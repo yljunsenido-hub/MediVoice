@@ -28,7 +28,6 @@ public class Monitoring extends AppCompatActivity {
         loadObservationList();
 
         imgBack = findViewById(R.id.imgBack);
-
         imgBack.setOnClickListener(v -> {
             startActivity(new Intent(Monitoring.this, MedCaregiverHomepage.class));
             finish();
@@ -54,7 +53,7 @@ public class Monitoring extends AppCompatActivity {
 
                         String elderName = obs.child("elderName").getValue(String.class);
                         String observationId = obs.child("observationId").getValue(String.class);
-                        String nurseId = obs.child("nurseId").getValue(String.class); // fetch nurseId
+                        String nurseId = obs.child("nurseId").getValue(String.class);
 
                         addElderButton(elderName, observationId, nurseId);
                     }
@@ -75,6 +74,12 @@ public class Monitoring extends AppCompatActivity {
         btn.setText(elderName);
         btn.setAllCaps(false);
 
+        // ✅ MATCH MedicationTracker UI
+        btn.setBackgroundResource(R.drawable.bg_med_button);
+        btn.setPadding(30, 20, 30, 20);
+        btn.setTextColor(getResources().getColor(android.R.color.white));
+        btn.setTextSize(16);
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -82,12 +87,11 @@ public class Monitoring extends AppCompatActivity {
         params.setMargins(0, 0, 0, 25);
         btn.setLayoutParams(params);
 
-        // Pass elderName, elderId, and nurseId to details activity
         btn.setOnClickListener(v -> {
             Intent i = new Intent(Monitoring.this, MonitoringDetailsActivity.class);
-            i.putExtra("elderId", obsId);       // observationId
+            i.putExtra("elderId", obsId);
             i.putExtra("elderName", elderName);
-            i.putExtra("nurseId", nurseId);     // nurse who assigned this elder
+            i.putExtra("nurseId", nurseId);
             startActivity(i);
         });
 

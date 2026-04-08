@@ -45,7 +45,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
@@ -54,22 +54,23 @@
 
         <EditText
             android:id="@+id/editRunningNote"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
             android:hint="Type here:"
+            android:gravity="left"
             android:fontFamily="monospace"
             android:background="@drawable/rounded_edittext"/>
 
         <Button
             android:id="@+id/btnSendGuardian"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SEND TO Caregiver"
-            android:textSize="8sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
-            android:layout_gravity="end"
             android:layout_marginTop="8dp"/>
     </LinearLayout>
 </LinearLayout>

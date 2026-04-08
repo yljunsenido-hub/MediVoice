@@ -19,6 +19,7 @@
             android:id="@+id/txtElderName"
             android:text="Elder Name"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -27,6 +28,7 @@
             android:id="@+id/txtElderAge"
             android:text="Age: --"
             android:textSize="16sp"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

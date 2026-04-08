@@ -151,17 +151,18 @@
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginBottom="4dp" />
+
                     <EditText
                         android:id="@+id/etSchedule"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="e.g., 3 times a day"
+                        android:layout_marginBottom="12dp"
                         android:background="@drawable/rounded_edittext"
                         android:fontFamily="monospace"
+                        android:hint="e.g., 3 times a day"
                         android:padding="10dp"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="12dp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -173,28 +174,19 @@
                         android:textSize="16sp"
                         android:layout_marginBottom="4dp" />
 
+
                     <EditText
                         android:id="@+id/etTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Tap SET ALARM to choose time"
+                        android:hint="Tap to select time"
                         android:background="@drawable/rounded_edittext"
-                        android:fontFamily="monospace"
                         android:padding="10dp"
-                        android:textColor="@android:color/black"
                         android:textSize="16sp"
+                        android:fontFamily="monospace"
+                        android:textColor="@android:color/black"
                         android:focusable="false"
-                        android:clickable="false"
-                        android:layout_marginBottom="12dp" />
-
-                    <Button
-                        android:id="@+id/btnSetAlarm"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:text="SET ALARM"
-                        android:background="@drawable/button"
-                        android:textColor="@color/white"
-                        android:fontFamily="sans-serif-black" />
+                        android:clickable="true"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -218,14 +210,15 @@
                             android:background="@drawable/rounded_edittext"
                             android:padding="8dp"
                             android:layout_marginBottom="8dp" />
+
                         <Button
                             android:id="@+id/btnSendTo"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:text="SEND TO"
                             android:background="@drawable/button"
-                            android:textColor="@color/white"
-                            android:fontFamily="sans-serif-black" />
+                            android:fontFamily="sans-serif-black"
+                            android:text="SUBMIT"
+                            android:textColor="@color/white" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -314,7 +307,7 @@
                         android:id="@+id/btnObsSendTo"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:text="SEND TO"
+                        android:text="SUBMIT"
                         android:background="@drawable/button"
                         android:textColor="@color/white"
                         android:fontFamily="sans-serif-black" />
