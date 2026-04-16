@@ -1,7 +1,12 @@
 package com.example.medivoice;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ArrayAdapter;
@@ -9,8 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.os.Build;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +44,9 @@ public class MedNursePrescription extends AppCompatActivity {
 
     String nurseId;
     String nurseName = "";
+
+    int selectedHour = -1;
+    int selectedMinute = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,10 +184,18 @@ public class MedNursePrescription extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
 
         new TimePickerDialog(this, (view, hour, minute) -> {
+
+            selectedHour = hour;
+            selectedMinute = minute;
+
             int h = hour % 12;
             if (h == 0) h = 12;
+
             String ampm = hour < 12 ? "AM" : "PM";
-            etTime.setText(String.format(Locale.getDefault(), "%02d:%02d %s", h, minute, ampm));
+
+            etTime.setText(String.format(Locale.getDefault(),
+                    "%02d:%02d %s", h, minute, ampm));
+
         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false).show();
     }
 
@@ -199,6 +217,7 @@ public class MedNursePrescription extends AppCompatActivity {
                 || TextUtils.isEmpty(schedule) || TextUtils.isEmpty(time)) {
             Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
             return;
+
         }
 
         String caregiverId = caregiverIds.get(caregiverPos);
@@ -220,7 +239,9 @@ public class MedNursePrescription extends AppCompatActivity {
                 .child("Prescriptions").child(key)
                 .setValue(data)
                 .addOnSuccessListener(unused -> {
-                    Toast.makeText(this, "Prescription sent", Toast.LENGTH_SHORT).show();
+                    showPrescriptionNotification(medName);
+
+                    scheduleMedicationAlarm(medName);
 
                     etMedicationName.setText("");
                     etDosage.setText("");
@@ -263,5 +284,91 @@ public class MedNursePrescription extends AppCompatActivity {
                     Toast.makeText(this, "Observation sent", Toast.LENGTH_SHORT).show();
                     etToBeMonitored.setText("");
                 });
+    }
+    void scheduleMedicationAlarm(String medName) {
+
+        if (selectedHour == -1 || selectedMinute == -1) {
+            Toast.makeText(this, "Please select time", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Calendar now = Calendar.getInstance();
+        Calendar alarmCal = Calendar.getInstance();
+
+        alarmCal.set(Calendar.HOUR_OF_DAY, selectedHour);
+        alarmCal.set(Calendar.MINUTE, selectedMinute);
+        alarmCal.set(Calendar.SECOND, 0);
+
+        if (alarmCal.before(now)) {
+            alarmCal.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        intent.putExtra("medName", medName);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                (int) System.currentTimeMillis(),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        AlarmManager alarmManager =
+                (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        if (alarmManager == null) {
+            Toast.makeText(this, "AlarmManager not available", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (alarmManager.canScheduleExactAlarms()) {
+                alarmManager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        alarmCal.getTimeInMillis(),
+                        pendingIntent
+                );
+            } else {
+                alarmManager.set(
+                        AlarmManager.RTC_WAKEUP,
+                        alarmCal.getTimeInMillis(),
+                        pendingIntent
+                );
+            }
+        } else {
+            alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    alarmCal.getTimeInMillis(),
+                    pendingIntent
+            );
+        }
+
+        Toast.makeText(this, "Alarm scheduled", Toast.LENGTH_SHORT).show();
+    }
+    void showPrescriptionNotification(String medName) {
+        String channelId = "prescription_channel";
+
+        NotificationManager manager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        if (manager == null) return;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    channelId,
+                    "Prescription Notifications",
+                    android.app.NotificationManager.IMPORTANCE_HIGH
+            );
+            manager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setContentTitle("Prescription Sent")
+                .setContentText("Medication: " + medName)
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        manager.notify((int) (System.currentTimeMillis() % Integer.MAX_VALUE), builder.build());
     }
 }
