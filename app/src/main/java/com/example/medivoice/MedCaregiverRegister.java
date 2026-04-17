@@ -4,18 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +25,8 @@ public class MedCaregiverRegister extends AppCompatActivity {
     EditText employeeNumber, firstName, lastName, age, contactNumber, shift, emailPass, password;
     Button btnRegister;
     ImageView btnBack;
+    CheckBox checkboxTerms;
+
     DatabaseReference requestRef;
 
     @Override
@@ -49,6 +50,7 @@ public class MedCaregiverRegister extends AppCompatActivity {
         password = findViewById(R.id.password);
         btnRegister = findViewById(R.id.btnRegister);
         btnBack = findViewById(R.id.btnBack);
+        checkboxTerms = findViewById(R.id.checkboxTerms);
 
         requestRef = FirebaseDatabase.getInstance()
                 .getReference("Employee_Request")
@@ -62,16 +64,65 @@ public class MedCaregiverRegister extends AppCompatActivity {
                     MedCaregiverLogin.class));
             finish();
         });
+
+        checkboxTerms.setOnClickListener(v -> {
+            if (checkboxTerms.isChecked()) {
+                showTermsDialog();
+            }
+        });
+    }
+
+    private void showTermsDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Terms and Conditions")
+                .setMessage(
+                        "By clicking \"I Agree\" and registering for the MediVoice Mobile Application (the \"Service\"), you agree to be bound by these Terms and Conditions.\n\n" +
+
+                                "1. Eligibility and Registration\n" +
+                                "- Only for caregivers and nurses of One Cainta Sunset Retreat.\n" +
+                                "- Information must be true and complete.\n\n" +
+
+                                "2. Purpose\n" +
+                                "- Reduce medication risk\n" +
+                                "- Provide alerts and notifications\n" +
+                                "- Improve workflow\n\n" +
+
+                                "3. Data Privacy\n" +
+                                "- Your data will be protected\n" +
+                                "- Not shared for marketing\n\n" +
+
+                                "4. Responsibilities\n" +
+                                "- Keep password secure\n\n" +
+
+                                "5. Termination\n" +
+                                "- Account may be terminated if terms are violated\n\n" +
+
+                                "6. Governing Law\n" +
+                                "- Republic of the Philippines"
+                )
+                .setPositiveButton("I Agree", (dialog, which) -> {
+                    checkboxTerms.setChecked(true);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    checkboxTerms.setChecked(false);
+                })
+                .setCancelable(false)
+                .show();
     }
 
     private void submitRequest() {
 
+        if (!checkboxTerms.isChecked()) {
+            Toast.makeText(this, "You must agree to Terms and Conditions", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String empNo = employeeNumber.getText().toString().trim();
         String fName = firstName.getText().toString().trim();
         String lName = lastName.getText().toString().trim();
-        String age = this.age.getText().toString().trim();
+        String ageStr = age.getText().toString().trim();
         String contact = contactNumber.getText().toString().trim();
-        String shift = this.shift.getText().toString().trim();
+        String shiftStr = shift.getText().toString().trim();
         String email = emailPass.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
@@ -89,18 +140,22 @@ public class MedCaregiverRegister extends AppCompatActivity {
             lastName.setError("Last Name required");
             return;
         }
-        if (TextUtils.isEmpty(age)) {
-            this.age.setError("Age required");
+
+        if (TextUtils.isEmpty(ageStr)) {
+            age.setError("Age required");
             return;
         }
+
         if (TextUtils.isEmpty(contact)) {
             contactNumber.setError("Contact required");
             return;
         }
-        if (TextUtils.isEmpty(shift)) {
-            this.shift.setError("Shift required");
+
+        if (TextUtils.isEmpty(shiftStr)) {
+            shift.setError("Shift required");
             return;
         }
+
         if (TextUtils.isEmpty(email)) {
             emailPass.setError("Email required");
             return;
@@ -117,9 +172,9 @@ public class MedCaregiverRegister extends AppCompatActivity {
         requestMap.put("employeeNumber", empNo);
         requestMap.put("firstName", fName);
         requestMap.put("lastName", lName);
-        requestMap.put("age", age);
+        requestMap.put("age", ageStr);
         requestMap.put("contactNumber", contact);
-        requestMap.put("shift", shift);
+        requestMap.put("shift", shiftStr);
         requestMap.put("email", email);
         requestMap.put("password", pass);
         requestMap.put("status", "pending");

@@ -131,6 +131,12 @@
                     android:fontFamily="monospace"
                     android:textColorHint="@color/black"/>
 
+                <CheckBox
+                    android:id="@+id/checkboxTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I agree to Terms and Conditions"/>
+
                 <Button
                     android:id="@+id/btnRegister"
                     android:layout_width="wrap_content"
