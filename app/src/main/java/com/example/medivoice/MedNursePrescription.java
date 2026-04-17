@@ -343,7 +343,7 @@ public class MedNursePrescription extends AppCompatActivity {
             );
         }
 
-        showPrescriptionNotification("Alarm set for " + medName);
+        showPrescriptionNotification("Prescription sent for " + elderIds);
     }
     void showPrescriptionNotification(String medName) {
         String channelId = "prescription_channel";
