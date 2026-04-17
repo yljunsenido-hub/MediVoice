@@ -343,7 +343,7 @@ public class MedNursePrescription extends AppCompatActivity {
             );
         }
 
-        Toast.makeText(this, "Alarm scheduled", Toast.LENGTH_SHORT).show();
+        showPrescriptionNotification("Alarm set for " + medName);
     }
     void showPrescriptionNotification(String medName) {
         String channelId = "prescription_channel";
@@ -357,8 +357,13 @@ public class MedNursePrescription extends AppCompatActivity {
             NotificationChannel channel = new NotificationChannel(
                     channelId,
                     "Prescription Notifications",
-                    android.app.NotificationManager.IMPORTANCE_HIGH
+                    NotificationManager.IMPORTANCE_HIGH
             );
+
+            channel.setDescription("Prescription alerts");
+            channel.enableVibration(true);
+            channel.enableLights(true);
+
             manager.createNotificationChannel(channel);
         }
 
@@ -366,7 +371,12 @@ public class MedNursePrescription extends AppCompatActivity {
                 .setContentTitle("Prescription Sent")
                 .setContentText("Medication: " + medName)
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+
+
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setCategory(NotificationCompat.CATEGORY_CALL)
+
                 .setAutoCancel(true);
 
         manager.notify((int) (System.currentTimeMillis() % Integer.MAX_VALUE), builder.build());
